@@ -1,4 +1,9 @@
 <!DOCTYPE html>
+
+<?php
+require_once 'functions/functions.php'
+ ?>
+
 <html>
 
 <head>
@@ -18,17 +23,27 @@
       <div class="filter">
 
       </div>
-        <form method="post" action="index.html">
+        <form method="post">
             <h2 class="sr-only">Login Form</h2>
             <div class="illustration">
                 <img src="assets/img/logo2.png" height="175px" alt="">
                 <h1>Login</h1>
                 <hr>
             </div>
-            <div class="form-group"><label>Utilizador</label><input class="form-control" name="user" placeholder="Utilizador"type="text"></div>
-            <div class="form-group"><label>Password</label><input class="form-control" name="password" placeholder="******" type="password"></div>
-            <div class="form-group"><button class="btn btn-primary btn-block" type="submit">Log In</button></div>
+            <div class="form-group">
+              <label>Utilizador</label>
+              <input class="form-control" name="user" placeholder="Utilizador"type="text"></div>
+            <div class="form-group">
+              <label>Password</label>
+              <input class="form-control" name="password" placeholder="******" type="password"></div>
+            <div class="form-group">
+              <button class="btn btn-primary btn-block" name="submit" type="submit">Log In</button></div>
         </form>
+        <?php
+          if (isset($_POST["submit"])) {
+            login($_POST["user"], $_POST["password"]);
+          }
+         ?>
     </div>
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
