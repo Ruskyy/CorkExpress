@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <?php
 require_once 'functions/functions.php';
 session_start();
@@ -74,7 +74,7 @@ validar();
                                 <i class="fas fa-table"></i>Tables</a>
                         </li>
                         <li>
-                            <a href="form.html">
+                            <a href="form.php">
                                 <i class="far fa-check-square"></i>Forms</a>
                         </li>
                         <li class="has-sub">
@@ -145,7 +145,7 @@ validar();
                                 <i class="fas fa-table"></i>Tables</a>
                         </li>
                         <li>
-                            <a href="form.html">
+                            <a href="form.php">
                                 <i class="far fa-check-square"></i>Forms</a>
                         </li>
 
@@ -240,7 +240,7 @@ validar();
                                                 </div>
                                             </div>
                                             <div class="account-dropdown__footer">
-                                                <a href="login.php">
+                                                <a href="functions/fecharsessao.php">
                                                     <i class="zmdi zmdi-power"></i>Logout</a>
                                             </div>
                                         </div>
