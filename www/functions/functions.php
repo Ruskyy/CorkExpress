@@ -19,7 +19,7 @@ function login($username,$password){
       $_SESSION["tipo"] = $alogin["func_tipo"];
       $_SESSION["username"] = $alogin["func_user"];
 
-      echo "<meta http-equiv='refresh' content='0; URL=index.html'>";
+      echo "<meta http-equiv='refresh' content='0; URL=index.php'>";
     }
     include 'connections/deconn.php';
   }
