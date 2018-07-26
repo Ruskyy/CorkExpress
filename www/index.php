@@ -276,7 +276,7 @@ validar();
                                                 <i class="zmdi zmdi-account-o"></i>
                                             </div>
                                             <div class="text">
-                                                <h2>10368</h2>
+                                                <h2>1</h2>
                                                 <span>Colaboradores</span>
                                             </div>
                                         </div>
@@ -317,7 +317,7 @@ validar();
                                             </div>
                                         </div>
                                         <div class="overview-chart">
-                                            <canvas id="widgetChart4"></canvas>
+                                            <canvas id="widgetChart3"></canvas>
                                         </div>
                                     </div>
                                 </div>
