@@ -4,7 +4,7 @@ function login($username,$password){
   if(empty($username) || empty($password)){
     echo 'Comé wi, preenche esses mambos!';
   }else {
-    include '../connections/conn.php';
+    include 'connections/conn.php';
     $qlogin = mysqli_query($conn,"SELECT func_user, func_pass, func_tipo, func_id
        FROM funcionario
        WHERE func_user = '$username' AND func_pass = '$password' AND func_id = 1");
@@ -21,7 +21,7 @@ function login($username,$password){
 
       echo "<meta http-equiv='refresh' content='0; URL=index.html'>";
     }
-    include '../connections/deconn.php';
+    include 'connections/deconn.php';
   }
 }
 function validar(){
