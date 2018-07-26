@@ -240,8 +240,8 @@ validar();
                                                 </div>
                                             </div>
                                             <div class="account-dropdown__footer">
-                                                <a href="login.php">
-                                                    <i class="zmdi zmdi-power"></i>Logout</a>
+                                                <?php echo "<a href='fechasessao.php'><i class='zmdi zmdi-power'></i>SAIR</a>"; ?>
+                                              
                                             </div>
                                         </div>
                                     </div>
