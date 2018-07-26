@@ -37,7 +37,7 @@
 ### Historico Pagamentos
 
 |id_historico|id_user| id_tipo_pagamento |Data-pagamento| Detalhes |
-| :------------- | :------------- |
+| :------------- | :------------- | :------------- | :------------- |:------------- |
 | 1 | 3 | 1 | 15/7/2018      | n/a|
 
 
