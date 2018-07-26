@@ -14,7 +14,7 @@
 |2 |Espanhola |
 |4 |Francesa |
 |5 |Canadiense |
-|6 |Cabo Verdiense |
+|6 |Cabo Verde |
 
 ### Locais (Naturalidade)
 
