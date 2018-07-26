@@ -74,7 +74,7 @@ validar();
                               <i class="fas fa-table"></i>Tables</a>
                       </li>
                       <li>
-                          <a href="form.html">
+                          <a href="form.php">
                               <i class="far fa-check-square"></i>Forms</a>
                       </li>
                       <li class="has-sub">
@@ -145,7 +145,7 @@ validar();
                               <i class="fas fa-table"></i>Tables</a>
                       </li>
                       <li>
-                          <a href="form.html">
+                          <a href="form.php">
                               <i class="far fa-check-square"></i>Forms</a>
                       </li>
 
