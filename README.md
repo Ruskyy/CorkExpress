@@ -1,7 +1,7 @@
 ### Funcionário
 
 |id|tipouser|user|password|email|nome|morada|Nacionalidade|Naturalidade|BI|NIF|NIB|NISS|Contacto|Salario Liquido|
-| :--- |
+| :------------- | :------------- | :------------- | :------------- | :------------- | :------------- | :------------- | :------------- | :------------- | :------------- | :------------- | :------------- | :------------- | :------------- | :-------------|
 |1|1|admin|admin|admin@gmail.com|Admin|teste|1|1|0000|0000|0000|0000|9333333333|550|
 |2|1|admin2|admin|teste@gmail.com|Admin2|teste|1|1|0000|0000|0000|0000|9333333333|550|
 |3|2|user|user|user@gmail.com|User|teste|2|4|0000|0000|0000|0000|9333333333|550|
