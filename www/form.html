@@ -370,9 +370,10 @@
                 <div class="section__content section__content--p30">
                     <div class="container-fluid">
                         <div class="row">
+                          <div class="col-lg-12">
                             <form class="" action="index.html" method="post">
 
-                              <div class="col-lg-12">
+
                                 <div class="card">
                                   <div class="card-header">
                                     REGISTO
@@ -438,29 +439,104 @@
 
                                     <div class="row form-group">
                                       <div class="col col-md-3">
-
+                                        <label for="nacio">Nacionalidade</label>
                                       </div>
                                       <div class="col-12 col-md-9">
-
+                                        <select class="form-control" name="nacio">
+                                          <option value="1">Portuguesa</option>
+                                          <option value="2"></option>
+                                          <option value="3"></option>
+                                          <option value="4"></option>
+                                        </select>
                                       </div>
                                     </div>
+                                    <div class="row form-group">
+                                      <div class="col col-md-3">
+                                        <label for="natur" class="form-control-label">Naturalidade</label>
+                                      </div>
+                                      <div class="col-12 col-md-9">
+                                        <select class="form-control" name="natur">
+                                          <option value="1">AX 2840</option>
+                                          <option value="2">Lisboa</option>
+                                          <option value="3">Barreiro</option>
+                                          <option value="4">Porto</option>
+                                        </select>
+                                      </div>
+                                    </div>
+                                    <div class="row form-group">
+                                      <div class="col col-md-3">
+                                        <label for="bi">Numero CC: </label>
+                                      </div>
+                                      <div class="col-12 col-md-9">
+                                        <input type="number" name="bi" min="10000000" max="99999999" class="form-control" required>
+                                      </div>
+                                    </div>
+                                    <div class="row form-group">
+                                      <div class="col col-md-3">
+                                        <label for="nif">NIF: </label>
+                                      </div>
+                                      <div class="col-12 col-md-9">
+                                        <input type="number" name="nif" min="100000000" max="999999999" class="form-control" required>
+                                      </div>
+                                    </div>
+
+                                    <div class="row form-group">
+                                      <div class="col col-md-3">
+                                        <label for="nib" class="form-control-label" >NIB: </label>
+                                      </div>
+                                      <div class="col-12 col-md-9">
+                                        <input type="number" name="nib" min="100000000000000000000" max="999999999999999999999" class="form-control" required>
+                                      </div>
+                                    </div>
+
+                                    <div class="row form-group">
+                                      <div class="col col-md-3">
+                                        <label for="niss" class="form-control-label">Nº Segurança Social: </label>
+                                      </div>
+                                      <div class="col-12 col-md-9">
+                                        <input type="number" name="niss" min="10000000000" max="99999999999" class="form-control" required>
+                                      </div>
+                                    </div>
+
+                                    <div class="row form-group">
+                                      <div class="col col-md-3">
+                                        <label for="contacto" class="form-control-label">TELEMOVEL</label>
+                                      </div>
+                                      <div class="col-12 col-md-9">
+                                        <input type="number" name="contacto" min="100000000" max="999999999" class="form-control" required>
+                                      </div>
+                                    </div>
+
+                                    <div class="row form-group">
+                                      <div class="col col-md-3">
+                                        <label for="salario">SALÁRIO BASE: </label>
+                                      </div>
+                                      <div class="col-12 col-md-9">
+                                        <input type="number" name="salario" min="1" step="any" value="" class="form-control" required>
+                                      </div>
+                                    </div>
+
+                                    <div class="row form-group">
+                                      <div class="col col-md-3">
+
+                                      </div>
+                                      <div class="col-12 col-md-12">
+                                        <button type="submit" name="submit" class="btn btn-primary btn-lg  btn-block">SUBMETER</button>
+                                      </div>
+                                    </div>
+
+
+
+
                                   </div>
-
                                 </div>
-
-                              </div>
-
-
-
-
-
                             </form>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
     </div>
 
     <!-- Jquery JS-->
