@@ -1,6 +1,6 @@
 <?php
-$user="root";
-$pass="";
+$user="Klekito";
+$pass="123456";
 $servername="localhost";
 
 //Estabelecer ligacao

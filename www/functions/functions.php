@@ -19,19 +19,19 @@ function login($username,$password){
       $_SESSION["tipo"] = $alogin["func_tipo"];
       $_SESSION["username"] = $alogin["func_user"];
 
-      echo "<meta http-equiv='refresh' content='0; URL=../index.html'>";
+      echo "<meta http-equiv='refresh' content='0; URL=index.html'>";
     }
     include '../connections/deconn.php';
   }
 }
 function validar(){
   if(!$_SESSION["id"]){
-    echo "<meta http-equiv='refresh' content='0; URL=../login.php'>";
+    echo "<meta http-equiv='refresh' content='0; URL=login.php'>";
   }
 }
 function validarMain(){
   if(!$_SESSION["id"]){
-    echo "<meta http-equiv='refresh' content='0; URL=../login.php'>";
+    echo "<meta http-equiv='refresh' content='0; URL=login.php'>";
   }
 }
  ?>
