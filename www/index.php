@@ -309,7 +309,7 @@ validar();
                                             </div>
                                             <div class="text">
                                                 <h2>388,688</h2>
-                                                <span>items solid</span>
+                                                <span>items sold</span>
                                             </div>
                                         </div>
                                         <div class="overview-chart">
@@ -326,7 +326,13 @@ validar();
                                                 <i class="zmdi zmdi-money"></i>
                                             </div>
                                             <div class="text">
-                                                <h2>1,086</h2>
+                                                <h2><?php
+                                                require_once 'connections/conn.php';
+                                                $query = mysqli_query($conn,"SELECT avg(func_salario) AS media FROM funcionario");
+                                                $resultado = mysqli_fetch_assoc($query);
+                                                $media = $resultado['media'];
+                                                echo "$media €";
+                                                ?></h2>
                                                 <span>Salário Médio</span>
                                             </div>
                                         </div>
@@ -344,7 +350,13 @@ validar();
                                                 <i class="zmdi zmdi-money"></i>
                                             </div>
                                             <div class="text">
-                                                <h2>$1,060,386</h2>
+                                                <h2><?php
+                                                require_once 'connections/conn.php';
+                                                $query = mysqli_query($conn,"SELECT sum(func_salario) AS soma FROM funcionario");
+                                                $resultado = mysqli_fetch_assoc($query);
+                                                $salarios = $resultado['soma'];
+                                                echo "$salarios €";
+                                                ?></h2>
                                                 <span>Salários/mês</span>
                                             </div>
                                         </div>
@@ -354,7 +366,7 @@ validar();
                                     </div>
                                 </div>
                             </div>
-                        </div>                      
+                        </div>
                         <div class="row">
                             <div class="col-lg-9">
                                 <h2 class="title-1 m-b-25">Earnings By Items</h2>
@@ -485,10 +497,6 @@ validar();
                                 </div>
                             </div>
                         </div>
-
-
-
-
 
                         <div class="row">
                             <div class="col-md-12">
