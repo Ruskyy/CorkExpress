@@ -11,10 +11,8 @@
       var myChart = new Chart(ctx, {
         type: 'line',
         data: {
-          labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho','Agosto'],
           type: 'line',
           datasets: [{
-            data: [0, 0, 0, 0, 0, 0, 0, 1],
             label: 'Dataset',
             backgroundColor: 'rgba(255,255,255,.1)',
             borderColor: 'rgba(255,255,255,.55)',
@@ -77,7 +75,7 @@
       var myChart = new Chart(ctx, {
         type: 'line',
         data: {
-          labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+          labels: ['', '', '', '', '', ''],
           type: 'line',
           datasets: [{
             data: [1, 18, 9, 17, 34, 22],
@@ -93,7 +91,7 @@
           },
           responsive: true,
           tooltips: {
-            mode: 'index',
+            mode: 'none',
             titleFontSize: 12,
             titleFontColor: '#000',
             bodyFontColor: '#000',
@@ -146,7 +144,7 @@
       var myChart = new Chart(ctx, {
         type: 'bar',
         data: {
-          labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+          labels: ['', '', '', '', '', '', '', '', '', '', '', ''],
           datasets: [
             {
               data: [78, 81, 80, 65, 58, 75, 60, 75, 65, 60, 60, 75],
@@ -160,6 +158,14 @@
           maintainAspectRatio: true,
           legend: {
             display: false
+          },
+          tooltips: {
+            mode: 'none',
+            intersect: false
+          },
+          hover: {
+            mode: 'none',
+            intersect: true
           },
           scales: {
             xAxes: [{
@@ -182,7 +188,7 @@
       var myChart = new Chart(ctx, {
         type: 'bar',
         data: {
-          labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+          labels: ['', '', '', '', '', '', '', '', '', '', '', ''],
           datasets: [
             {
               data: [78, 81, 80, 65, 58, 75, 60, 75, 65, 60, 60, 75],
@@ -196,6 +202,14 @@
           maintainAspectRatio: true,
           legend: {
             display: false
+          },
+          tooltips: {
+            mode: 'none',
+            intersect: false
+          },
+          hover: {
+            mode: 'none',
+            intersect: true
           },
           scales: {
             xAxes: [{
@@ -225,7 +239,7 @@
       var myChart = new Chart(ctx, {
         type: 'line',
         data: {
-          labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', ''],
+          labels: ['', '', '', '', '', '', '', '', '', ''],
           datasets: [
             {
               label: 'My First dataset',
@@ -985,11 +999,11 @@
           },
           responsive: true,
           tooltips: {
-            mode: 'index',
+            mode: 'none',
             intersect: false
           },
           hover: {
-            mode: 'nearest',
+            mode: 'none',
             intersect: true
           },
           scales: {

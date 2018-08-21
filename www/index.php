@@ -285,7 +285,12 @@ validar();
                                                 <i class="zmdi zmdi-account-o"></i>
                                             </div>
                                             <div class="text">
-                                                <h2>1</h2>
+                                                <h2><?php
+                                                require_once 'connections/conn.php';
+                                                $query = mysqli_query($conn,"SELECT func_id FROM funcionario");
+                                                $entradas = mysqli_num_rows($query);
+                                                echo "$entradas";
+                                                ?></h2>
                                                 <span>Colaboradores</span>
                                             </div>
                                         </div>
