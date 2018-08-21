@@ -266,28 +266,33 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
+                                          <?php
+                                          include 'connections/conn.php';
+                                          $query = mysqli_query($conn,"SELECT * FROM funcionario");
+                                          while ($listafuncionarios = mysqli_fetch_array($query)) {
+                                            echo '<tr><td>'.$listafuncionarios['func_nome'].'</td>
+                                            <td>'.$listafuncionarios['func_email'].'</td>
+                                            <td>'.$listafuncionarios['func_morada'].'</td>
+                                            <td>'.$listafuncionarios['func_salario'].'</td>
+                                            <td>
+                                              <div class="table-data-feature">
+                                                  <button class="item" data-toggle="tooltip" data-placement="top" title="Ver Perfil">
+                                                      <i class="zmdi zmdi-plus"></i>
+                                                  </button>
+                                                  <button class="item" data-toggle="tooltip" data-placement="top" title="Edit">
+                                                      <i class="zmdi zmdi-edit"></i>
+                                                  </button>
+                                                  <button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
+                                                      <i class="zmdi zmdi-delete"></i>
+                                                  </button>
+                                                  <button class="item" data-toggle="tooltip" data-placement="top" title="More">
+                                                      <i class="zmdi zmdi-more"></i>
+                                                  </button>
+                                              </div></td>';
+                                          }
 
-                                                <td>Lelo</td>
-                                                <td>000000000000</td>
-                                                <td class="process">Processed</td>
-                                                <td>$999.00</td>
-                                                <td>
-                                                  <div class="table-data-feature">
-                                                      <button class="item" data-toggle="tooltip" data-placement="top" title="Ver Perfil">
-                                                          <i class="zmdi zmdi-plus"></i>
-                                                      </button>
-                                                      <button class="item" data-toggle="tooltip" data-placement="top" title="Edit">
-                                                          <i class="zmdi zmdi-edit"></i>
-                                                      </button>
-                                                      <button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
-                                                          <i class="zmdi zmdi-delete"></i>
-                                                      </button>
-                                                      <button class="item" data-toggle="tooltip" data-placement="top" title="More">
-                                                          <i class="zmdi zmdi-more"></i>
-                                                      </button>
-                                                  </div></td>
-                                            </tr>
+                                          include 'connections/deconn.php';
+                                          ?>
                                         </tbody>
                                     </table>
                                 </div>
