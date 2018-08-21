@@ -66,16 +66,12 @@ validar();
                               <i class="fas fa-tachometer-alt"></i>Dashboard</a>
                       </li>
                       <li>
-                          <a href="chart.html">
-                              <i class="fas fa-chart-bar"></i>Charts</a>
-                      </li>
-                      <li>
-                          <a href="table.html">
-                              <i class="fas fa-table"></i>Tables</a>
+                          <a href="lista.php">
+                              <i class="fas fa-list-ul"></i>Lista Funcionarios</a>
                       </li>
                       <li>
                           <a href="form.php">
-                              <i class="far fa-check-square"></i>Forms</a>
+                              <i class="fas fa-user-plus"></i>Adicionar Funcionario</a>
                       </li>
                       <li class="has-sub">
                           <a class="js-arrow" href="#">
@@ -114,6 +110,14 @@ validar();
                               <li>
                                   <a href="typo.html">Typography</a>
                               </li>
+                              <li>
+                                  <a href="chart.html">
+                                      <i class="fas fa-chart-bar"></i>Charts</a>
+                              </li>
+                              <li>
+                                  <a href="table.html">
+                                      <i class="fas fa-table"></i>Tables</a>
+                              </li>
                           </ul>
                       </li>
                   </ul>
@@ -137,17 +141,15 @@ validar();
                               <i class="fas fa-tachometer-alt"></i>Dashboard</a>
                       </li>
                       <li>
-                          <a href="chart.html">
-                              <i class="fas fa-chart-bar"></i>Charts</a>
-                      </li>
-                      <li>
-                          <a href="table.html">
-                              <i class="fas fa-table"></i>Tables</a>
+                          <a href="lista.php">
+                              <i class="fas fa-list-ul"></i>Lista Funcionarios</a>
                       </li>
                       <li>
                           <a href="form.php">
-                              <i class="far fa-check-square"></i>Forms</a>
+                             <i class="fas fa-user-plus"></i>Adicionar Funcionario</a>
                       </li>
+
+
 
                       <li class="has-sub">
                           <a class="js-arrow" href="#">
@@ -185,6 +187,14 @@ validar();
                               </li>
                               <li>
                                   <a href="typo.html">Typography</a>
+                              </li>
+                              <li>
+                                  <a href="chart.html">
+                                      <i class="fas fa-chart-bar"></i>Charts</a>
+                              </li>
+                              <li>
+                                  <a href="table.html">
+                                      <i class="fas fa-table"></i>Tables</a>
                               </li>
                           </ul>
                       </li>
@@ -259,12 +269,11 @@ validar();
                     <div class="container-fluid">
                         <div class="row">
                           <div class="col-lg-12">
+
                             <form class="" action="index.php" method="post">
-
-
                                 <div class="card">
                                   <div class="card-header">
-                                    REGISTO
+                                    REGISTO NOVO FUNCIONARIO
                                   </div>
                                   <div class="card-body card-block">
                                     <div class="row form-group">
@@ -303,7 +312,7 @@ validar();
                                         <label for="email" class="form-control-label">E-Mail: </label>
                                       </div>
                                       <div class="col-12 col-md-9">
-                                        <input type="email" name="email" value="" class="form-control" placeholder="abc@abc.com" Required>
+                                        <input type="email" name="email" value="" class="form-control" placeholder="admin@corckexpress.com" Required>
                                       </div>
                                     </div>
 
@@ -331,10 +340,18 @@ validar();
                                       </div>
                                       <div class="col-12 col-md-9">
                                         <select class="form-control" name="nacio">
-                                          <option value="1">Portuguesa</option>
-                                          <option value="2"></option>
-                                          <option value="3"></option>
-                                          <option value="4"></option>
+                                          <?php
+                                          include 'connections/conn.php';
+                                          $query = mysqli_query($conn,"SELECT * FROM nacionalidade");
+                                          while ($nacionalidades = mysqli_fetch_array($query)) {
+                                            if ($nacionalidades['paisId']==193) {
+                                                echo '<option selected value="'.$nacionalidades['paisId'].'">'.$nacionalidades['paisNome'].'</option>';
+                                            }else {
+                                            echo '<option value="'.$nacionalidades['paisId'].'">'.$nacionalidades['paisNome'].'</option>';
+                                            }
+                                          }
+                                          include 'connections/deconn.php';
+                                          ?>
                                         </select>
                                       </div>
                                     </div>
@@ -344,10 +361,15 @@ validar();
                                       </div>
                                       <div class="col-12 col-md-9">
                                         <select class="form-control" name="natur">
-                                          <option value="1">AX 2840</option>
-                                          <option value="2">Lisboa</option>
-                                          <option value="3">Barreiro</option>
-                                          <option value="4">Porto</option>
+                                          <option value="" disabled selected>Selecione</option>
+                                          <?php
+                                          include 'connections/conn.php';
+                                          $query = mysqli_query($conn,"SELECT * FROM naturalidade");
+                                          while ($naturalidade = mysqli_fetch_array($query)) {
+                                            echo '<option value="'.$naturalidade['idNatur'].'">'.$naturalidade['nomeNatur'].'</option>';
+                                          }
+                                          include 'connections/deconn.php';
+                                          ?>
                                         </select>
                                       </div>
                                     </div>

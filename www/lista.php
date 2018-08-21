@@ -61,16 +61,12 @@
                               <i class="fas fa-tachometer-alt"></i>Dashboard</a>
                       </li>
                       <li>
-                          <a href="chart.html">
-                              <i class="fas fa-chart-bar"></i>Charts</a>
+                          <a href="lista.php">
+                              <i class="fas fa-list-ul"></i>Lista Funcionarios</a>
                       </li>
                       <li>
-                          <a href="table.html">
-                              <i class="fas fa-table"></i>Tables</a>
-                      </li>
-                      <li>
-                          <a href="form.html">
-                              <i class="far fa-check-square"></i>Forms</a>
+                          <a href="form.php">
+                              <i class="fas fa-user-plus"></i>Adicionar Funcionario</a>
                       </li>
                       <li class="has-sub">
                           <a class="js-arrow" href="#">
@@ -109,6 +105,14 @@
                               <li>
                                   <a href="typo.html">Typography</a>
                               </li>
+                              <li>
+                                  <a href="chart.html">
+                                      <i class="fas fa-chart-bar"></i>Charts</a>
+                              </li>
+                              <li>
+                                  <a href="table.html">
+                                      <i class="fas fa-table"></i>Tables</a>
+                              </li>
                           </ul>
                       </li>
                   </ul>
@@ -132,17 +136,15 @@
                               <i class="fas fa-tachometer-alt"></i>Dashboard</a>
                       </li>
                       <li>
-                          <a href="chart.html">
-                              <i class="fas fa-chart-bar"></i>Charts</a>
+                          <a href="lista.php">
+                              <i class="fas fa-list-ul"></i>Lista Funcionarios</a>
                       </li>
                       <li>
-                          <a href="table.html">
-                              <i class="fas fa-table"></i>Tables</a>
+                          <a href="form.php">
+                             <i class="fas fa-user-plus"></i>Adicionar Funcionario</a>
                       </li>
-                      <li>
-                          <a href="form.html">
-                              <i class="far fa-check-square"></i>Forms</a>
-                      </li>
+
+
 
                       <li class="has-sub">
                           <a class="js-arrow" href="#">
@@ -181,6 +183,14 @@
                               <li>
                                   <a href="typo.html">Typography</a>
                               </li>
+                              <li>
+                                  <a href="chart.html">
+                                      <i class="fas fa-chart-bar"></i>Charts</a>
+                              </li>
+                              <li>
+                                  <a href="table.html">
+                                      <i class="fas fa-table"></i>Tables</a>
+                              </li>
                           </ul>
                       </li>
                   </ul>
@@ -196,25 +206,27 @@
               <div class="section__content section__content--p30">
                   <div class="container-fluid">
                       <div class="header-wrap">
+
                           <div class="header-button">
+
                               <div class="account-wrap">
                                   <div class="account-item clearfix js-item-menu">
                                       <div class="image">
-                                          <img src="images/icon/avatar-01.jpg" alt="John Doe" />
+                                          <img src="images/icon/avatar-01.jpg" alt="nilton fontes" />
                                       </div>
                                       <div class="content">
-                                          <a class="js-acc-btn" href="#">john doe</a>
+                                          <a class="js-acc-btn" href="#">nilton fontes</a>
                                       </div>
                                       <div class="account-dropdown js-dropdown">
                                           <div class="info clearfix">
                                               <div class="image">
                                                   <a href="#">
-                                                      <img src="images/icon/avatar-01.jpg" alt="John Doe" />
+                                                      <img src="images/icon/avatar-01.jpg" alt="nilton fontes" />
                                                   </a>
                                               </div>
                                               <div class="content">
                                                   <h5 class="name">
-                                                      <a href="#">john doe</a>
+                                                      <a href="#">nilton fontes</a>
                                                   </h5>
                                                   <span class="email">johndoe@example.com</span>
                                               </div>
@@ -234,7 +246,7 @@
                                               </div>
                                           </div>
                                           <div class="account-dropdown__footer">
-                                              <a href="login.html">
+                                               <a href="functions/fecharsessao.php">
                                                   <i class="zmdi zmdi-power"></i>Logout</a>
                                           </div>
                                       </div>
@@ -273,7 +285,7 @@
                                             echo '<tr><td>'.$listafuncionarios['func_nome'].'</td>
                                             <td>'.$listafuncionarios['func_email'].'</td>
                                             <td>'.$listafuncionarios['func_morada'].'</td>
-                                            <td>'.$listafuncionarios['func_salario'].'</td>
+                                            <td>'.$listafuncionarios['func_salario'].' €</td>
                                             <td>
                                               <div class="table-data-feature">
                                                   <button class="item" data-toggle="tooltip" data-placement="top" title="Ver Perfil">

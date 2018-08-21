@@ -73,14 +73,6 @@ validar();
                            <a href="form.php">
                                <i class="fas fa-user-plus"></i>Adicionar Funcionario</a>
                        </li>
-                       <li>
-                           <a href="chart.html">
-                               <i class="fas fa-chart-bar"></i>Charts</a>
-                       </li>
-                       <li>
-                           <a href="table.html">
-                               <i class="fas fa-table"></i>Tables</a>
-                       </li>
                        <li class="has-sub">
                            <a class="js-arrow" href="#">
                                <i class="fas fa-desktop"></i>UI Elements</a>
@@ -118,6 +110,14 @@ validar();
                                <li>
                                    <a href="typo.html">Typography</a>
                                </li>
+                               <li>
+                                   <a href="chart.html">
+                                       <i class="fas fa-chart-bar"></i>Charts</a>
+                               </li>
+                               <li>
+                                   <a href="table.html">
+                                       <i class="fas fa-table"></i>Tables</a>
+                               </li>
                            </ul>
                        </li>
                    </ul>
@@ -148,14 +148,7 @@ validar();
                            <a href="form.php">
                               <i class="fas fa-user-plus"></i>Adicionar Funcionario</a>
                        </li>
-                       <li>
-                           <a href="chart.html">
-                               <i class="fas fa-chart-bar"></i>Charts</a>
-                       </li>
-                       <li>
-                           <a href="table.html">
-                               <i class="fas fa-table"></i>Tables</a>
-                       </li>
+
 
 
                        <li class="has-sub">
@@ -194,6 +187,14 @@ validar();
                                </li>
                                <li>
                                    <a href="typo.html">Typography</a>
+                               </li>
+                               <li>
+                                   <a href="chart.html">
+                                       <i class="fas fa-chart-bar"></i>Charts</a>
+                               </li>
+                               <li>
+                                   <a href="table.html">
+                                       <i class="fas fa-table"></i>Tables</a>
                                </li>
                            </ul>
                        </li>
@@ -372,7 +373,7 @@ validar();
                                     <table class="table table-borderless table-striped table-earning">
                                         <thead>
                                             <tr>
-                                                <th>date</th>
+                                                <th>data</th>
                                                 <th>ID Pagamento</th>
                                                 <th>Nome</th>
                                                 <th class="text-right">Valor</th>
