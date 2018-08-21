@@ -305,11 +305,11 @@ validar();
                                     <div class="overview__inner">
                                         <div class="overview-box clearfix">
                                             <div class="icon">
-                                                <i class="zmdi zmdi-shopping-cart"></i>
+                                              <i class="zmdi zmdi-trending-up"></i>
                                             </div>
                                             <div class="text">
-                                                <h2>388,688</h2>
-                                                <span>items sold</span>
+                                                <h2> +1,38% <i class="zmdi zmdi-caret-up"></i></h2>
+                                                <span>Ações</span>
                                             </div>
                                         </div>
                                         <div class="overview-chart">
