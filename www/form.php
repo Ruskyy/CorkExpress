@@ -170,9 +170,6 @@ validar();
                           <a href="form.php">
                              <i class="fas fa-user-plus"></i>Adicionar Funcionario</a>
                       </li>
-
-
-
                       <li class="has-sub">
                           <a class="js-arrow" href="#">
                               <i class="fas fa-desktop"></i>UI Elements</a>
@@ -242,7 +239,15 @@ validar();
                                           <img src="images/icon/avatar-01.jpg" alt="nilton fontes" />
                                       </div>
                                       <div class="content">
-                                          <a class="js-acc-btn" href="#">nilton fontes</a>
+                                        <?php
+                                        include 'connections/conn.php';
+                                        require_once 'functions/functions.php';
+                                        $funcid = $_SESSION['id'];
+                                        $query = mysqli_query($conn,"SELECT 'func_id',func_nome,func_email FROM funcionario WHERE func_id = '$funcid'");
+                                        $empregado= mysqli_fetch_array($query);
+
+                                          echo '<a class="js-acc-btn">'.$empregado['func_nome'].'</a>';
+                                         ?>
                                       </div>
                                       <div class="account-dropdown js-dropdown">
                                           <div class="info clearfix">
@@ -252,24 +257,22 @@ validar();
                                                   </a>
                                               </div>
                                               <div class="content">
-                                                  <h5 class="name">
-                                                      <a href="#">nilton fontes</a>
-                                                  </h5>
-                                                  <span class="email">johndoe@example.com</span>
+                                                <?php
+                                                echo '<h5 class="name">
+                                                <a>'.$empregado['func_nome'].'</a>
+                                                </h5>
+                                               <span class="email">'.$empregado['func_email'].'</span>';
+                                                 ?>
                                               </div>
                                           </div>
                                           <div class="account-dropdown__body">
                                               <div class="account-dropdown__item">
                                                   <a href="#">
-                                                      <i class="zmdi zmdi-account"></i>Account</a>
+                                                      <i class="zmdi zmdi-account"></i>Conta</a>
                                               </div>
                                               <div class="account-dropdown__item">
                                                   <a href="#">
-                                                      <i class="zmdi zmdi-settings"></i>Setting</a>
-                                              </div>
-                                              <div class="account-dropdown__item">
-                                                  <a href="#">
-                                                      <i class="zmdi zmdi-money-box"></i>Billing</a>
+                                                      <i class="zmdi zmdi-money-box"></i>Gestão de Salarios</a>
                                               </div>
                                           </div>
                                           <div class="account-dropdown__footer">

@@ -1,4 +1,9 @@
 <!DOCTYPE html>
+<?php
+require_once 'functions/functions.php';
+session_start();
+validar();
+?>
 <html lang="en">
 
 <head>
@@ -165,9 +170,6 @@
                           <a href="form.php">
                              <i class="fas fa-user-plus"></i>Adicionar Funcionario</a>
                       </li>
-
-
-
                       <li class="has-sub">
                           <a class="js-arrow" href="#">
                               <i class="fas fa-desktop"></i>UI Elements</a>
@@ -237,7 +239,15 @@
                                           <img src="images/icon/avatar-01.jpg" alt="nilton fontes" />
                                       </div>
                                       <div class="content">
-                                          <a class="js-acc-btn" href="#">nilton fontes</a>
+                                        <?php
+                                        include 'connections/conn.php';
+                                        require_once 'functions/functions.php';
+                                        $funcid = $_SESSION['id'];
+                                        $query = mysqli_query($conn,"SELECT 'func_id',func_nome,func_email FROM funcionario WHERE func_id = '$funcid'");
+                                        $empregado= mysqli_fetch_array($query);
+
+                                          echo '<a class="js-acc-btn">'.$empregado['func_nome'].'</a>';
+                                         ?>
                                       </div>
                                       <div class="account-dropdown js-dropdown">
                                           <div class="info clearfix">
@@ -247,24 +257,22 @@
                                                   </a>
                                               </div>
                                               <div class="content">
-                                                  <h5 class="name">
-                                                      <a href="#">nilton fontes</a>
-                                                  </h5>
-                                                  <span class="email">johndoe@example.com</span>
+                                                <?php
+                                                echo '<h5 class="name">
+                                                <a>'.$empregado['func_nome'].'</a>
+                                                </h5>
+                                               <span class="email">'.$empregado['func_email'].'</span>';
+                                                 ?>
                                               </div>
                                           </div>
                                           <div class="account-dropdown__body">
                                               <div class="account-dropdown__item">
                                                   <a href="#">
-                                                      <i class="zmdi zmdi-account"></i>Account</a>
+                                                      <i class="zmdi zmdi-account"></i>Conta</a>
                                               </div>
                                               <div class="account-dropdown__item">
                                                   <a href="#">
-                                                      <i class="zmdi zmdi-settings"></i>Setting</a>
-                                              </div>
-                                              <div class="account-dropdown__item">
-                                                  <a href="#">
-                                                      <i class="zmdi zmdi-money-box"></i>Billing</a>
+                                                      <i class="zmdi zmdi-money-box"></i>Gestão de Salarios</a>
                                               </div>
                                           </div>
                                           <div class="account-dropdown__footer">
@@ -310,17 +318,11 @@
                                             <td>'.$listafuncionarios['func_salario'].' €</td>
                                             <td>
                                               <div class="table-data-feature">
-                                                  <button class="item" data-toggle="tooltip" data-placement="top" title="Ver Perfil">
-                                                      <i class="zmdi zmdi-plus"></i>
-                                                  </button>
-                                                  <button class="item" data-toggle="tooltip" data-placement="top" title="Edit">
+                                                  <button class="item" data-toggle="modal" data-target="#scrollmodal" title="Edit">
                                                       <i class="zmdi zmdi-edit"></i>
                                                   </button>
-                                                  <button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
+                                                  <button class="item" data-toggle="modal" data-target="#staticModal" title="Delete">
                                                       <i class="zmdi zmdi-delete"></i>
-                                                  </button>
-                                                  <button class="item" data-toggle="tooltip" data-placement="top" title="More">
-                                                      <i class="zmdi zmdi-more"></i>
                                                   </button>
                                               </div></td>';
                                           }
@@ -333,6 +335,8 @@
                                 <!-- END DATA TABLE-->
                             </div>
                         </div>
+
+
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="copyright">
@@ -346,6 +350,54 @@
         </div>
 
     </div>
+
+    <!-- modal scroll -->
+    <div class="modal fade" id="scrollmodal" tabindex="-1" role="dialog" aria-labelledby="scrollmodalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="scrollmodalLabel">Editar</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>
+            DADOS
+            </p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+            <button type="button" class="btn btn-success">Submeter Alterações</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end modal scroll -->
+    <!-- modal static -->
+    <div class="modal fade" id="staticModal" tabindex="-1" role="dialog" aria-labelledby="staticModalLabel" aria-hidden="true"
+     data-backdrop="static">
+      <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="staticModalLabel">Remover</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>
+              Tem a certeza que deseja remover este funcionario ?
+            </p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn btn-danger">Remover</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end modal static -->
 
     <!-- Jquery JS-->
     <script src="vendor/jquery-3.2.1.min.js"></script>

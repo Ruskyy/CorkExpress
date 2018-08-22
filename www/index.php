@@ -354,7 +354,7 @@ validar();
                                             <div class="text">
                                                 <h2><?php
                                                 require_once 'connections/conn.php';
-                                                $query = mysqli_query($conn,"SELECT avg(func_salario) AS media FROM funcionario");
+                                                $query = mysqli_query($conn,"SELECT ROUND(AVG(func_salario), 2)AS media FROM funcionario");
                                                 $resultado = mysqli_fetch_assoc($query);
                                                 $media = $resultado['media'];
                                                 echo "$media €";
@@ -395,7 +395,7 @@ validar();
                         </div>
                         <div class="row">
                             <div class="col-lg-9">
-                                <h2 class="title-1 m-b-25">Earnings By Items</h2>
+                                <h2 class="title-1 m-b-25">Ultimos salarios processados</h2>
                                 <div class="table-responsive table--no-card m-b-40">
                                     <table class="table table-borderless table-striped table-earning">
                                         <thead>
@@ -447,7 +447,7 @@ validar();
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="copyright">
-                                    <p>Copyright © 2018 Colorlib. All rights reserved. Template by <a href="https://colorlib.com">Colorlib</a>.</p>
+                                    <p>Copyright © 2018 Nilton e Sérgio.</p>
                                 </div>
                             </div>
                         </div>
