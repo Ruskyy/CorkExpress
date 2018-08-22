@@ -435,7 +435,7 @@ validar();
 
                                     <div class="row form-group">
                                       <div class="col col-md-3">
-                                        <label for="contacto" class="form-control-label">TELEMOVEL</label>
+                                        <label for="contacto" class="form-control-label">Telemovel/Telefone:</label>
                                       </div>
                                       <div class="col-12 col-md-9">
                                         <input type="number" name="contacto" min="100000000" max="999999999" class="form-control" required>
@@ -444,13 +444,16 @@ validar();
 
                                     <div class="row form-group">
                                       <div class="col col-md-3">
-                                        <label for="salario">SALÁRIO BASE: </label>
+                                        <label for="salario">Salário Base:</label>
                                       </div>
-                                      <div class="col-12 col-md-9">
-                                        <input type="number" name="salario" min="1" step="any" value="" class="form-control" required>
+                                      <div class="input-group col-12 col-md-9">
+                                        <div class="input-group-prepend">
+                                          <span class="input-group-text">€</span>
+                                        </div>
+                                        <input type="number" class="form-control" aria-label="Amount (to the nearest dollar)">
                                       </div>
                                     </div>
-
+                                    <br>
                                     <div class="row form-group">
                                       <div class="col-12 col-md-12">
                                         <button type="submit" name="submit" class="btn btn-primary btn-lg  btn-block">SUBMETER</button>
