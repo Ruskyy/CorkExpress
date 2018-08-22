@@ -158,11 +158,11 @@ validar();
           <div class="menu-sidebar__content js-scrollbar1">
               <nav class="navbar-sidebar">
                   <ul class="list-unstyled navbar__list">
-                      <li class="active has-sub">
+                      <li>
                           <a class="js-arrow" href="index.php">
                               <i class="fas fa-tachometer-alt"></i>Dashboard</a>
                       </li>
-                      <li>
+                      <li class="active has-sub">
                           <a href="lista.php">
                               <i class="fas fa-list-ul"></i>Lista Funcionarios</a>
                       </li>
