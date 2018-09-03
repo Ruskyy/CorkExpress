@@ -1,5 +1,5 @@
-
 (function ($) {
+
   // USE STRICT
   "use strict";
 
@@ -11,10 +11,8 @@
       var myChart = new Chart(ctx, {
         type: 'line',
         data: {
-          labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
           type: 'line',
           datasets: [{
-            data: [78, 81, 80, 45, 34, 12, 40],
             label: 'Dataset',
             backgroundColor: 'rgba(255,255,255,.1)',
             borderColor: 'rgba(255,255,255,.55)',
@@ -77,11 +75,10 @@
       var myChart = new Chart(ctx, {
         type: 'line',
         data: {
-          labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+          labels: ['', '', '', '', '', ''],
           type: 'line',
           datasets: [{
             data: [1, 18, 9, 17, 34, 22],
-            label: 'Dataset',
             backgroundColor: 'transparent',
             borderColor: 'rgba(255,255,255,.55)',
           },]
@@ -94,7 +91,7 @@
           },
           responsive: true,
           tooltips: {
-            mode: 'index',
+            mode: 'none',
             titleFontSize: 12,
             titleFontColor: '#000',
             bodyFontColor: '#000',
@@ -140,88 +137,16 @@
       });
     }
 
-
     //WidgetChart 3
     var ctx = document.getElementById("widgetChart3");
-    if (ctx) {
-      ctx.height = 130;
-      var myChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-          labels: ['January', 'February', 'March', 'April', 'May', 'June'],
-          type: 'line',
-          datasets: [{
-            data: [65, 59, 84, 84, 51, 55],
-            label: 'Dataset',
-            backgroundColor: 'transparent',
-            borderColor: 'rgba(255,255,255,.55)',
-          },]
-        },
-        options: {
-
-          maintainAspectRatio: false,
-          legend: {
-            display: false
-          },
-          responsive: true,
-          tooltips: {
-            mode: 'index',
-            titleFontSize: 12,
-            titleFontColor: '#000',
-            bodyFontColor: '#000',
-            backgroundColor: '#fff',
-            titleFontFamily: 'Montserrat',
-            bodyFontFamily: 'Montserrat',
-            cornerRadius: 3,
-            intersect: false,
-          },
-          scales: {
-            xAxes: [{
-              gridLines: {
-                color: 'transparent',
-                zeroLineColor: 'transparent'
-              },
-              ticks: {
-                fontSize: 2,
-                fontColor: 'transparent'
-              }
-            }],
-            yAxes: [{
-              display: false,
-              ticks: {
-                display: false,
-              }
-            }]
-          },
-          title: {
-            display: false,
-          },
-          elements: {
-            line: {
-              borderWidth: 1
-            },
-            point: {
-              radius: 4,
-              hitRadius: 10,
-              hoverRadius: 4
-            }
-          }
-        }
-      });
-    }
-
-
-    //WidgetChart 4
-    var ctx = document.getElementById("widgetChart4");
     if (ctx) {
       ctx.height = 115;
       var myChart = new Chart(ctx, {
         type: 'bar',
         data: {
-          labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+          labels: ['', '', '', '', '', '', '', '', '', '', '', ''],
           datasets: [
             {
-              label: "My First dataset",
               data: [78, 81, 80, 65, 58, 75, 60, 75, 65, 60, 60, 75],
               borderColor: "transparent",
               borderWidth: "0",
@@ -233,6 +158,58 @@
           maintainAspectRatio: true,
           legend: {
             display: false
+          },
+          tooltips: {
+            mode: 'none',
+            intersect: false
+          },
+          hover: {
+            mode: 'none',
+            intersect: true
+          },
+          scales: {
+            xAxes: [{
+              display: false,
+              categoryPercentage: 1,
+              barPercentage: 0.65
+            }],
+            yAxes: [{
+              display: false
+            }]
+          }
+        }
+      });
+    }
+
+    //WidgetChart 4
+    var ctx = document.getElementById("widgetChart4");
+    if (ctx) {
+      ctx.height = 115;
+      var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: ['', '', '', '', '', '', '', '', '', '', '', ''],
+          datasets: [
+            {
+              data: [78, 81, 80, 65, 58, 75, 60, 75, 65, 60, 60, 75],
+              borderColor: "transparent",
+              borderWidth: "1",
+              backgroundColor: "rgba(255,255,255,.3)"
+            }
+          ]
+        },
+        options: {
+          maintainAspectRatio: true,
+          legend: {
+            display: false
+          },
+          tooltips: {
+            mode: 'none',
+            intersect: false
+          },
+          hover: {
+            mode: 'none',
+            intersect: true
           },
           scales: {
             xAxes: [{
@@ -262,7 +239,7 @@
       var myChart = new Chart(ctx, {
         type: 'line',
         data: {
-          labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', ''],
+          labels: ['', '', '', '', '', '', '', '', '', ''],
           datasets: [
             {
               label: 'My First dataset',
@@ -1022,11 +999,11 @@
           },
           responsive: true,
           tooltips: {
-            mode: 'index',
+            mode: 'none',
             intersect: false
           },
           hover: {
-            mode: 'nearest',
+            mode: 'none',
             intersect: true
           },
           scales: {
@@ -1276,8 +1253,8 @@
         window.location.href = url;
       }
     });
-  
-  
+
+
   })(jQuery);
 (function ($) {
   // USE STRICT
@@ -1308,7 +1285,7 @@
 
   // Europe Map
   try {
-    
+
     var vmap1 = $('#vmap1');
     if(vmap1[0]) {
       vmap1.vectorMap( {
@@ -1327,7 +1304,7 @@
 
   // USA Map
   try {
-    
+
     var vmap2 = $('#vmap2');
 
     if(vmap2[0]) {
@@ -1357,7 +1334,7 @@
 
   // Germany Map
   try {
-    
+
     var vmap3 = $('#vmap3');
     if(vmap3[0]) {
       vmap3.vectorMap( {
@@ -1372,14 +1349,14 @@
         }
       });
     }
-    
+
   } catch (error) {
     console.log(error);
   }
-  
+
   // France Map
   try {
-    
+
     var vmap4 = $('#vmap4');
     if(vmap4[0]) {
       vmap4.vectorMap( {
@@ -1418,10 +1395,10 @@
   } catch (error) {
     console.log(error);
   }
-  
+
   // Brazil Map
   try {
-    
+
     var vmap6 = $('#vmap6');
     if(vmap6[0]) {
       vmap6.vectorMap( {
@@ -1478,7 +1455,7 @@
   try {
     var jscr1 = $('.js-scrollbar1');
     if(jscr1[0]) {
-      const ps1 = new PerfectScrollbar('.js-scrollbar1');      
+      const ps1 = new PerfectScrollbar('.js-scrollbar1');
     }
 
     var jscr2 = $('.js-scrollbar2');
@@ -1516,7 +1493,7 @@
   // USE STRICT
   "use strict";
 
-  // Dropdown 
+  // Dropdown
   try {
     var menu = $('.js-item-menu');
     var sub_menu_is_showed = -1;
@@ -1524,7 +1501,7 @@
     for (var i = 0; i < menu.length; i++) {
       $(menu[i]).on('click', function (e) {
         e.preventDefault();
-        $('.js-right-sidebar').removeClass("show-sidebar");        
+        $('.js-right-sidebar').removeClass("show-sidebar");
         if (jQuery.inArray(this, menu) == sub_menu_is_showed) {
           $(this).toggleClass('show-dropdown');
           sub_menu_is_showed = -1;
@@ -1575,7 +1552,7 @@
       right_sidebar.removeClass("show-sidebar");
 
     });
- 
+
 
   // Sublist Sidebar
   try {
@@ -1643,7 +1620,7 @@
   "use strict";
 
   try {
-    
+
     $('[data-toggle="tooltip"]').tooltip();
 
   } catch (error) {
@@ -1661,7 +1638,7 @@
         $(this).parent().parent().parent().toggleClass('show-chat-box');
       });
     });
-    
+
 
   } catch (error) {
     console.log(error);

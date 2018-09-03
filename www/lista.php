@@ -15,7 +15,7 @@ validar();
     <meta name="keywords" content="au theme template">
 
     <!-- Title Page-->
-    <title>Novo User</title>
+    <title>Lista Funcionarios</title>
 
     <!--FAVICON-->
     <link rel="apple-touch-icon-precomposed" sizes="57x57" href="apple-touch-icon-57x57.png" />
@@ -162,11 +162,11 @@ validar();
                           <a class="js-arrow" href="index.php">
                               <i class="fas fa-tachometer-alt"></i>Dashboard</a>
                       </li>
-                      <li>
+                      <li class="active has-sub">
                           <a href="lista.php">
                               <i class="fas fa-list-ul"></i>Lista Funcionarios</a>
                       </li>
-                      <li class="active has-sub">
+                      <li>
                           <a href="form.php">
                              <i class="fas fa-user-plus"></i>Adicionar Funcionario</a>
                       </li>
@@ -288,188 +288,116 @@ validar();
               </div>
           </header>
           <!-- HEADER DESKTOP-->
+
             <!-- MAIN CONTENT-->
             <div class="main-content">
                 <div class="section__content section__content--p30">
-                    <div class="container-fluid">
-                        <div class="row">
-                          <div class="col-lg-12">
-
-                            <form class="" action="index.php" method="post">
-                                <div class="card">
-                                  <div class="card-header">
-                                    REGISTO NOVO FUNCIONARIO
-                                  </div>
-                                  <div class="card-body card-block">
-                                    <div class="row form-group">
-                                      <div class="col col-md-3">
-                                        <label for="tipo">Tipo: </label>
-                                      </div>
-                                      <div class="col-12 col-md-9">
-                                        <select class="form-control" name="tipo">
-                                          <option value="2">Funcionário</option>
-                                          <option value="1">Administrador</option>
-                                        </select>
-                                      </div>
-                                    </div>
-
-
-                                    <div class="row form-group">
-                                      <div class="col col-md-3">
-                                        <label for="user" class="form-control-label">Username: </label>
-                                      </div>
-                                      <div class="col-12 col-md-9">
-                                        <input type="text" name="user" value="" class="form-control" placeholder="User Name"Required>
-                                      </div>
-                                    </div>
-
-                                    <div class="row form-group">
-                                      <div class="col col-md-3">
-                                        <label for="pass" class="form-control-label">Password: </label>
-                                      </div>
-                                      <div class="col-12 col-md-9">
-                                        <input type="password" name="pass" value="" class="form-control" placeholder="*******"Required>
-                                      </div>
-                                    </div>
-
-                                    <div class="row form-group">
-                                      <div class="col col-md-3">
-                                        <label for="email" class="form-control-label">E-Mail: </label>
-                                      </div>
-                                      <div class="col-12 col-md-9">
-                                        <input type="email" name="email" value="" class="form-control" placeholder="admin@corckexpress.com" Required>
-                                      </div>
-                                    </div>
-
-                                    <div class="row form-group">
-                                      <div class="col col-md-3">
-                                        <label for="nome" class="form-control-label">Nome: </label>
-                                      </div>
-                                      <div class="col-12 col-md-9">
-                                        <input type="text" name="nome" value="" class="form-control" placeholder="Nome"Required>
-                                      </div>
-                                    </div>
-
-                                    <div class="row form-group">
-                                      <div class="col col-md-3">
-                                        <label for="morada" class="form-control-label">Morada: </label>
-                                      </div>
-                                      <div class="col-12 col-md-9">
-                                        <textarea name="morada" rows="9" placeholder="Rua _____" class="form-control"Required></textarea>
-                                      </div>
-                                    </div>
-
-                                    <div class="row form-group">
-                                      <div class="col col-md-3">
-                                        <label for="nacio">Nacionalidade</label>
-                                      </div>
-                                      <div class="col-12 col-md-9">
-                                        <select class="form-control" name="nacio">
+                  <h3 class="title-5 m-b-35">Lista Membros</h3>
+                      <div class="row m-t-30">
+                            <div class="col-md-12">
+                                <!-- DATA TABLE-->
+                                <div class="table-responsive m-b-40">
+                                    <table class="table table-borderless table-data3">
+                                        <thead>
+                                            <tr>
+                                                <th>Nome</th>
+                                                <th>Email</th>
+                                                <th>Morada</th>
+                                                <th>Salario</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
                                           <?php
                                           include 'connections/conn.php';
-                                          $query = mysqli_query($conn,"SELECT * FROM nacionalidade");
-                                          while ($nacionalidades = mysqli_fetch_array($query)) {
-                                            if ($nacionalidades['paisId']==193) {
-                                                echo '<option selected value="'.$nacionalidades['paisId'].'">'.$nacionalidades['paisNome'].'</option>';
-                                            }else {
-                                            echo '<option value="'.$nacionalidades['paisId'].'">'.$nacionalidades['paisNome'].'</option>';
-                                            }
+                                          $query = mysqli_query($conn,"SELECT * FROM funcionario");
+                                          while ($listafuncionarios = mysqli_fetch_array($query)) {
+                                            echo '<tr><td>'.$listafuncionarios['func_nome'].'</td>
+                                            <td>'.$listafuncionarios['func_email'].'</td>
+                                            <td>'.$listafuncionarios['func_morada'].'</td>
+                                            <td>'.$listafuncionarios['func_salario'].' €</td>
+                                            <td>
+                                              <div class="table-data-feature">
+                                                  <button class="item" data-toggle="modal" data-target="#scrollmodal" title="Edit">
+                                                      <i class="zmdi zmdi-edit"></i>
+                                                  </button>
+                                                  <button class="item" data-toggle="modal" data-target="#staticModal" title="Delete">
+                                                      <i class="zmdi zmdi-delete"></i>
+                                                  </button>
+                                              </div></td>';
                                           }
+
                                           include 'connections/deconn.php';
                                           ?>
-                                        </select>
-                                      </div>
-                                    </div>
-                                    <div class="row form-group">
-                                      <div class="col col-md-3">
-                                        <label for="natur" class="form-control-label">Naturalidade</label>
-                                      </div>
-                                      <div class="col-12 col-md-9">
-                                        <select class="form-control" name="natur">
-                                          <option value="" disabled selected>Selecione</option>
-                                          <?php
-                                          include 'connections/conn.php';
-                                          $query = mysqli_query($conn,"SELECT * FROM naturalidade");
-                                          while ($naturalidade = mysqli_fetch_array($query)) {
-                                            echo '<option value="'.$naturalidade['idNatur'].'">'.$naturalidade['nomeNatur'].'</option>';
-                                          }
-                                          include 'connections/deconn.php';
-                                          ?>
-                                        </select>
-                                      </div>
-                                    </div>
-                                    <div class="row form-group">
-                                      <div class="col col-md-3">
-                                        <label for="bi">Numero CC: </label>
-                                      </div>
-                                      <div class="col-12 col-md-9">
-                                        <input type="number" name="bi" min="10000000" max="99999999" class="form-control" required>
-                                      </div>
-                                    </div>
-                                    <div class="row form-group">
-                                      <div class="col col-md-3">
-                                        <label for="nif">NIF: </label>
-                                      </div>
-                                      <div class="col-12 col-md-9">
-                                        <input type="number" name="nif" min="100000000" max="999999999" class="form-control" required>
-                                      </div>
-                                    </div>
-
-                                    <div class="row form-group">
-                                      <div class="col col-md-3">
-                                        <label for="nib" class="form-control-label" >NIB: </label>
-                                      </div>
-                                      <div class="col-12 col-md-9">
-                                        <input type="number" name="nib" min="100000000000000000000" max="999999999999999999999" class="form-control" required>
-                                      </div>
-                                    </div>
-
-                                    <div class="row form-group">
-                                      <div class="col col-md-3">
-                                        <label for="niss" class="form-control-label">Nº Segurança Social: </label>
-                                      </div>
-                                      <div class="col-12 col-md-9">
-                                        <input type="number" name="niss" min="10000000000" max="99999999999" class="form-control" required>
-                                      </div>
-                                    </div>
-
-                                    <div class="row form-group">
-                                      <div class="col col-md-3">
-                                        <label for="contacto" class="form-control-label">Telemovel/Telefone:</label>
-                                      </div>
-                                      <div class="col-12 col-md-9">
-                                        <input type="number" name="contacto" min="100000000" max="999999999" class="form-control" required>
-                                      </div>
-                                    </div>
-
-                                    <div class="row form-group">
-                                      <div class="col col-md-3">
-                                        <label for="salario">Salário Base:</label>
-                                      </div>
-                                      <div class="input-group col-12 col-md-9">
-                                        <div class="input-group-prepend">
-                                          <span class="input-group-text">€</span>
-                                        </div>
-                                        <input type="number" class="form-control" aria-label="Amount (to the nearest dollar)">
-                                      </div>
-                                    </div>
-                                    <br>
-                                    <div class="row form-group">
-                                      <div class="col-12 col-md-12">
-                                        <button type="submit" name="submit" class="btn btn-primary btn-lg  btn-block">SUBMETER</button>
-                                      </div>
-                                    </div>
-
-                                  </div>
+                                        </tbody>
+                                    </table>
                                 </div>
-                            </form>
+                                <!-- END DATA TABLE-->
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="copyright">
+                                    <p>Copyright © 2018 Colorlib. All rights reserved. Template by <a href="https://colorlib.com">Colorlib</a>.</p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
     </div>
+
+    <!-- modal scroll -->
+    <div class="modal fade" id="scrollmodal" tabindex="-1" role="dialog" aria-labelledby="scrollmodalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="scrollmodalLabel">Editar</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>
+            DADOS
+            </p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+            <button type="button" class="btn btn-success">Submeter Alterações</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end modal scroll -->
+    <!-- modal static -->
+    <div class="modal fade" id="staticModal" tabindex="-1" role="dialog" aria-labelledby="staticModalLabel" aria-hidden="true"
+     data-backdrop="static">
+      <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="staticModalLabel">Remover</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>
+              Tem a certeza que deseja remover este funcionario ?
+            </p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn btn-danger">Remover</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end modal static -->
 
     <!-- Jquery JS-->
     <script src="vendor/jquery-3.2.1.min.js"></script>

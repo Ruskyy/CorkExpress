@@ -7,7 +7,7 @@ function login($username,$password){
     include 'connections/conn.php';
     $qlogin = mysqli_query($conn,"SELECT func_user, func_pass, func_tipo, func_id
        FROM funcionario
-       WHERE func_user = '$username' AND func_pass = '$password' AND func_id = 1");
+       WHERE func_user = '$username' AND func_pass = '$password'");
     $alogin = mysqli_fetch_array($qlogin);
 
     if(!$alogin){
