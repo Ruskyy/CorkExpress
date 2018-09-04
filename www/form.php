@@ -450,7 +450,7 @@ validar();
                                         <div class="input-group-prepend">
                                           <span class="input-group-text">€</span>
                                         </div>
-                                        <input type="number" class="form-control" aria-label="Amount (to the nearest dollar)">
+                                        <input type="number" name="salario" class="form-control" aria-label="Amount (to the nearest dollar)">
                                       </div>
                                     </div>
                                     <br>
@@ -459,6 +459,18 @@ validar();
                                         <button type="submit" name="submit" class="btn btn-primary btn-lg  btn-block">SUBMETER</button>
                                       </div>
                                     </div>
+                                    <?php
+                                    if(isset(submit)){
+                                      include 'connections/conn.php';
+
+
+                                      mysqli_query($conn,"INSERT INTO  funcionario (  func_tipo ,  func_user ,  func_pass ,  func_email ,  func_nome ,  func_morada ,  func_idnacio ,  func_idnatur ,  func_bi ,  func_nif ,  func_nib ,  func_niss ,  func_contacto ,  func_salario )
+                                      VALUES (tipo ,user, pass , email, nome, morada, nacio, natur, bi, nif, nib, niss, contacto, salario)");
+
+
+                                      include 'connections/deconn.php';
+                                      ?>
+                                    }
 
                                   </div>
                                 </div>
