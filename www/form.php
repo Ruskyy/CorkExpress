@@ -295,7 +295,7 @@ validar();
                         <div class="row">
                           <div class="col-lg-12">
 
-                            <form class="" action="index.php" method="post">
+                            <form class="" action="" method="post">
                                 <div class="card">
                                   <div class="card-header">
                                     REGISTO NOVO FUNCIONARIO
@@ -459,22 +459,23 @@ validar();
                                         <button type="submit" name="submit" class="btn btn-primary btn-lg  btn-block">SUBMETER</button>
                                       </div>
                                     </div>
-                                    <?php
-                                    if(isset(submit)){
-                                      include 'connections/conn.php';
-
-
-                                      mysqli_query($conn,"INSERT INTO  funcionario (  func_tipo ,  func_user ,  func_pass ,  func_email ,  func_nome ,  func_morada ,  func_idnacio ,  func_idnatur ,  func_bi ,  func_nif ,  func_nib ,  func_niss ,  func_contacto ,  func_salario )
-                                      VALUES (tipo ,user, pass , email, nome, morada, nacio, natur, bi, nif, nib, niss, contacto, salario)");
-
-
-                                      include 'connections/deconn.php';
-                                      ?>
-                                    }
 
                                   </div>
                                 </div>
                             </form>
+                            <?php
+                            if(isset($_POST['submit'])){
+                              include 'connections/conn.php';
+
+
+                              mysqli_query($conn,"INSERT INTO  funcionario (func_tipo,func_user,func_pass,func_email,func_nome,func_morada,func_idnacio,func_idnatur,func_bi,func_nif,func_nib,func_niss,func_contacto,func_salario)
+                              VALUES ('$_POST[tipo]','$_POST[user]','$_POST[pass]','$_POST[email]','$_POST[nome]','$_POST[morada]','$_POST[nacio]','$_POST[natur]','$_POST[bi]','$_POST[nif]','$_POST[nib]','$_POST[niss]','$_POST[contacto]','$_POST[salario]')");
+
+
+                              include 'connections/deconn.php';
+                              echo 'bls';
+                            }
+                            ?>
                             </div>
                         </div>
                     </div>
