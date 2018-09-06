@@ -339,54 +339,6 @@ validar();
 
     </div>
 
-    <!-- modal scroll -->
-    <div class="modal fade" id="scrollmodal" tabindex="-1" role="dialog" aria-labelledby="scrollmodalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="scrollmodalLabel">Editar</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <p>
-            DADOS
-            </p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-            <button type="button" class="btn btn-success">Submeter Alterações</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- end modal scroll -->
-    <!-- modal static -->
-    <div class="modal fade" id="staticModal" tabindex="-1" role="dialog" aria-labelledby="staticModalLabel" aria-hidden="true"
-     data-backdrop="static">
-      <div class="modal-dialog modal-sm" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="staticModalLabel">Remover</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <p>
-              Tem a certeza que deseja remover este funcionario ?
-            </p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-            <button type="submit" class="btn btn-danger">Remover</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- end modal static -->
-
     <!-- Jquery JS-->
     <script src="vendor/jquery-3.2.1.min.js"></script>
     <!-- Bootstrap JS-->

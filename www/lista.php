@@ -192,7 +192,7 @@ validar();
                               <i class="fas fa-calendar-alt"></i>Gestão Horario</a>
                               <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
                                 <li>
-                                    <a href="lista.php">
+                                    <a href="gestaoturnos.php">
                                         <i class="fas fa-user-clock "></i>Definir Turnos</a>
                                 </li>
                                 <li>
