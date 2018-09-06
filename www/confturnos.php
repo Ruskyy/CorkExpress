@@ -252,67 +252,63 @@ validar();
             <!-- MAIN CONTENT-->
             <div class="main-content">
                 <div class="section__content section__content--p30">
-                  <h3 class="title-5 m-b-35">Lista Membros</h3>
-                      <div class="row m-t-30">
-                            <div class="col-md-12">
+                  <h3 class="title-5 m-b-35">Configurações - Gestâo de turnos</h3>
+						            <div class="row">
+							                   <div class="col-lg-6">
+                                   <div class="table-responsive table--no-card">
+                                     <table class="table table-borderless table-striped table-earning">
+                                       <thead>
+                                         <tr>
+                                              <th>ID</th>
+                                              <th class="text-right">Turno</th>
+                                              <th class="text-right">Percentagem</th>
+                                          </tr>
+                                      </thead>
+                                      <tbody>
+                                        <?php
+                                        include 'connections/conn.php';
+                                        $query = mysqli_query($conn,"SELECT * FROM turno");
+                                        while ($listafuncionarios = mysqli_fetch_array($query)) {
+                                          echo '<tr><td>'.$listafuncionarios['turno_id'].'</td>
+                                          <td class="text-right">'.$listafuncionarios['turno_nome'].'</td>
+                                          <td class="text-right"><input class="form-control" type="number" name="percentagem" value="'.$listafuncionarios['turno_perc'].'"></td>';
+                                        }
 
-						<div class="row">
-							<div class="col-lg-6">
-								<div class="card">
-									<div class="card-header">
-										<h4>Menus</h4>
-									</div>
-									<div class="card-body">
-										<p class="text-muted m-b-15">In HTML, a menu is often defined in an unordered list
-											<code>&lt;ul&gt;</code> (and styled afterwards), like this:</p>
-
-										<ul class="list-unstyled">
-											<li>
-												<a href="#">Home</a>
-											</li>
-											<li>
-												<a href="#">Menu 1</a>
-											</li>
-											<li>
-												<a href="#">Menu 2</a>
-											</li>
-											<li>
-												<a href="#">Menu 3</a>
-											</li>
-										</ul>
-
-									</div>
-								</div>
+                                        include 'connections/deconn.php';
+                                        ?>
+                                      </tbody>
+                                  </table>
+                        </div>
 							</div>
 							<div class="col-lg-6">
+              <form class="" action="" method="post">
 								<div class="card">
 									<div class="card-header">
-										<h4>Inline List</h4>
+										<h4>Adicionar Turno</h4>
 									</div>
 									<div class="card-body">
-										<p class="text-muted m-b-15">In HTML, a menu is often defined in an unordered list
-											<code>&lt;ul&gt;</code> (and styled afterwards), like this:</p>
+                    <div class="row form-group">
+                      <div class="col col-md-3">
+                        <label for="user" class="form-control-label">Nome: </label>
+                      </div>
+                      <div class="col-12 col-md-9">
+                        <input type="text" name="user" value="" class="form-control" placeholder="Nome do Turno"Required>
+                      </div>
+                    </div>
 
-										<ul class="list-inline">
-											<li class="list-inline-item">
-												<a href="#">Home</a>
-											</li>
-											<li class="list-inline-item">
-												<a href="#">Menu 1</a>
-											</li>
-											<li class="list-inline-item">
-												<a href="#">Menu 2</a>
-											</li>
-											<li class="list-inline-item">
-												<a href="#">Menu 3</a>
-											</li>
-										</ul>
+                    <div class="row form-group">
+                      <div class="col col-md-3">
+                        <label for="pass" class="form-control-label">Percentagem: </label>
+                      </div>
+                      <div class="col-12 col-md-9">
+                        <input type="password" name="pass" value="" class="form-control" placeholder="Ex:.15,65"Required>
+                      </div>
+                    </div>
 
 									</div>
 								</div>
 							</div>
 						</div>
-
           </div>
         </div>
       </div>
