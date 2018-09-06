@@ -321,10 +321,11 @@ validar();
                                                   <button class="item" data-toggle="modal" data-target="#scrollmodal" title="Edit">
                                                       <i class="zmdi zmdi-edit"></i>
                                                   </button>
-                                                  <button class="item" data-toggle="modal" data-target="#staticModal" title="Delete">
+                                                  <button class="item" data-toggle="modal" data-target="#staticModal'.$listafuncionarios['func_id'].'" title="Delete">
                                                       <i class="zmdi zmdi-delete"></i>
                                                   </button>
-                                              </div></td>';
+                                              </div></td>
+                                              ';
                                           }
 
                                           include 'connections/deconn.php';
@@ -333,15 +334,6 @@ validar();
                                     </table>
                                 </div>
                                 <!-- END DATA TABLE-->
-                            </div>
-                        </div>
-
-
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="copyright">
-                                    <p>Copyright © 2018 Colorlib. All rights reserved. Template by <a href="https://colorlib.com">Colorlib</a>.</p>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -374,8 +366,14 @@ validar();
       </div>
     </div>
     <!-- end modal scroll -->
+
+    <?php
+    include 'connections/conn.php';
+    $query = mysqli_query($conn,"SELECT func_id FROM funcionario");
+    while ($listafuncionarios = mysqli_fetch_array($query)) {
+      echo '
     <!-- modal static -->
-    <div class="modal fade" id="staticModal" tabindex="-1" role="dialog" aria-labelledby="staticModalLabel" aria-hidden="true"
+    <div class="modal fade" id="staticModal'.$listafuncionarios['func_id'].'" tabindex="-1" role="dialog" aria-labelledby="staticModalLabel" aria-hidden="true"
      data-backdrop="static">
       <div class="modal-dialog modal-sm" role="document">
         <div class="modal-content">
@@ -388,16 +386,28 @@ validar();
           <div class="modal-body">
             <p>
               Tem a certeza que deseja remover este funcionario ?
+              '.$listafuncionarios['func_id'].'
             </p>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-            <button type="submit" class="btn btn-danger">Remover</button>
+            <form method="post">
+            <input type="hidden" name="hiddenid" value ="'.$listafuncionarios['func_id'].'">
+            <button type="submit" name="remover" class="btn btn-danger">Remover</button>
+            </form>
           </div>
         </div>
       </div>
-    </div>
+    </div>';
+  }
+  if(ISSET($_POST["remover"])){
+    mysqli_query($conn, "DELETE FROM funcionario WHERE func_id=".$_POST['hiddenid']." ");
+    include "connections/deconn.php";
+    echo "<meta http-equiv='refresh' content='0; URL=lista.php'>";
+  }
+   ?>
     <!-- end modal static -->
+
 
     <!-- Jquery JS-->
     <script src="vendor/jquery-3.2.1.min.js"></script>
