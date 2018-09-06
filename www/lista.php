@@ -42,7 +42,7 @@ validar();
     <!-- Fontfaces CSS-->
     <link href="css/font-face.css" rel="stylesheet" media="all">
     <link href="vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
-    <link href="vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     <link href="vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
 
     <!-- Bootstrap CSS-->
@@ -158,63 +158,70 @@ validar();
           <div class="menu-sidebar__content js-scrollbar1">
               <nav class="navbar-sidebar">
                   <ul class="list-unstyled navbar__list">
-                      <li>
+                      <li class="has-sub">
                           <a class="js-arrow" href="index.php">
                               <i class="fas fa-tachometer-alt"></i>Dashboard</a>
                       </li>
+
+
                       <li class="active has-sub">
-                          <a href="lista.php">
-                              <i class="fas fa-list-ul"></i>Lista Funcionarios</a>
+                          <a class="js-arrow" href="#">
+                             <i class="fa fa-users-cog"></i>Gestão Funcionarios</a>
+                          <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
+                            <li>
+                                <a href="lista.php">
+                                    <i class="fas fa-list-ul"></i>Lista Funcionarios</a>
+                           </li>
+                            <li>
+                                <a href="form.php">
+                                   <i class="fas fa-user-plus"></i>Novo Funcionario</a>
+                            </li>
+                            <li>
+                                <a href="lista.php">
+                                    <i class="fas fa-user-cog"></i>Editar Funcionario</a>
+                           </li>
+                           <li>
+                               <a href="lista.php">
+                                   <i class="fas fa-user-minus"></i>Remover Funcionario</a>
+                          </li>
+                          </ul>
                       </li>
-                      <li>
-                          <a href="form.php">
-                             <i class="fas fa-user-plus"></i>Adicionar Funcionario</a>
-                      </li>
+
                       <li class="has-sub">
                           <a class="js-arrow" href="#">
-                              <i class="fas fa-desktop"></i>UI Elements</a>
-                          <ul class="list-unstyled navbar__sub-list js-sub-list">
-                              <li>
-                                  <a href="button.html">Button</a>
-                              </li>
-                              <li>
-                                  <a href="badge.html">Badges</a>
-                              </li>
-                              <li>
-                                  <a href="tab.html">Tabs</a>
-                              </li>
-                              <li>
-                                  <a href="card.html">Cards</a>
-                              </li>
-                              <li>
-                                  <a href="alert.html">Alerts</a>
-                              </li>
-                              <li>
-                                  <a href="progress-bar.html">Progress Bars</a>
-                              </li>
-                              <li>
-                                  <a href="modal.html">Modals</a>
-                              </li>
-                              <li>
-                                  <a href="switch.html">Switchs</a>
-                              </li>
-                              <li>
-                                  <a href="grid.html">Grids</a>
-                              </li>
-                              <li>
-                                  <a href="fontawesome.html">Fontawesome Icon</a>
-                              </li>
-                              <li>
-                                  <a href="typo.html">Typography</a>
-                              </li>
-                              <li>
-                                  <a href="chart.html">
-                                      <i class="fas fa-chart-bar"></i>Charts</a>
-                              </li>
-                              <li>
-                                  <a href="table.html">
-                                      <i class="fas fa-table"></i>Tables</a>
-                              </li>
+                              <i class="fas fa-calendar-alt"></i>Gestão Horario</a>
+                              <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
+                                <li>
+                                    <a href="lista.php">
+                                        <i class="fas fa-user-clock "></i>Definir Turnos</a>
+                                </li>
+                                <li>
+                                    <a href="form.php">
+                                       <i class="fas fa-cog "></i>Configurações</a>
+                                </li>
+                              </ul>
+                      </li>
+
+                      <li class="has-sub">
+                          <a class="js-arrow" href="#">
+                             <i class="fas fa-money-check-alt"></i></i>Gestão Salarios</a>
+                          <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
+                            <li>
+                                <a href="lista.php">
+                                    <i class="fas fa-hand-holding-usd"></i>Pagamentos</a>
+                            </li>
+                            <li>
+                                <a href="form.php">
+                                   <i class="fas fa-gift"></i>Bonus e Sub.</a>
+                            </li>
+                            <li>
+                                <a href="form.php">
+                                   <i class="fas fa-history"></i>Historico</a>
+                            </li>
+                            <li>
+                                <a href="form.php">
+                                   <i class="fas fa-cog"></i>Configurações</a>
+                            </li>
                           </ul>
                       </li>
                   </ul>
@@ -321,10 +328,11 @@ validar();
                                                   <button class="item" data-toggle="modal" data-target="#scrollmodal" title="Edit">
                                                       <i class="zmdi zmdi-edit"></i>
                                                   </button>
-                                                  <button class="item" data-toggle="modal" data-target="#staticModal" title="Delete">
+                                                  <button class="item" data-toggle="modal" data-target="#staticModal'.$listafuncionarios['func_id'].'" title="Delete">
                                                       <i class="zmdi zmdi-delete"></i>
                                                   </button>
-                                              </div></td>';
+                                              </div></td>
+                                              ';
                                           }
 
                                           include 'connections/deconn.php';
@@ -333,15 +341,6 @@ validar();
                                     </table>
                                 </div>
                                 <!-- END DATA TABLE-->
-                            </div>
-                        </div>
-
-
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="copyright">
-                                    <p>Copyright © 2018 Colorlib. All rights reserved. Template by <a href="https://colorlib.com">Colorlib</a>.</p>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -374,8 +373,14 @@ validar();
       </div>
     </div>
     <!-- end modal scroll -->
+
+    <?php
+    include 'connections/conn.php';
+    $query = mysqli_query($conn,"SELECT func_id FROM funcionario");
+    while ($listafuncionarios = mysqli_fetch_array($query)) {
+      echo '
     <!-- modal static -->
-    <div class="modal fade" id="staticModal" tabindex="-1" role="dialog" aria-labelledby="staticModalLabel" aria-hidden="true"
+    <div class="modal fade" id="staticModal'.$listafuncionarios['func_id'].'" tabindex="-1" role="dialog" aria-labelledby="staticModalLabel" aria-hidden="true"
      data-backdrop="static">
       <div class="modal-dialog modal-sm" role="document">
         <div class="modal-content">
@@ -388,16 +393,28 @@ validar();
           <div class="modal-body">
             <p>
               Tem a certeza que deseja remover este funcionario ?
+              '.$listafuncionarios['func_id'].'
             </p>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-            <button type="submit" class="btn btn-danger">Remover</button>
+            <form method="post">
+            <input type="hidden" name="hiddenid" value ="'.$listafuncionarios['func_id'].'">
+            <button type="submit" name="remover" class="btn btn-danger">Remover</button>
+            </form>
           </div>
         </div>
       </div>
-    </div>
+    </div>';
+  }
+  if(ISSET($_POST["remover"])){
+    mysqli_query($conn, "DELETE FROM funcionario WHERE func_id=".$_POST['hiddenid']." ");
+    include "connections/deconn.php";
+    echo "<meta http-equiv='refresh' content='0; URL=lista.php'>";
+  }
+   ?>
     <!-- end modal static -->
+
 
     <!-- Jquery JS-->
     <script src="vendor/jquery-3.2.1.min.js"></script>
