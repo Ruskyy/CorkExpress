@@ -379,7 +379,7 @@ validar();
     $query = mysqli_query($conn,"SELECT func_id FROM funcionario");
     while ($listafuncionarios = mysqli_fetch_array($query)) {
       echo '
-    <!-- modal static -->
+    <!-- Remover user '.$listafuncionarios['func_id'].' -->
     <div class="modal fade" id="staticModal'.$listafuncionarios['func_id'].'" tabindex="-1" role="dialog" aria-labelledby="staticModalLabel" aria-hidden="true"
      data-backdrop="static">
       <div class="modal-dialog modal-sm" role="document">
@@ -413,7 +413,7 @@ validar();
     echo "<meta http-equiv='refresh' content='0; URL=lista.php'>";
   }
    ?>
-    <!-- end modal static -->
+
 
 
     <!-- Jquery JS-->

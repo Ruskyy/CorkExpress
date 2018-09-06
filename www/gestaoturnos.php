@@ -15,7 +15,7 @@ validar();
     <meta name="keywords" content="au theme template">
 
     <!-- Title Page-->
-    <title>Lista Funcionarios</title>
+    <title>Gestão Turnos</title>
 
     <!--FAVICON-->
     <link rel="apple-touch-icon-precomposed" sizes="57x57" href="apple-touch-icon-57x57.png" />
@@ -252,7 +252,7 @@ validar();
             <!-- MAIN CONTENT-->
             <div class="main-content">
                 <div class="section__content section__content--p30">
-                  <h3 class="title-5 m-b-35">Lista Membros</h3>
+                  <h3 class="title-5 m-b-35">Gestão Turnos</h3>
                       <div class="row m-t-30">
                             <div class="col-md-12">
                                 <!-- DATA TABLE-->
@@ -303,7 +303,7 @@ validar();
 
                                                     <button class="item" name="btnupd" title="Edit">
                                                         <input type="hidden" name="func" value="'.$listafuncionarios["func_id"].'">
-                                                        <i class="zmdi zmdi-badge-check"></i>
+                                                      <i class="zmdi zmdi-calendar-alt"></i>
                                                     </button>
                                                 </div></td>
                                               </form>';
@@ -321,15 +321,6 @@ validar();
                                     </table>
                                 </div>
                                 <!-- END DATA TABLE-->
-                            </div>
-                        </div>
-
-
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="copyright">
-                                    <p>Copyright © 2018 Colorlib. All rights reserved. Template by <a href="https://colorlib.com">Colorlib</a>.</p>
-                                </div>
                             </div>
                         </div>
                     </div>

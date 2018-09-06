@@ -254,6 +254,7 @@ validar();
                 <div class="section__content section__content--p30">
                   <h3 class="title-5 m-b-35">Configurações - Gestâo de turnos</h3>
 						            <div class="row">
+
 							                   <div class="col-lg-6">
                                    <div class="table-responsive table--no-card">
                                      <table class="table table-borderless table-striped table-earning">
@@ -261,17 +262,20 @@ validar();
                                          <tr>
                                               <th>ID</th>
                                               <th class="text-right">Turno</th>
-                                              <th class="text-right">Percentagem</th>
+                                              <th class="text-left">Percentagem</th>
+                                              <th></th>
                                           </tr>
                                       </thead>
                                       <tbody>
                                         <?php
                                         include 'connections/conn.php';
                                         $query = mysqli_query($conn,"SELECT * FROM turno");
-                                        while ($listafuncionarios = mysqli_fetch_array($query)) {
-                                          echo '<tr><td>'.$listafuncionarios['turno_id'].'</td>
-                                          <td class="text-right">'.$listafuncionarios['turno_nome'].'</td>
-                                          <td class="text-right"><input class="form-control" type="number" name="percentagem" value="'.$listafuncionarios['turno_perc'].'"></td>';
+                                        while ($listaturnos = mysqli_fetch_array($query)) {
+                                          echo '<tr><td>'.$listaturnos['turno_id'].'</td>
+                                          <td>'.$listaturnos['turno_nome'].'</td>
+                                          <td class="text-right"><input class="form-control" type="number" name="percentagem" style="width:150px;" value="'.$listaturnos['turno_perc'].'"></td>
+                                          <td><button type="button" data-toggle="modal" data-target="#staticModal'.$listaturnos['turno_id'].'" class="btn btn-danger btn-sm">Remover</button></td></tr>
+                                          ';
                                         }
 
                                         include 'connections/deconn.php';
@@ -292,21 +296,33 @@ validar();
                         <label for="user" class="form-control-label">Nome: </label>
                       </div>
                       <div class="col-12 col-md-9">
-                        <input type="text" name="user" value="" class="form-control" placeholder="Nome do Turno"Required>
+                        <input type="text" name="nome" value="" class="form-control" placeholder="Nome do Turno"Required>
                       </div>
                     </div>
 
                     <div class="row form-group">
                       <div class="col col-md-3">
-                        <label for="pass" class="form-control-label">Percentagem: </label>
+                        <label for="perc" class="form-control-label">Percentagem: </label>
                       </div>
                       <div class="col-12 col-md-9">
-                        <input type="password" name="pass" value="" class="form-control" placeholder="Ex:.15,65"Required>
+                        <input type="number" name="perc" value="" class="form-control" placeholder="Ex:.15,65"Required>
                       </div>
                     </div>
-
+                    <button type="submit" class="btn btn-success btn-lg" name="adicionar">Adicionar</button>
 									</div>
+
 								</div>
+              </form>
+              <?php
+              if(isset($_POST['adicionar'])){
+                include 'connections/conn.php';
+
+
+                mysqli_query($conn,"INSERT INTO  turno (turno_nome,turno_perc) VALUES ('$_POST[nome]','$_POST[perc]')");
+                include 'connections/deconn.php';
+                echo "<meta http-equiv='refresh' content='0; URL=confturnos.php'>";
+              }
+              ?>
 							</div>
 						</div>
           </div>
@@ -314,6 +330,46 @@ validar();
       </div>
     </div>
 </div>
+
+<?php
+include 'connections/conn.php';
+$query = mysqli_query($conn,"SELECT turno_id FROM turno");
+while ($listaturnos = mysqli_fetch_array($query)) {
+  echo '
+<!-- Delete modal '.$listaturnos['turno_id'].'  -->
+<div class="modal fade" id="staticModal'.$listaturnos['turno_id'].'" tabindex="-1" role="dialog" aria-labelledby="staticModalLabel" aria-hidden="true"
+ data-backdrop="static">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticModalLabel">Remover</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>
+          Tem a certeza que deseja remover este turno ?
+          '.$listaturnos['turno_id'].'
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <form method="post">
+        <input type="hidden" name="hiddenid" value ="'.$listaturnos['turno_id'].'">
+        <button type="submit" name="remover" class="btn btn-danger">Remover</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>';
+}
+if(ISSET($_POST["remover"])){
+mysqli_query($conn, "DELETE FROM turno WHERE turno_id=".$_POST['hiddenid']." ");
+include "connections/deconn.php";
+echo "<meta http-equiv='refresh' content='0; URL=confturnos.php'>";
+}
+?>
 
 
 
