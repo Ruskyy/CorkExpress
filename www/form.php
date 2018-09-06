@@ -42,7 +42,7 @@ validar();
     <!-- Fontfaces CSS-->
     <link href="css/font-face.css" rel="stylesheet" media="all">
     <link href="vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
-    <link href="vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     <link href="vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
 
     <!-- Bootstrap CSS-->
@@ -95,53 +95,6 @@ validar();
                           <a href="form.php">
                               <i class="fas fa-user-plus"></i>Adicionar Funcionario</a>
                       </li>
-                      <li class="has-sub">
-                          <a class="js-arrow" href="#">
-                              <i class="fas fa-desktop"></i>UI Elements</a>
-                          <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
-                              <li>
-                                  <a href="button.html">Button</a>
-                              </li>
-                              <li>
-                                  <a href="badge.html">Badges</a>
-                              </li>
-                              <li>
-                                  <a href="tab.html">Tabs</a>
-                              </li>
-                              <li>
-                                  <a href="card.html">Cards</a>
-                              </li>
-                              <li>
-                                  <a href="alert.html">Alerts</a>
-                              </li>
-                              <li>
-                                  <a href="progress-bar.html">Progress Bars</a>
-                              </li>
-                              <li>
-                                  <a href="modal.html">Modals</a>
-                              </li>
-                              <li>
-                                  <a href="switch.html">Switchs</a>
-                              </li>
-                              <li>
-                                  <a href="grid.html">Grids</a>
-                              </li>
-                              <li>
-                                  <a href="fontawesome.html">Fontawesome Icon</a>
-                              </li>
-                              <li>
-                                  <a href="typo.html">Typography</a>
-                              </li>
-                              <li>
-                                  <a href="chart.html">
-                                      <i class="fas fa-chart-bar"></i>Charts</a>
-                              </li>
-                              <li>
-                                  <a href="table.html">
-                                      <i class="fas fa-table"></i>Tables</a>
-                              </li>
-                          </ul>
-                      </li>
                   </ul>
               </div>
           </nav>
@@ -158,63 +111,70 @@ validar();
           <div class="menu-sidebar__content js-scrollbar1">
               <nav class="navbar-sidebar">
                   <ul class="list-unstyled navbar__list">
-                      <li>
+                      <li class="has-sub">
                           <a class="js-arrow" href="index.php">
                               <i class="fas fa-tachometer-alt"></i>Dashboard</a>
                       </li>
-                      <li>
-                          <a href="lista.php">
-                              <i class="fas fa-list-ul"></i>Lista Funcionarios</a>
-                      </li>
+
+
                       <li class="active has-sub">
-                          <a href="form.php">
-                             <i class="fas fa-user-plus"></i>Adicionar Funcionario</a>
+                          <a class="js-arrow" href="#">
+                             <i class="fa fa-users-cog"></i>Gestão Funcionarios</a>
+                          <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
+                            <li>
+                                <a href="lista.php">
+                                    <i class="fas fa-list-ul"></i>Lista Funcionarios</a>
+                           </li>
+                            <li>
+                                <a href="form.php">
+                                   <i class="fas fa-user-plus"></i>Novo Funcionario</a>
+                            </li>
+                            <li>
+                                <a href="lista.php">
+                                    <i class="fas fa-user-cog"></i>Editar Funcionario</a>
+                           </li>
+                           <li>
+                               <a href="lista.php">
+                                   <i class="fas fa-user-minus"></i>Remover Funcionario</a>
+                          </li>
+                          </ul>
                       </li>
+
                       <li class="has-sub">
                           <a class="js-arrow" href="#">
-                              <i class="fas fa-desktop"></i>UI Elements</a>
-                          <ul class="list-unstyled navbar__sub-list js-sub-list">
-                              <li>
-                                  <a href="button.html">Button</a>
-                              </li>
-                              <li>
-                                  <a href="badge.html">Badges</a>
-                              </li>
-                              <li>
-                                  <a href="tab.html">Tabs</a>
-                              </li>
-                              <li>
-                                  <a href="card.html">Cards</a>
-                              </li>
-                              <li>
-                                  <a href="alert.html">Alerts</a>
-                              </li>
-                              <li>
-                                  <a href="progress-bar.html">Progress Bars</a>
-                              </li>
-                              <li>
-                                  <a href="modal.html">Modals</a>
-                              </li>
-                              <li>
-                                  <a href="switch.html">Switchs</a>
-                              </li>
-                              <li>
-                                  <a href="grid.html">Grids</a>
-                              </li>
-                              <li>
-                                  <a href="fontawesome.html">Fontawesome Icon</a>
-                              </li>
-                              <li>
-                                  <a href="typo.html">Typography</a>
-                              </li>
-                              <li>
-                                  <a href="chart.html">
-                                      <i class="fas fa-chart-bar"></i>Charts</a>
-                              </li>
-                              <li>
-                                  <a href="table.html">
-                                      <i class="fas fa-table"></i>Tables</a>
-                              </li>
+                              <i class="fas fa-calendar-alt"></i>Gestão Horario</a>
+                              <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
+                                <li>
+                                    <a href="lista.php">
+                                        <i class="fas fa-user-clock "></i>Definir Turnos</a>
+                                </li>
+                                <li>
+                                    <a href="form.php">
+                                       <i class="fas fa-cog "></i>Configurações</a>
+                                </li>
+                              </ul>
+                      </li>
+
+                      <li class="has-sub">
+                          <a class="js-arrow" href="#">
+                             <i class="fas fa-money-check-alt"></i></i>Gestão Salarios</a>
+                          <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
+                            <li>
+                                <a href="lista.php">
+                                    <i class="fas fa-hand-holding-usd"></i>Pagamentos</a>
+                            </li>
+                            <li>
+                                <a href="form.php">
+                                   <i class="fas fa-gift"></i>Bonus e Sub.</a>
+                            </li>
+                            <li>
+                                <a href="form.php">
+                                   <i class="fas fa-history"></i>Historico</a>
+                            </li>
+                            <li>
+                                <a href="form.php">
+                                   <i class="fas fa-cog"></i>Configurações</a>
+                            </li>
                           </ul>
                       </li>
                   </ul>
@@ -222,6 +182,72 @@ validar();
           </div>
       </aside>
       <!-- END MENU SIDEBAR-->
+
+      <!-- PAGE CONTAINER-->
+      <div class="page-container">
+          <!-- HEADER DESKTOP-->
+          <header class="header-desktop">
+              <div class="section__content section__content--p30">
+                  <div class="container-fluid">
+                      <div class="header-wrap">
+
+                          <div class="header-button">
+
+                              <div class="account-wrap">
+                                  <div class="account-item clearfix js-item-menu">
+                                      <div class="image">
+                                          <img src="images/icon/avatar-01.jpg" alt="nilton fontes" />
+                                      </div>
+                                      <div class="content">
+                                        <?php
+                                        include 'connections/conn.php';
+                                        require_once 'functions/functions.php';
+                                        $funcid = $_SESSION['id'];
+                                        $query = mysqli_query($conn,"SELECT 'func_id',func_nome,func_email FROM funcionario WHERE func_id = '$funcid'");
+                                        $empregado= mysqli_fetch_array($query);
+
+                                          echo '<a class="js-acc-btn">'.$empregado['func_nome'].'</a>';
+                                         ?>
+                                      </div>
+                                      <div class="account-dropdown js-dropdown">
+                                          <div class="info clearfix">
+                                              <div class="image">
+                                                  <a href="#">
+                                                      <img src="images/icon/avatar-01.jpg" alt="nilton fontes" />
+                                                  </a>
+                                              </div>
+                                              <div class="content">
+                                                <?php
+                                                echo '<h5 class="name">
+                                                <a>'.$empregado['func_nome'].'</a>
+                                                </h5>
+                                               <span class="email">'.$empregado['func_email'].'</span>';
+                                                 ?>
+                                              </div>
+                                          </div>
+                                          <div class="account-dropdown__body">
+                                              <div class="account-dropdown__item">
+                                                  <a href="#">
+                                                      <i class="zmdi zmdi-account"></i>Conta</a>
+                                              </div>
+                                              <div class="account-dropdown__item">
+                                                  <a href="#">
+                                                      <i class="zmdi zmdi-money-box"></i>Gestão de Salarios</a>
+                                              </div>
+                                          </div>
+                                          <div class="account-dropdown__footer">
+                                               <a href="functions/fecharsessao.php">
+                                                  <i class="zmdi zmdi-power"></i>Logout</a>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </header>
+          <!-- HEADER DESKTOP-->
 
       <!-- PAGE CONTAINER-->
       <div class="page-container">
@@ -403,7 +429,7 @@ validar();
                                         <label for="bi">Numero CC: </label>
                                       </div>
                                       <div class="col-12 col-md-9">
-                                        <input type="number" name="bi" min="10000000" max="99999999" class="form-control" required>
+                                        <input type="number" name="bi" class="form-control" required>
                                       </div>
                                     </div>
                                     <div class="row form-group">
@@ -411,7 +437,7 @@ validar();
                                         <label for="nif">NIF: </label>
                                       </div>
                                       <div class="col-12 col-md-9">
-                                        <input type="number" name="nif" min="100000000" max="999999999" class="form-control" required>
+                                        <input type="number" name="nif" class="form-control" required>
                                       </div>
                                     </div>
 
@@ -420,7 +446,7 @@ validar();
                                         <label for="nib" class="form-control-label" >NIB: </label>
                                       </div>
                                       <div class="col-12 col-md-9">
-                                        <input type="number" name="nib" min="100000000000000000000" max="999999999999999999999" class="form-control" required>
+                                        <input type="number" name="nib" class="form-control" required>
                                       </div>
                                     </div>
 
@@ -429,7 +455,7 @@ validar();
                                         <label for="niss" class="form-control-label">Nº Segurança Social: </label>
                                       </div>
                                       <div class="col-12 col-md-9">
-                                        <input type="number" name="niss" min="10000000000" max="99999999999" class="form-control" required>
+                                        <input type="number" name="niss" class="form-control" required>
                                       </div>
                                     </div>
 
@@ -438,7 +464,7 @@ validar();
                                         <label for="contacto" class="form-control-label">Telemovel/Telefone:</label>
                                       </div>
                                       <div class="col-12 col-md-9">
-                                        <input type="number" name="contacto" min="100000000" max="999999999" class="form-control" required>
+                                        <input type="number" name="contacto" class="form-control" required>
                                       </div>
                                     </div>
 
@@ -450,7 +476,7 @@ validar();
                                         <div class="input-group-prepend">
                                           <span class="input-group-text">€</span>
                                         </div>
-                                        <input type="number" name="salario" class="form-control" aria-label="Amount (to the nearest dollar)">
+                                        <input type="number" name="salario" class="form-control" aria-label="Valor">
                                       </div>
                                     </div>
                                     <br>
