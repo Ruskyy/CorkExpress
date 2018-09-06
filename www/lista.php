@@ -196,7 +196,7 @@ validar();
                                         <i class="fas fa-user-clock "></i>Definir Turnos</a>
                                 </li>
                                 <li>
-                                    <a href="form.php">
+                                    <a href="confturnos.php">
                                        <i class="fas fa-cog "></i>Configurações</a>
                                 </li>
                               </ul>
