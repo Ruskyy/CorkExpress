@@ -162,7 +162,7 @@ validar();
                               <i class="fas fa-money-check-alt"></i></i>Gestão Salarios</a>
                            <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
                              <li>
-                                 <a href="lista.php">
+                                 <a href="pagamentos.php">
                                      <i class="fas fa-hand-holding-usd"></i>Pagamentos</a>
                              </li>
                              <li>
@@ -170,7 +170,7 @@ validar();
                                     <i class="fas fa-gift"></i>Bonus e Sub.</a>
                              </li>
                              <li>
-                                 <a href="form.php">
+                                 <a href="historicopag.php">
                                     <i class="fas fa-history"></i>Historico</a>
                              </li>
                              <li>

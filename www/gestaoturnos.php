@@ -160,7 +160,7 @@ validar();
                              <i class="fas fa-money-check-alt"></i></i>Gestão Salarios</a>
                           <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
                             <li>
-                                <a href="lista.php">
+                                <a href="pagamentos.php">
                                     <i class="fas fa-hand-holding-usd"></i>Pagamentos</a>
                             </li>
                             <li>
@@ -168,7 +168,7 @@ validar();
                                    <i class="fas fa-gift"></i>Bonus e Sub.</a>
                             </li>
                             <li>
-                                <a href="form.php">
+                                <a href="historicopag.php">
                                    <i class="fas fa-history"></i>Historico</a>
                             </li>
                             <li>
@@ -291,7 +291,7 @@ validar();
                                               $queryturno = mysqli_query($conn,"SELECT * FROM turno");
 
                                               while ($listaturno = mysqli_fetch_array($queryturno)) {
-                                                echo '<option value="'.$listaturno["turno_id"].'">'.$listaturno["turno_nome"].'</option>';
+                                                echo '<option style="width:5rem;" value="'.$listaturno["turno_id"].'">'.$listaturno["turno_nome"].'</option>';
                                               }
                                               echo '
                                               </select>
