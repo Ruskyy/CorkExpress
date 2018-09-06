@@ -274,7 +274,7 @@ validar();
                                           <?php
                                           include 'connections/conn.php';
 
-                                          $query = mysqli_query($conn,"SELECT func_id,func_nome,func_email,func_morada,func_salario,turno_nome FROM funcionario inner join turno on turno_id = funcionario.func_idturno");
+                                          $query = mysqli_query($conn,"SELECT func_id,func_nome,func_email,func_morada,func_salario, IF(turno_nome=0, turno_nome, 'Sem Turno') as turno FROM funcionario left join turno on turno_id = funcionario.func_idturno");
 
                                           while ($listafuncionarios = mysqli_fetch_array($query)) {
 
@@ -282,11 +282,11 @@ validar();
                                             <td>'.$listafuncionarios["func_email"].'</td>
                                             <td>'.$listafuncionarios["func_morada"].'</td>
                                             <td>'.$listafuncionarios["func_salario"].' €</td>
-                                            <td>'.$listafuncionarios["turno_nome"].'</td>
+                                            <td>'.$listafuncionarios["turno"].'</td>
                                             <form method="post">
                                             <td>
                                               <select class="" name="turno">
-                                                <option>    </option>
+                                                <option value=0>    </option>
                                               ';
                                               $queryturno = mysqli_query($conn,"SELECT * FROM turno");
 
