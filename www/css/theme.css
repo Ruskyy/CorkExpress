@@ -277,8 +277,10 @@ section {
     overflow: hidden;
 }
 
+
 .page-container {
-    background: #e5e5e5;
+  background-color: #eaeaea;
+    background-image: url('../assets/img/cork-board2.png');
     padding-left: 300px;
 }
 
