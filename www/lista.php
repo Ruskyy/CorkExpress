@@ -376,7 +376,7 @@ validar();
 
     <?php
     include 'connections/conn.php';
-    $query = mysqli_query($conn,"SELECT func_id FROM funcionario");
+    $query = mysqli_query($conn,"SELECT func_id,func_nome FROM funcionario");
     while ($listafuncionarios = mysqli_fetch_array($query)) {
       echo '
     <!-- Remover user '.$listafuncionarios['func_id'].' -->
@@ -393,7 +393,9 @@ validar();
           <div class="modal-body">
             <p>
               Tem a certeza que deseja remover este funcionario ?
-              '.$listafuncionarios['func_id'].'
+              <br><center><code>
+              '.$listafuncionarios['func_id'].' - '.$listafuncionarios['func_nome'].'
+              </code></center>
             </p>
           </div>
           <div class="modal-footer">
