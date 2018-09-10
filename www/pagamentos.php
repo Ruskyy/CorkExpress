@@ -141,7 +141,7 @@ $mes = 0;
                           </ul>
                       </li>
 
-                      <li class="active has-sub">
+                      <li class=" has-sub">
                           <a class="js-arrow" href="#">
                               <i class="fas fa-calendar-alt"></i>Gestão Horario</a>
                               <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
@@ -156,7 +156,7 @@ $mes = 0;
                               </ul>
                       </li>
 
-                      <li class="has-sub">
+                      <li class="active has-sub">
                           <a class="js-arrow" href="#">
                              <i class="fas fa-money-check-alt"></i></i>Gestão Salarios</a>
                           <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
@@ -308,7 +308,6 @@ $mes = 0;
                                         <tbody>
                                           <?php
                                           include 'connections/conn.php';
-
                                           $query = mysqli_query($conn,"SELECT func_id,func_nome,func_nif,func_nib,func_salario, IF(turno_nome=0, turno_nome, 'Sem Turno') as turno, func_idirs, func_idss
                                           FROM funcionario left join turno on turno_id = funcionario.func_idturno");
 
@@ -334,8 +333,52 @@ $mes = 0;
                                               </select>
 
                                               </td>
-                                              <td>'.$listafuncionarios["func_idirs"].'</td>
-                                              <td>'.$listafuncionarios["func_idss"].'</td>
+                                              <td>';
+                                              /*Selector IRS*/
+                                              /*echo $listafuncionarios["func_salario"];*/
+                                              $queryirs1 = mysqli_fetch_array(mysqli_query($conn,"SELECT * from escalaoirs WHERE irs_id = 1"));
+                                              $queryirs2 = mysqli_fetch_array(mysqli_query($conn,"SELECT * from escalaoirs WHERE irs_id = 2"));
+                                              $queryirs3 = mysqli_fetch_array(mysqli_query($conn,"SELECT * from escalaoirs WHERE irs_id = 3"));
+                                              if($listafuncionarios["func_salario"]<=0){
+                                                echo "Fora da Escala";
+                                              }
+                                              else if($listafuncionarios["func_salario"]<$queryirs1["irs_valormax"] ){
+                                                echo "Escalao 1";
+                                              }
+                                              else if($listafuncionarios["func_salario"]>=$queryirs2["irs_valormin"] && $listafuncionarios["func_salario"]<=$queryirs2["irs_valormax"] ){
+                                                echo "Escalao 2";
+                                              }
+
+                                              else if($listafuncionarios["func_salario"]>$queryirs3["irs_valormin"] && $listafuncionarios["func_salario"]<$queryirs3["irs_valormax"] ){
+                                                echo "Escalao 3";
+                                              }else {
+                                                echo "Escalao 4";
+                                              }
+
+                                              echo '</td>
+                                              <td>';
+
+                                              /*Selector SS*/
+                                              /*echo $listafuncionarios["func_salario"];*/
+                                              $queryirs1 = mysqli_fetch_array(mysqli_query($conn,"SELECT * from escalaoss WHERE ss_id = 1"));
+                                              $queryirs2 = mysqli_fetch_array(mysqli_query($conn,"SELECT * from escalaoss WHERE ss_id = 2"));
+                                              $queryirs3 = mysqli_fetch_array(mysqli_query($conn,"SELECT * from escalaoss WHERE ss_id = 3"));
+                                              if($listafuncionarios["func_salario"]<=0){
+                                                echo "Fora da Escala";
+                                              }
+                                              else if($listafuncionarios["func_salario"]<$queryirs1["ss_valormax"] ){
+                                                echo "Escalao 1";
+                                              }
+                                              else if($listafuncionarios["func_salario"]>=$queryirs2["ss_valormin"] && $listafuncionarios["func_salario"]<=$queryirs2["ss_valormax"] ){
+                                                echo "Escalao 2";
+                                              }
+
+                                              else{
+                                                echo "Escalao 3";
+                                              }
+
+
+                                              echo '</td>
                                               <td>
                                                 <div class="table-data-feature">
 
@@ -379,13 +422,6 @@ $mes = 0;
                         </div>
 
 
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="copyright">
-                                    <p>Copyright © 2018 Colorlib. All rights reserved. Template by <a href="https://colorlib.com">Colorlib</a>.</p>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
