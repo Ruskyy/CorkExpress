@@ -4,6 +4,7 @@ require_once 'functions/functions.php';
 session_start();
 validar();
 $mes = 0;
+$escirs = 0;
 ?>
 <html lang="en">
 
@@ -307,19 +308,23 @@ $mes = 0;
 
                                         <tbody>
                                           <?php
+                                          echo date("Y-m-d");
                                           include 'connections/conn.php';
-                                          $query = mysqli_query($conn,"SELECT func_id,func_nome,func_nif,func_nib,func_salario, IF(turno_nome=0, turno_nome, 'Sem Turno') as turno, func_idirs, func_idss
+                                          $query = mysqli_query($conn,"SELECT func_id,func_nome,func_nif,func_nib,func_salario, IF(turno_nome=0, turno_nome, 'Sem Turno') as turno, func_idirs, func_idss, turno_perc
                                           FROM funcionario left join turno on turno_id = funcionario.func_idturno");
 
                                           while (@$listafuncionarios = mysqli_fetch_array($query)) {
 
-                                            echo '<tr><td>'.$listafuncionarios["func_nome"].'</td>
+                                            echo '
+                                            <form method="post">
+                                            <tr><td>'.$listafuncionarios["func_nome"].'</td>
                                             <td>'.$listafuncionarios["func_nif"].' <input type="hidden" name="nif" value="'.$listafuncionarios["func_nif"].'"> </td>
                                             <td>'.$listafuncionarios["func_nib"].'</td>
                                             <td>'.$listafuncionarios["func_salario"].' € <input type="hidden" name="salariobruto" value="'.$listafuncionarios["func_salario"].'"> </td>
-                                            <td>'.$listafuncionarios["turno"].'</td>
+                                            <td>'.$listafuncionarios["turno"].' | '.$listafuncionarios["turno_perc"].' <input type="hidden" name="turnodesconto" value="'.$listafuncionarios["turno_perc"].'"> </td>
 
-                                            <form method="post">
+
+
                                             <td>
                                               <select class="" name="mes">
                                                 <option value='.$mes.'>   </option>
@@ -339,20 +344,26 @@ $mes = 0;
                                               $queryirs1 = mysqli_fetch_array(mysqli_query($conn,"SELECT * from escalaoirs WHERE irs_id = 1"));
                                               $queryirs2 = mysqli_fetch_array(mysqli_query($conn,"SELECT * from escalaoirs WHERE irs_id = 2"));
                                               $queryirs3 = mysqli_fetch_array(mysqli_query($conn,"SELECT * from escalaoirs WHERE irs_id = 3"));
+                                              $queryirs4 = mysqli_fetch_array(mysqli_query($conn,"SELECT * from escalaoirs WHERE irs_id = 4"));
                                               if($listafuncionarios["func_salario"]<=0){
                                                 echo "Fora da Escala";
+
                                               }
                                               else if($listafuncionarios["func_salario"]<$queryirs1["irs_valormax"] ){
                                                 echo "Escalao 1";
+                                                echo '<input type="hidden" name="escirs" value=0.'.$queryirs1["irs_desc"].'>';
                                               }
                                               else if($listafuncionarios["func_salario"]>=$queryirs2["irs_valormin"] && $listafuncionarios["func_salario"]<=$queryirs2["irs_valormax"] ){
                                                 echo "Escalao 2";
+                                                echo '<input type="hidden" name="escirs" value=0.'.$queryirs2["irs_desc"].'>';
                                               }
 
                                               else if($listafuncionarios["func_salario"]>$queryirs3["irs_valormin"] && $listafuncionarios["func_salario"]<$queryirs3["irs_valormax"] ){
                                                 echo "Escalao 3";
+                                                echo '<input type="hidden" name="escirs" value=0.'.$queryirs3["irs_desc"].'>';
                                               }else {
                                                 echo "Escalao 4";
+                                                echo '<input type="hidden" name="escirs" value=0.'.$queryirs4["irs_desc"].'>';
                                               }
 
                                               echo '</td>
@@ -368,31 +379,61 @@ $mes = 0;
                                               }
                                               else if($listafuncionarios["func_salario"]<$queryss1["ss_valormax"] ){
                                                 echo "Escalao 1";
+                                                echo '<input type="hidden" name="escss" value=0.'.$queryss1["ss_desc"].'>';
                                               }
                                               else if($listafuncionarios["func_salario"]>=$queryss2["ss_valormin"] && $listafuncionarios["func_salario"]<=$queryss2["ss_valormax"] ){
                                                 echo "Escalao 2";
+                                                echo '<input type="hidden" name="escss" value=0.'.$queryss2["ss_desc"].'>';
                                               }
 
                                               else{
                                                 echo "Escalao 3";
+                                                echo '<input type="hidden" name="escss" value=0.'.$queryss3["ss_desc"].'>';
                                               }
 
-
                                               echo '</td>
+                                              <input type="hidden" name="tipo" value=1>
+                                              <input type="hidden" name="dias" value=22>
+                                              <input type="hidden" id="actualDate" name="actualDate"/>
                                               <td>
                                                 <div class="table-data-feature">
 
                                                     <button class="item" name="btnupd" title="Edit">
                                                         <input type="hidden" name="func" value="'.$listafuncionarios["func_id"].'">
-                                                        <i class="zmdi zmdi-badge-check"></i>
+                                                        <i class="zmdi zmdi-money"></i>
                                                     </button>
                                                 </div></td>
                                               ';
+                                              echo '</form>';
 
 
                                           }
 
+                                          if(ISSET($_POST["btnupd"])){
+
+                                            mysqli_query($conn,"SELECT")
+
+                                            $date = date("Y-m-d");
+
+                                            $salario = $_POST['salariobruto'];
+                                            $segs = $_POST['escss'];
+                                            $imprs = $_POST['escirs'];
+                                            $desc = $_POST['turnodesconto'];
+                                            $dias = $_POST['dias'];
+
+                                            $descss = $salario * $segs;
+                                            $descirs = $salario * $imprs;
+                                            $salliq = $salario - ($descss + $descirs);
+                                            $bonus = $desc * $dias;
+                                            $salario_final = $salliq + $bonus;
+
+
+                                             mysqli_query($conn,"INSERT INTO pagamentos(pag_nif, pag_date, pag_dias, pag_salariobruto, pag_descss, pag_descirs, pag_salarioliq, pag_tipo)
+                                               VALUES('$_POST[nif]',CURDATE(),'$_POST[dias]','$_POST[salariobruto]','$descss','$descirs','$salario_final','$_POST[tipo]')");
+                                            echo "<meta http-equiv='refresh' content='0; URL=pagamentos.php'>";
+                                          }
                                           include 'connections/deconn.php';
+
                                           ?>
                                         </tbody>
                                     </table>
@@ -404,15 +445,6 @@ $mes = 0;
                                         <div class="col-sm" style="text-align: right;">
                                           <button type="submit" class="btn btn-success" name="button">Pagar Tudo</button>
                                         </div>
-                                        </form>
-                                        <?php
-                                        if(ISSET($_POST["button"])){
-
-                                          // mysqli_query($conn,"INSERT INTO pagamentos(pag_nif, pag_date, pag_dias, pag_salariobruto, pag_descss, pag_descirs, pag_salarioliq, pag_tipo)
-                                          //   VALUES('$_POST["nif"]','$_POST[]','$_POST[]','$_POST["salariobruto"]','$_POST[]','$_POST[]','$_POST[]','$_POST[]')");
-                                          echo "<meta http-equiv='refresh' content='0; URL=pagamentos.php'>";
-                                        }
-                                        ?>
                                       </div>
                                     </div>
 
