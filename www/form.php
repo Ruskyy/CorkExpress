@@ -60,6 +60,16 @@ validar();
     <!-- Main CSS-->
     <link href="css/theme.css" rel="stylesheet" media="all">
 
+    <script type="text/javascript">
+            function enforce_maxlength(event) {
+              var t = event.target;
+              if (t.hasAttribute('maxlength')) {
+              t.value = t.value.slice(0, t.getAttribute('maxlength'));
+                }
+              }
+              document.body.addEventListener('input', enforce_maxlength);
+        </script>
+
 </head>
 
 <body class="animsition">
@@ -172,7 +182,7 @@ validar();
                                    <i class="fas fa-history"></i>Historico</a>
                             </li>
                             <li>
-                                <a href="form.php">
+                                <a href="confpagamentos.php">
                                    <i class="fas fa-cog"></i>Configurações</a>
                             </li>
                           </ul>
@@ -476,7 +486,7 @@ validar();
                                         <div class="input-group-prepend">
                                           <span class="input-group-text">€</span>
                                         </div>
-                                        <input type="number" name="salario" class="form-control" aria-label="Valor">
+                                        <input type="number" min="0" max="100000" maxlength="6" name="salario" class="form-control" aria-label="Valor">
                                       </div>
                                     </div>
                                     <br>

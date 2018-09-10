@@ -15,7 +15,7 @@ validar();
     <meta name="keywords" content="au theme template">
 
     <!-- Title Page-->
-    <title>Lista Funcionarios</title>
+    <title>Configurações - Gestão Salarios</title>
 
     <!--FAVICON-->
     <link rel="apple-touch-icon-precomposed" sizes="57x57" href="apple-touch-icon-57x57.png" />
@@ -60,6 +60,15 @@ validar();
     <!-- Main CSS-->
     <link href="css/theme.css" rel="stylesheet" media="all">
 
+    <script type="text/javascript">
+            function enforce_maxlength(event) {
+              var t = event.target;
+              if (t.hasAttribute('maxlength')) {
+              t.value = t.value.slice(0, t.getAttribute('maxlength'));
+                }
+              }
+              document.body.addEventListener('input', enforce_maxlength);
+        </script>
 </head>
 
 <body class="animsition">
@@ -95,53 +104,6 @@ validar();
                           <a href="form.php">
                               <i class="fas fa-user-plus"></i>Adicionar Funcionario</a>
                       </li>
-                      <li class="has-sub">
-                          <a class="js-arrow" href="#">
-                              <i class="fas fa-desktop"></i>UI Elements</a>
-                          <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
-                              <li>
-                                  <a href="button.html">Button</a>
-                              </li>
-                              <li>
-                                  <a href="badge.html">Badges</a>
-                              </li>
-                              <li>
-                                  <a href="tab.html">Tabs</a>
-                              </li>
-                              <li>
-                                  <a href="card.html">Cards</a>
-                              </li>
-                              <li>
-                                  <a href="alert.html">Alerts</a>
-                              </li>
-                              <li>
-                                  <a href="progress-bar.html">Progress Bars</a>
-                              </li>
-                              <li>
-                                  <a href="modal.html">Modals</a>
-                              </li>
-                              <li>
-                                  <a href="switch.html">Switchs</a>
-                              </li>
-                              <li>
-                                  <a href="grid.html">Grids</a>
-                              </li>
-                              <li>
-                                  <a href="fontawesome.html">Fontawesome Icon</a>
-                              </li>
-                              <li>
-                                  <a href="typo.html">Typography</a>
-                              </li>
-                              <li>
-                                  <a href="chart.html">
-                                      <i class="fas fa-chart-bar"></i>Charts</a>
-                              </li>
-                              <li>
-                                  <a href="table.html">
-                                      <i class="fas fa-table"></i>Tables</a>
-                              </li>
-                          </ul>
-                      </li>
                   </ul>
               </div>
           </nav>
@@ -164,7 +126,7 @@ validar();
                       </li>
 
 
-                      <li class="active has-sub">
+                      <li class="has-sub">
                           <a class="js-arrow" href="#">
                              <i class="fa fa-users-cog"></i>Gestão Funcionarios</a>
                           <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
@@ -202,7 +164,7 @@ validar();
                               </ul>
                       </li>
 
-                      <li class="has-sub">
+                      <li class="active has-sub">
                           <a class="js-arrow" href="#">
                              <i class="fas fa-money-check-alt"></i></i>Gestão Salarios</a>
                           <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
@@ -215,7 +177,7 @@ validar();
                                    <i class="fas fa-gift"></i>Bonus e Sub.</a>
                             </li>
                             <li>
-                                <a href="historicopag.php">
+                                <a href="form.php">
                                    <i class="fas fa-history"></i>Historico</a>
                             </li>
                             <li>
@@ -299,122 +261,219 @@ validar();
             <!-- MAIN CONTENT-->
             <div class="main-content">
                 <div class="section__content section__content--p30">
-                  <h3 class="title-5 m-b-35">Lista Membros</h3>
-                      <div class="row m-t-30">
-                            <div class="col-md-12">
-                                <!-- DATA TABLE-->
-                                <div class="table-responsive m-b-40">
-                                    <table class="table table-borderless table-data3">
-                                        <thead>
-                                            <tr>
-                                                <th>Nome</th>
-                                                <th>Email</th>
-                                                <th>Morada</th>
-                                                <th>Salario</th>
-                                                <th></th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                          <?php
-                                          include 'connections/conn.php';
-                                          $query = mysqli_query($conn,"SELECT * FROM funcionario");
-                                          while ($listafuncionarios = mysqli_fetch_array($query)) {
-                                            echo '<tr><td>'.$listafuncionarios['func_nome'].'</td>
-                                            <td>'.$listafuncionarios['func_email'].'</td>
-                                            <td>'.$listafuncionarios['func_morada'].'</td>
-                                            <td>'.$listafuncionarios['func_salario'].' €</td>
-                                            <td>
-                                              <div class="table-data-feature">
-                                                  <button class="item" data-toggle="modal" data-target="#scrollmodal" title="Edit">
-                                                      <i class="zmdi zmdi-edit"></i>
-                                                  </button>
-                                                  <button class="item" data-toggle="modal" data-target="#staticModal'.$listafuncionarios['func_id'].'" title="Delete">
-                                                      <i class="zmdi zmdi-delete"></i>
-                                                  </button>
-                                              </div></td>
-                                              ';
-                                          }
+                  <h3 class="title-5 m-b-35">Configurações - Pagamentos</h3>
+						            <div class="row">
 
-                                          include 'connections/deconn.php';
-                                          ?>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <!-- END DATA TABLE-->
-                            </div>
+							                   <div class="col-lg-6">
+                                   <h3 class="title-5 m-b-10">Valores IRS</h3>
+                                   <div class="table-responsive table--no-card">
+                                    <form name="" method="post" action="">
+                                     <table class="table table-borderless table-striped table-earning">
+                                       <thead>
+                                         <tr>
+                                              <th></th>
+                                              <th class="text-left">Valor Min</th>
+                                              <th class="text-left">Valor Max</th>
+                                              <th class="text-left">Desconto</th>
+                                          </tr>
+                                      </thead>
+                                      <tbody>
+                                        <?php
+                                        include 'connections/conn.php';
+                                        $query = mysqli_query($conn,"SELECT * FROM escalaoirs");
+                                        while ($escalaoIRS = mysqli_fetch_array($query)) {
+                                          echo '<tr><td>Escalao '.$escalaoIRS['irs_id'].'<input type="hidden" name="id_escalao" value="'.$escalaoIRS['irs_id'].'"></td>
+                                          <td class="text-right">
+                                          <div class="input-group">
+                                          <input class="form-control" min="0" max="100000" maxlength="6" type="number" name="valor_min'.$escalaoIRS['irs_id'].'" style="width:100px;" value="'.$escalaoIRS['irs_valormin'].'">
+                                          <div class="input-group-append">
+                                          <span class="input-group-text"><i class="fas fa-euro-sign"></i></span>
+                                          </div>
+                                          </div>
+                                          </td>
+
+                                          <td class="text-right">
+                                          <div class="input-group">
+                                          <input class="form-control" min="0" max="100000" maxlength="6" type="number" name="valor_max'.$escalaoIRS['irs_id'].'" style="width:100px;" value="'.$escalaoIRS['irs_valormax'].'">
+                                          <div class="input-group-append">
+                                          <span class="input-group-text"><i class="fas fa-euro-sign"></i></span>
+                                          </div>
+                                          </div>
+                                          </td>
+
+                                          <td class="text-right">
+                                          <div class="input-group">
+                                          <input class="form-control" min="0" max="9999999999" maxlength="10" type="text" name="perc'.$escalaoIRS['irs_id'].'" style="width:50px;" value="'.$escalaoIRS['irs_desc'].'">
+                                          <div class="input-group-append">
+                                          <span class="input-group-text"><i class="fas fa-percentage"></i></span>
+                                          </div>
+                                          </div>
+                                          </td>
+                                          </tr>
+                                          ';
+                                        }
+
+                                        include 'connections/deconn.php';
+
+                                        ?>
+                                      </tbody>
+                                  </table>
+                                  <button type="submit" class="btn btn-success btn-lg btn-block" name="submitirs">Update</button>
+                                  </form>
+                                  <?php
+                                  include 'connections/conn.php';
+                                  $min='';
+                                  $max='';
+                                  if(ISSET($_POST["submitirs"])){
+                                    for ($a=1; $a <5; $a++) {
+                                      $min = 'valor_min'.$a;
+                                      $max = 'valor_max'.$a;
+                                      $perc = 'perc'.$a;
+                                      // echo $min;
+                                      // echo "<br>";
+                                      // echo $max;
+                                      mysqli_query($conn,"UPDATE escalaoirs SET irs_valormin = $_POST[$min],irs_valormax =$_POST[$max], irs_desc=$_POST[$perc] WHERE irs_id=$a");
+
+                                    }
+                                  echo "<meta http-equiv='refresh' content='0; URL=confpagamentos.php'>";
+                                  }
+                                  include 'connections/deconn.php';
+
+                                    ?>
                         </div>
-                    </div>
-                </div>
+							</div>
+							<div class="col-lg-6">
+
+							</div>
+						</div>
+            <br>
+            <div class="row">
+              <div class="col-lg-6">
+                <h3 class="title-5 m-b-10">Valores Segurança Social</h3>
+                <div class="table-responsive table--no-card">
+                 <form name="" method="post" action="">
+                  <table class="table table-borderless table-striped table-earning">
+                    <thead>
+                      <tr>
+                           <th></th>
+                           <th class="text-left">Valor Min</th>
+                           <th class="text-left">Valor Max</th>
+                           <th class="text-left">Desconto</th>
+                       </tr>
+                   </thead>
+                   <tbody>
+                     <?php
+                     include 'connections/conn.php';
+                     $query = mysqli_query($conn,"SELECT * FROM escalaoss");
+                     while ($escalaoSS = mysqli_fetch_array($query)) {
+                       echo '<tr><td>Escalao '.$escalaoSS['ss_id'].'<input type="hidden" name="id_escalao" value="'.$escalaoSS['ss_id'].'"></td>
+                       <td class="text-right">
+                       <div class="input-group">
+                       <input class="form-control" min="0" max="100000" maxlength="6" type="number" name="valor_min'.$escalaoSS['ss_id'].'" style="width:100px;" value="'.$escalaoSS['ss_valormin'].'">
+                       <div class="input-group-append">
+                       <span class="input-group-text"><i class="fas fa-euro-sign"></i></span>
+                       </div>
+                       </div>
+                       </td>
+
+                       <td class="text-right">
+                       <div class="input-group">
+                       <input class="form-control" min="0" max="100000" maxlength="6" type="number" name="valor_max'.$escalaoSS['ss_id'].'" style="width:100px;" value="'.$escalaoSS['ss_valormax'].'">
+                       <div class="input-group-append">
+                       <span class="input-group-text"><i class="fas fa-euro-sign"></i></span>
+                       </div>
+                       </div>
+                       </td>
+
+                       <td class="text-right">
+                       <div class="input-group">
+                       <input class="form-control" type="text" name="perc'.$escalaoSS['ss_id'].'" style="width:50px;" value="'.$escalaoSS['ss_desc'].'">
+                       <div class="input-group-append">
+                       <span class="input-group-text"><i class="fas fa-percentage"></i></span>
+                       </div>
+                       </div>
+                       </td>
+                       </tr>
+                       ';
+                     }
+
+                     include 'connections/deconn.php';
+
+                     ?>
+                   </tbody>
+               </table>
+               <button type="submit" class="btn btn-success btn-lg btn-block" name="submitss">Update</button>
+               </form>
+               <?php
+               include 'connections/conn.php';
+               $min='';
+               $max='';
+               if(ISSET($_POST["submitss"])){
+                 for ($a=1; $a <4; $a++) {
+                   $min = 'valor_min'.$a;
+                   $max = 'valor_max'.$a;
+                   $perc = 'perc'.$a;
+                   // echo $min;
+                   // echo "<br>";
+                   // echo $max;
+                   mysqli_query($conn,"UPDATE escalaoss SET ss_valormin = $_POST[$min],ss_valormax =$_POST[$max], ss_desc=$_POST[$perc] WHERE ss_id=$a");
+
+                 }
+               echo "<meta http-equiv='refresh' content='0; URL=confpagamentos.php'>";
+               }
+               include 'connections/deconn.php';
+
+                 ?>
+     </div>
+              </div>
+              <div class="col-lg-6">
+              </div>
             </div>
-        </div>
-
-    </div>
-
-    <!-- modal scroll -->
-    <div class="modal fade" id="scrollmodal" tabindex="-1" role="dialog" aria-labelledby="scrollmodalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="scrollmodalLabel">Editar</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <p>
-            DADOS
-            </p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-            <button type="button" class="btn btn-success">Submeter Alterações</button>
           </div>
         </div>
       </div>
     </div>
-    <!-- end modal scroll -->
+</div>
 
-    <?php
-    include 'connections/conn.php';
-    $query = mysqli_query($conn,"SELECT func_id,func_nome FROM funcionario");
-    while ($listafuncionarios = mysqli_fetch_array($query)) {
-      echo '
-    <!-- Remover user '.$listafuncionarios['func_id'].' -->
-    <div class="modal fade" id="staticModal'.$listafuncionarios['func_id'].'" tabindex="-1" role="dialog" aria-labelledby="staticModalLabel" aria-hidden="true"
-     data-backdrop="static">
-      <div class="modal-dialog modal-sm" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="staticModalLabel">Remover</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <p>
-              Tem a certeza que deseja remover este funcionario ?
-              <br><center><code>
-              '.$listafuncionarios['func_id'].' - '.$listafuncionarios['func_nome'].'
-              </code></center>
-            </p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-            <form method="post">
-            <input type="hidden" name="hiddenid" value ="'.$listafuncionarios['func_id'].'">
-            <button type="submit" name="remover" class="btn btn-danger">Remover</button>
-            </form>
-          </div>
-        </div>
+<?php
+include 'connections/conn.php';
+$query = mysqli_query($conn,"SELECT turno_id FROM turno");
+while ($listaturnos = mysqli_fetch_array($query)) {
+  echo '
+<!-- Delete modal '.$listaturnos['turno_id'].'  -->
+<div class="modal fade" id="staticModal'.$listaturnos['turno_id'].'" tabindex="-1" role="dialog" aria-labelledby="staticModalLabel" aria-hidden="true"
+ data-backdrop="static">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticModalLabel">Remover</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
-    </div>';
-  }
-  if(ISSET($_POST["remover"])){
-    mysqli_query($conn, "DELETE FROM funcionario WHERE func_id=".$_POST['hiddenid']." ");
-    include "connections/deconn.php";
-    echo "<meta http-equiv='refresh' content='0; URL=lista.php'>";
-  }
-   ?>
+      <div class="modal-body">
+        <p>
+          Tem a certeza que deseja remover este turno ?
+          '.$listaturnos['turno_id'].'
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <form method="post">
+        <input type="hidden" name="hiddenid" value ="'.$listaturnos['turno_id'].'">
+        <button type="submit" name="remover" class="btn btn-danger">Remover</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>';
+}
+if(ISSET($_POST["remover"])){
+mysqli_query($conn, "DELETE FROM turno WHERE turno_id=".$_POST['hiddenid']." ");
+include "connections/deconn.php";
+echo "<meta http-equiv='refresh' content='0; URL=confturnos.php'>";
+}
+?>
 
 
 
