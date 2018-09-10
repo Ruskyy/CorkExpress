@@ -360,16 +360,16 @@ $mes = 0;
 
                                               /*Selector SS*/
                                               /*echo $listafuncionarios["func_salario"];*/
-                                              $queryirs1 = mysqli_fetch_array(mysqli_query($conn,"SELECT * from escalaoss WHERE ss_id = 1"));
-                                              $queryirs2 = mysqli_fetch_array(mysqli_query($conn,"SELECT * from escalaoss WHERE ss_id = 2"));
-                                              $queryirs3 = mysqli_fetch_array(mysqli_query($conn,"SELECT * from escalaoss WHERE ss_id = 3"));
+                                              $queryss1 = mysqli_fetch_array(mysqli_query($conn,"SELECT * from escalaoss WHERE ss_id = 1"));
+                                              $queryss2 = mysqli_fetch_array(mysqli_query($conn,"SELECT * from escalaoss WHERE ss_id = 2"));
+                                              $queryss3 = mysqli_fetch_array(mysqli_query($conn,"SELECT * from escalaoss WHERE ss_id = 3"));
                                               if($listafuncionarios["func_salario"]<=0){
                                                 echo "Fora da Escala";
                                               }
-                                              else if($listafuncionarios["func_salario"]<$queryirs1["ss_valormax"] ){
+                                              else if($listafuncionarios["func_salario"]<$queryss1["ss_valormax"] ){
                                                 echo "Escalao 1";
                                               }
-                                              else if($listafuncionarios["func_salario"]>=$queryirs2["ss_valormin"] && $listafuncionarios["func_salario"]<=$queryirs2["ss_valormax"] ){
+                                              else if($listafuncionarios["func_salario"]>=$queryss2["ss_valormin"] && $listafuncionarios["func_salario"]<=$queryss2["ss_valormax"] ){
                                                 echo "Escalao 2";
                                               }
 
