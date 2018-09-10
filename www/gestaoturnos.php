@@ -284,7 +284,7 @@ validar();
                                             <td>'.$listafuncionarios["func_salario"].' €</td>
                                             <td>'.$listafuncionarios["turno"].'</td>
                                             <form method="post">
-                                            <td>
+                                            <td style="background-color:#efeae6;">
                                               <select class="" name="turno">
                                                 <option value=0>    </option>
                                               ';

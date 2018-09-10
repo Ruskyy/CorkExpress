@@ -253,6 +253,7 @@ validar();
             <div class="main-content">
                 <div class="section__content section__content--p30">
                   <h3 class="title-5 m-b-35">Lista Membros</h3>
+                  
                       <div class="row m-t-30">
                             <div class="col-md-12">
                                 <!-- DATA TABLE-->
@@ -260,13 +261,16 @@ validar();
                                     <table class="table table-borderless table-data3">
                                         <thead>
                                             <tr>
-                                                <th>Nome</th>
-                                                <th>NIF</th>
-                                                <th>NIB</th>
-                                                <th>Salario</th>
-                                                <th>Turno Atual</th>
-                                                <th>Mes</th>
-                                                <th></th>
+                                              <th>Nome</th>
+                                              <th>NIF</th>
+                                              <th>Data</th>
+                                              <th>Dias</th>
+                                              <th>Salario Bruto</th>
+                                              <th>Desconto SS</th>
+                                              <th>Desconto IRS</th>
+                                              <th>Salario Liquido</th>
+                                              <th>Tipo</th>
+                                              <th></th>
                                             </tr>
                                         </thead>
 
@@ -276,7 +280,7 @@ validar();
 
                                           $query = mysqli_query($conn,"SELECT func_id,func_nome,func_nif,func_nib,func_salario, IF(turno_nome=0, turno_nome, 'Sem Turno') as turno FROM pagamento left join turno on turno_id = funcionario.func_idturno");
 
-                                          while ($listafuncionarios = mysqli_fetch_array($query)) {
+                                          while (@$listafuncionarios = mysqli_fetch_array($query)) {
 
                                             echo '<tr><td>'.$listafuncionarios["func_nome"].'</td>
                                             <td>'.$listafuncionarios["func_nif"].'</td>

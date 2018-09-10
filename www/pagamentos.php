@@ -3,6 +3,7 @@
 require_once 'functions/functions.php';
 session_start();
 validar();
+$mes = 0;
 ?>
 <html lang="en">
 
@@ -252,7 +253,39 @@ validar();
             <!-- MAIN CONTENT-->
             <div class="main-content">
                 <div class="section__content section__content--p30">
-                  <h3 class="title-5 m-b-35">Lista Membros</h3>
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-sm">
+                        <h3 class="title-5 m-b-35">Lista Membros</h3>
+                      </div>
+                      <div class="col-sm" style="text-align:right;">
+
+                        <form class="" action="" method="post">
+                          <?php
+                          echo '<select class="" name="mes">
+                            <option>    </option>
+                          ';
+                          $queryturno = mysqli_query($conn,"SELECT mes_id, mes_nome FROM mes");
+
+                          while ($listaturno = mysqli_fetch_array($queryturno)) {
+                            echo '<option value="'.$listaturno["mes_id"].'">'.$listaturno["mes_nome"].'</option>';
+                          }
+                          echo '
+                          </select>' ?>
+
+                          <button type="submit" class="btn btn-success" name="button">Selecionar Mes</button>
+
+                        </form>
+                        <?php
+                          if(ISSET($_POST["button"])){
+                            $mes = $_POST["mes"];
+                          }
+                         ?>
+                      </div>
+                    </div>
+                  </div>
+
+
                       <div class="row m-t-30">
                             <div class="col-md-12">
                                 <!-- DATA TABLE-->
@@ -266,6 +299,8 @@ validar();
                                                 <th>Salario</th>
                                                 <th>Turno Atual</th>
                                                 <th>Mes</th>
+                                                <th>Esc IRS</th>
+                                                <th>Esc SS</th>
                                                 <th></th>
                                             </tr>
                                         </thead>
@@ -274,19 +309,21 @@ validar();
                                           <?php
                                           include 'connections/conn.php';
 
-                                          $query = mysqli_query($conn,"SELECT func_id,func_nome,func_nif,func_nib,func_salario, IF(turno_nome=0, turno_nome, 'Sem Turno') as turno FROM funcionario left join turno on turno_id = funcionario.func_idturno");
+                                          $query = mysqli_query($conn,"SELECT func_id,func_nome,func_nif,func_nib,func_salario, IF(turno_nome=0, turno_nome, 'Sem Turno') as turno, func_idirs, func_idss
+                                          FROM funcionario left join turno on turno_id = funcionario.func_idturno");
 
-                                          while ($listafuncionarios = mysqli_fetch_array($query)) {
+                                          while (@$listafuncionarios = mysqli_fetch_array($query)) {
 
                                             echo '<tr><td>'.$listafuncionarios["func_nome"].'</td>
-                                            <td>'.$listafuncionarios["func_nif"].'</td>
+                                            <td>'.$listafuncionarios["func_nif"].' <input type="hidden" name="nif" value="'.$listafuncionarios["func_nif"].'"> </td>
                                             <td>'.$listafuncionarios["func_nib"].'</td>
-                                            <td>'.$listafuncionarios["func_salario"].' €</td>
+                                            <td>'.$listafuncionarios["func_salario"].' € <input type="hidden" name="salariobruto" value="'.$listafuncionarios["func_salario"].'"> </td>
                                             <td>'.$listafuncionarios["turno"].'</td>
+
                                             <form method="post">
                                             <td>
                                               <select class="" name="mes">
-                                                <option value=0>    </option>
+                                                <option value='.$mes.'>   </option>
                                               ';
                                               $queryturno = mysqli_query($conn,"SELECT mes_id, mes_nome FROM mes");
 
@@ -297,7 +334,8 @@ validar();
                                               </select>
 
                                               </td>
-
+                                              <td>'.$listafuncionarios["func_idirs"].'</td>
+                                              <td>'.$listafuncionarios["func_idss"].'</td>
                                               <td>
                                                 <div class="table-data-feature">
 
@@ -306,19 +344,35 @@ validar();
                                                         <i class="zmdi zmdi-badge-check"></i>
                                                     </button>
                                                 </div></td>
-                                              </form>';
+                                              ';
 
-                                              if(ISSET($_POST["btnupd"])){
 
-                                                mysqli_query($conn,"UPDATE funcionario SET func_idturno=".$_POST['turno']." WHERE func_id=".$_POST['func']."");
-                                                echo "<meta http-equiv='refresh' content='0; URL=gestaoturnos.php'>";
-                                              }
                                           }
 
                                           include 'connections/deconn.php';
                                           ?>
                                         </tbody>
                                     </table>
+                                    <div class="container-fluid" style="margin-top:1rem;">
+                                      <div class="row" style="">
+                                        <div class="col-sm">
+
+                                        </div>
+                                        <div class="col-sm" style="text-align: right;">
+                                          <button type="submit" class="btn btn-success" name="button">Pagar Tudo</button>
+                                        </div>
+                                        </form>
+                                        <?php
+                                        if(ISSET($_POST["button"])){
+
+                                          // mysqli_query($conn,"INSERT INTO pagamentos(pag_nif, pag_date, pag_dias, pag_salariobruto, pag_descss, pag_descirs, pag_salarioliq, pag_tipo)
+                                          //   VALUES('$_POST["nif"]','$_POST[]','$_POST[]','$_POST["salariobruto"]','$_POST[]','$_POST[]','$_POST[]','$_POST[]')");
+                                          echo "<meta http-equiv='refresh' content='0; URL=pagamentos.php'>";
+                                        }
+                                        ?>
+                                      </div>
+                                    </div>
+
                                 </div>
                                 <!-- END DATA TABLE-->
                             </div>
