@@ -411,8 +411,6 @@ $escirs = 0;
 
                                           if(ISSET($_POST["btnupd"])){
 
-                                            mysqli_query($conn,"SELECT")
-
                                             $date = date("Y-m-d");
 
                                             $salario = $_POST['salariobruto'];
