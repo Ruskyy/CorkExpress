@@ -172,7 +172,7 @@ validar();
                                    <i class="fas fa-history"></i>Historico</a>
                             </li>
                             <li>
-                                <a href="form.php">
+                                <a href="confpagamentos.php">
                                    <i class="fas fa-cog"></i>Configurações</a>
                             </li>
                           </ul>
@@ -253,7 +253,7 @@ validar();
             <div class="main-content">
                 <div class="section__content section__content--p30">
                   <h3 class="title-5 m-b-35">Lista Membros</h3>
-                  
+
                       <div class="row m-t-30">
                             <div class="col-md-12">
                                 <!-- DATA TABLE-->

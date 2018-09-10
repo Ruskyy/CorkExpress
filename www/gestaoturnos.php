@@ -172,7 +172,7 @@ validar();
                                    <i class="fas fa-history"></i>Historico</a>
                             </li>
                             <li>
-                                <a href="form.php">
+                                <a href="confpagamentos.php">
                                    <i class="fas fa-cog"></i>Configurações</a>
                             </li>
                           </ul>
