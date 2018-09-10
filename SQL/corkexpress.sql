@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.1
--- https://www.phpmyadmin.net/
+-- version 4.5.1
+-- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 06-Set-2018 às 20:48
--- Versão do servidor: 10.1.33-MariaDB
--- PHP Version: 7.2.6
+-- Generation Time: 10-Set-2018 às 19:47
+-- Versão do servidor: 10.1.16-MariaDB
+-- PHP Version: 5.6.24
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -21,6 +19,51 @@ SET time_zone = "+00:00";
 --
 -- Database: `corkexpress`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `escalaoirs`
+--
+
+CREATE TABLE `escalaoirs` (
+  `irs_id` int(11) NOT NULL,
+  `irs_valormin` double NOT NULL,
+  `irs_valormax` double NOT NULL,
+  `irs_desc` float NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `escalaoirs`
+--
+
+INSERT INTO `escalaoirs` (`irs_id`, `irs_valormin`, `irs_valormax`, `irs_desc`) VALUES
+(1, 0, 550, 8),
+(2, 551, 999, 9),
+(3, 1000, 1499, 10),
+(4, 1500, 100000, 12);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `escalaoss`
+--
+
+CREATE TABLE `escalaoss` (
+  `ss_id` int(11) NOT NULL,
+  `ss_valormin` double NOT NULL,
+  `ss_valormax` double NOT NULL,
+  `ss_desc` float NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `escalaoss`
+--
+
+INSERT INTO `escalaoss` (`ss_id`, `ss_valormin`, `ss_valormax`, `ss_desc`) VALUES
+(1, 0, 500, 11),
+(2, 551, 1099, 11),
+(3, 1100, 0, 11);
 
 -- --------------------------------------------------------
 
@@ -44,23 +87,53 @@ CREATE TABLE `funcionario` (
   `func_niss` varchar(11) NOT NULL,
   `func_contacto` int(9) NOT NULL,
   `func_salario` decimal(5,0) NOT NULL,
-  `func_idturno` int(11) NOT NULL
+  `func_idturno` int(11) NOT NULL,
+  `func_idirs` int(11) NOT NULL,
+  `func_idss` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `funcionario`
 --
 
-INSERT INTO `funcionario` (`func_id`, `func_tipo`, `func_user`, `func_pass`, `func_email`, `func_nome`, `func_morada`, `func_idnacio`, `func_idnatur`, `func_bi`, `func_nif`, `func_nib`, `func_niss`, `func_contacto`, `func_salario`, `func_idturno`) VALUES
-(1, 1, 'admin', 'admin', 'admin@corckexpress.com', 'Nilton Fontes', 'Rua Admin nºAdmin R/C Admin', 1, 1, 99999999, 999999999, '99999999999999999999', '99999999999', 999999999, '5000', 1),
-(3, 2, 'emmar', '111', 'ines.schamberg@gmail.com', 'Emma M Reed', 'Lynnwood, Washington(WA), 98037', 2, 2, 538821220, 538821220, '538821220', '538821220', 360301133, '56025', 1),
-(4, 2, 'jaqline', '11111', 'maribel_smi@yahoo.com', 'Jacqueline A Pond', '4703 West Street Wyoming, Michigan(MI), 49548', 2, 2, 366682542, 366682542, '366682542', '366682542', 517360445, '56528', 1),
-(5, 2, 'sthparker', '111', 'alvena.dibbe@yahoo.com', 'Stephen H Parker', '1716 Jarvisville Road New York, New York(NY), 10010', 2, 3, 65806589, 65806589, '065806589', '065806589', 917748957, '5875', 1),
-(6, 2, 'gmd', '111', 'jeica1977@hotmail.com', 'Gregory M Desjardins', '892 Lamberts Branch Road Doral, Florida(FL), 33166', 2, 2, 286524873, 286524873, '286524873', '286524873', 286524873, '5471', 0),
-(11, 2, 'cwl', '111', 'maurine1999@gmail.com', 'Carl W Langer', '4306 Stonecoal Road Bucyrus, Ohio(OH), 44820', 2, 2, 353598444, 353598444, '353598444', '353598444', 353598444, '7845', 0),
-(12, 2, 'dcf', '111', 'chad.ohar7@hotmail.com', 'Daniel C Friley', '1215 Charles Street Plymouth, Michigan(MI), 48170', 2, 2, 705365382, 705365382, '705365382', '705365382', 705365382, '784', 0),
-(14, 2, 'mah', '111', 'rebecca.goyet@gmail.com', 'Margaret A Hanson', '4289 Driftwood Road Fremont, California(CA), 94539', 2, 2, 408702317, 408702317, '408702317', '408702317', 408702317, '1568', 0),
-(15, 2, 'epc', '111', 'helga1989@hotmail.com', 'Eileen P Cashin', '2206 Badger Pond Lane Tampa, Florida(FL), 33602', 2, 2, 864107007, 864107007, '864107007', '864107007', 864107007, '2356', 0);
+INSERT INTO `funcionario` (`func_id`, `func_tipo`, `func_user`, `func_pass`, `func_email`, `func_nome`, `func_morada`, `func_idnacio`, `func_idnatur`, `func_bi`, `func_nif`, `func_nib`, `func_niss`, `func_contacto`, `func_salario`, `func_idturno`, `func_idirs`, `func_idss`) VALUES
+(1, 1, 'admin', 'admin', 'admin@corckexpress.com', 'Nilton Fontes', 'Rua Admin nºAdmin R/C Admin', 1, 1, 99999999, 999999999, '99999999999999999999', '99999999999', 999999999, '5000', 3, 4, 3),
+(3, 2, 'emmar', '111', 'ines.schamberg@gmail.com', 'Emma M Reed', 'Lynnwood, Washington(WA), 98037', 2, 2, 538821220, 538821220, '538821220', '538821220', 360301133, '56025', 1, 4, 3),
+(4, 2, 'jaqline', '11111', 'maribel_smi@yahoo.com', 'Jacqueline A Pond', '4703 West Street Wyoming, Michigan(MI), 49548', 2, 2, 366682542, 366682542, '366682542', '366682542', 517360445, '56528', 1, 4, 3),
+(6, 2, 'gmd', '111', 'jeica1977@hotmail.com', 'Gregory M Desjardins', '892 Lamberts Branch Road Doral, Florida(FL), 33166', 2, 2, 286524873, 286524873, '286524873', '286524873', 286524873, '5471', 1, 4, 3),
+(11, 2, 'cwl', '111', 'maurine1999@gmail.com', 'Carl W Langer', '4306 Stonecoal Road Bucyrus, Ohio(OH), 44820', 2, 2, 353598444, 353598444, '353598444', '353598444', 353598444, '7845', 2, 4, 3),
+(12, 2, 'dcf', '111', 'chad.ohar7@hotmail.com', 'Daniel C Friley', '1215 Charles Street Plymouth, Michigan(MI), 48170', 2, 2, 705365382, 705365382, '705365382', '705365382', 705365382, '784', 3, 2, 2),
+(14, 2, 'mah', '111', 'rebecca.goyet@gmail.com', 'Margaret A Hanson', '4289 Driftwood Road Fremont, California(CA), 94539', 2, 2, 408702317, 408702317, '408702317', '408702317', 408702317, '1568', 1, 4, 3),
+(15, 2, 'epc', '111', 'helga1989@hotmail.com', 'Eileen P Cashin', '2206 Badger Pond Lane Tampa, Florida(FL), 33602', 2, 2, 864107007, 864107007, '864107007', '864107007', 864107007, '2356', 2, 4, 3);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `mes`
+--
+
+CREATE TABLE `mes` (
+  `mes_id` int(11) NOT NULL,
+  `mes_nome` varchar(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `mes`
+--
+
+INSERT INTO `mes` (`mes_id`, `mes_nome`) VALUES
+(1, 'Janeiro'),
+(2, 'Fevereiro'),
+(3, 'Marco'),
+(4, 'Abril'),
+(5, 'Maio'),
+(6, 'Junho'),
+(7, 'Julho'),
+(8, 'Agosto'),
+(9, 'Setembro'),
+(10, 'Outubro'),
+(11, 'Novembro'),
+(12, 'Dezembro');
 
 -- --------------------------------------------------------
 
@@ -355,6 +428,24 @@ INSERT INTO `naturalidade` (`idNatur`, `nomeNatur`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estrutura da tabela `pagamentos`
+--
+
+CREATE TABLE `pagamentos` (
+  `pag_id` int(11) NOT NULL,
+  `pag_nif` int(11) NOT NULL,
+  `pag_date` date NOT NULL,
+  `pag_dias` int(11) NOT NULL,
+  `pag_salariobruto` double NOT NULL,
+  `pag_descss` float NOT NULL,
+  `pag_descirs` float NOT NULL,
+  `pag_salarioliq` double NOT NULL,
+  `pag_tipo` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura da tabela `turno`
 --
 
@@ -371,11 +462,24 @@ CREATE TABLE `turno` (
 INSERT INTO `turno` (`turno_id`, `turno_nome`, `turno_perc`) VALUES
 (1, 'Manha', 1),
 (2, 'Tarde', 1.5),
-(3, 'Noite', 3);
+(3, 'Noite', 3),
+(4, 'Feriados', 5);
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `escalaoirs`
+--
+ALTER TABLE `escalaoirs`
+  ADD PRIMARY KEY (`irs_id`);
+
+--
+-- Indexes for table `escalaoss`
+--
+ALTER TABLE `escalaoss`
+  ADD PRIMARY KEY (`ss_id`);
 
 --
 -- Indexes for table `funcionario`
@@ -390,6 +494,12 @@ ALTER TABLE `funcionario`
   ADD UNIQUE KEY `func_user` (`func_user`);
 
 --
+-- Indexes for table `mes`
+--
+ALTER TABLE `mes`
+  ADD PRIMARY KEY (`mes_id`);
+
+--
 -- Indexes for table `nacionalidade`
 --
 ALTER TABLE `nacionalidade`
@@ -402,6 +512,12 @@ ALTER TABLE `naturalidade`
   ADD PRIMARY KEY (`idNatur`);
 
 --
+-- Indexes for table `pagamentos`
+--
+ALTER TABLE `pagamentos`
+  ADD PRIMARY KEY (`pag_id`);
+
+--
 -- Indexes for table `turno`
 --
 ALTER TABLE `turno`
@@ -412,30 +528,45 @@ ALTER TABLE `turno`
 --
 
 --
+-- AUTO_INCREMENT for table `escalaoirs`
+--
+ALTER TABLE `escalaoirs`
+  MODIFY `irs_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `escalaoss`
+--
+ALTER TABLE `escalaoss`
+  MODIFY `ss_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+--
 -- AUTO_INCREMENT for table `funcionario`
 --
 ALTER TABLE `funcionario`
   MODIFY `func_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
-
+--
+-- AUTO_INCREMENT for table `mes`
+--
+ALTER TABLE `mes`
+  MODIFY `mes_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `nacionalidade`
 --
 ALTER TABLE `nacionalidade`
   MODIFY `paisId` tinyint(3) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=253;
-
 --
 -- AUTO_INCREMENT for table `naturalidade`
 --
 ALTER TABLE `naturalidade`
   MODIFY `idNatur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
+--
+-- AUTO_INCREMENT for table `pagamentos`
+--
+ALTER TABLE `pagamentos`
+  MODIFY `pag_id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `turno`
 --
 ALTER TABLE `turno`
-  MODIFY `turno_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-COMMIT;
-
+  MODIFY `turno_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
