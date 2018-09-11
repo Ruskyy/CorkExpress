@@ -195,29 +195,29 @@ validar();
 
                            <div class="header-button">
 
-                               <div class="account-wrap">
+                             <?php
+                             include 'connections/conn.php';
+                             require_once 'functions/functions.php';
+                             $funcid = $_SESSION['id'];
+                             $query = mysqli_query($conn,"SELECT 'func_id',func_nome,func_email,func_avatar_path FROM funcionario WHERE func_id = '$funcid'");
+                             $empregado= mysqli_fetch_array($query);
+
+                               echo '<div class="account-wrap">
                                    <div class="account-item clearfix js-item-menu">
                                        <div class="image">
-                                           <img src="images/icon/avatar-01.jpg" alt="nilton fontes" />
+                                           <img src="'.$empregado['func_avatar_path'].'" alt="avatar" />
                                        </div>
                                        <div class="content">
-                                         <?php
-                                         include 'connections/conn.php';
-                                         require_once 'functions/functions.php';
-                                         $funcid = $_SESSION['id'];
-                                         $query = mysqli_query($conn,"SELECT 'func_id',func_nome,func_email FROM funcionario WHERE func_id = '$funcid'");
-                                         $empregado= mysqli_fetch_array($query);
-
-                                           echo '<a class="js-acc-btn">'.$empregado['func_nome'].'</a>';
-                                          ?>
+                                        <a class="js-acc-btn">'.$empregado['func_nome'].'</a>
                                        </div>
                                        <div class="account-dropdown js-dropdown">
                                            <div class="info clearfix">
                                                <div class="image">
                                                    <a href="#">
-                                                       <img src="images/icon/avatar-01.jpg" alt="nilton fontes" />
+                                                       <img src="'.$empregado['func_avatar_path'].'" alt="avatar" />
                                                    </a>
-                                               </div>
+                                               </div>';
+                                              ?>
                                                <div class="content">
                                                  <?php
                                                  echo '<h5 class="name">

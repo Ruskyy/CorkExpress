@@ -5,7 +5,7 @@ function login($username,$password){
     echo 'Comé wi, preenche esses mambos!';
   }else {
     include 'connections/conn.php';
-    $qlogin = mysqli_query($conn,"SELECT func_user, func_pass, func_tipo, func_id
+    $qlogin = mysqli_query($conn,"SELECT func_user, func_pass, func_tipo, func_id, func_avatar_path
        FROM funcionario
        WHERE func_user = '$username' AND func_pass = '$password'");
     $alogin = mysqli_fetch_array($qlogin);
@@ -18,6 +18,7 @@ function login($username,$password){
       $_SESSION["id"] = $alogin["func_id"];
       $_SESSION["tipo"] = $alogin["func_tipo"];
       $_SESSION["username"] = $alogin["func_user"];
+      $_SESSION["imagepath"] = $alogin["func_avatar_path"];
 
       echo "<meta http-equiv='refresh' content='0; URL=index.php'>";
     }
