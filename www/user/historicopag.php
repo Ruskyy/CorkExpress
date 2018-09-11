@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php
-require_once 'functions/functions.php';
+require_once '../functions/functions.php';
 session_start();
 validar();
 ?>
@@ -15,7 +15,7 @@ validar();
     <meta name="keywords" content="au theme template">
 
     <!-- Title Page-->
-    <title>Lista Funcionarios</title>
+    <title>Historico Pagamentos</title>
 
     <!--FAVICON-->
     <link rel="apple-touch-icon-precomposed" sizes="57x57" href="apple-touch-icon-57x57.png" />
@@ -117,7 +117,7 @@ validar();
                       </li>
 
 
-                      <li class="active has-sub">
+                      <li class="has-sub">
                           <a class="js-arrow" href="#">
                              <i class="fa fa-users-cog"></i>Gestão Funcionarios</a>
                           <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
@@ -155,7 +155,7 @@ validar();
                               </ul>
                       </li>
 
-                      <li class="has-sub">
+                      <li class="active has-sub">
                           <a class="js-arrow" href="#">
                              <i class="fas fa-money-check-alt"></i></i>Gestão Salarios</a>
                           <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
@@ -264,16 +264,7 @@ validar();
             <!-- MAIN CONTENT-->
             <div class="main-content">
                 <div class="section__content section__content--p30">
-                  <div class="row">
-                    <div class="col-sm">
-                      <h3 class="title-5 m-b-35">Lista Membros</h3>
-                    </div>
-
-                    <div class="col-sm" style="text-align:right;">
-                    <button type="button" class="btn btn-primary btn-lg" name="refresh" ><i class="fas fa-sync"></i></button>
-                    </div>
-                  </div>
-
+                  <h3 class="title-5 m-b-35">Lista Membros</h3>
 
                       <div class="row m-t-30">
                             <div class="col-md-12">
@@ -282,49 +273,37 @@ validar();
                                     <table class="table table-borderless table-data3">
                                         <thead>
                                             <tr>
-                                                <th>Nome</th>
-                                                <th>Email</th>
-                                                <th>Morada</th>
-                                                <th>Salario</th>
-                                                <th></th>
+                                              <th>Nome</th>
+                                              <th>NIF</th>
+                                              <th>Data</th>
+                                              <th>Salario Bruto</th>
+                                              <th>Dias</th>
+                                              <th>Desconto SS</th>
+                                              <th>Desconto IRS</th>
+                                              <th>Salario Liquido</th>
+                                              <th>Tipo</th>
                                             </tr>
                                         </thead>
+
                                         <tbody>
                                           <?php
                                           include 'connections/conn.php';
-                                          require_once 'functions/functions.php';
-                                          $loginfuncid = $_SESSION['id'];
-                                          $query = mysqli_query($conn,"SELECT * FROM funcionario");
-                                          while ($listafuncionarios = mysqli_fetch_array($query)) {
-                                            if ($listafuncionarios['func_id'] != $loginfuncid) {
-                                              echo '<tr><td>'.$listafuncionarios['func_nome'].'</td>
-                                                <td>'.$listafuncionarios['func_email'].'</td>
-                                                <td>'.$listafuncionarios['func_morada'].'</td>
-                                                <td>'.$listafuncionarios['func_salario'].' €</td>
-                                                <td>
-                                                  <div class="table-data-feature">
-                                                      <button class="item" data-toggle="modal" data-target="#scrollmodal'.$listafuncionarios['func_id'].'" title="Edit">
-                                                          <i class="zmdi zmdi-edit"></i>
-                                                      </button>
-                                                      <button class="item" data-toggle="modal" data-target="#staticModal'.$listafuncionarios['func_id'].'" title="Delete">
-                                                          <i class="zmdi zmdi-delete"></i>
-                                                      </button>
-                                                  </div></td>
-                                                  ';
-                                            }else {
-                                              echo '<tr><td>'.$listafuncionarios['func_nome'].'</td>
-                                              <td>'.$listafuncionarios['func_email'].'</td>
-                                              <td>'.$listafuncionarios['func_morada'].'</td>
-                                              <td>'.$listafuncionarios['func_salario'].' €</td>
-                                              <td>
-                                                <div class="table-data-feature">
-                                                    <button class="item" data-toggle="modal" data-target="#scrollmodal'.$listafuncionarios['func_id'].'" title="Edit">
-                                                        <i class="zmdi zmdi-edit"></i>
-                                                    </button>
-                                                </div></td>
-                                                ';
-                                            }
 
+                                          $query = mysqli_query($conn,"SELECT func_nome,pag_nif,pag_date,pag_salariobruto,pag_dias,pag_descss,pag_descirs,pag_salarioliq,
+                                            IF(pag_tipo = 1, 'Mensal',IF(pag_tipo=2,'Sub. Ferias',IF(pag_tipo=3,'Sub. Natal','Outro'))) as pag_tipopag
+                                            FROM pagamentos inner join funcionario on pag_nif = funcionario.func_nif");
+
+                                          while (@$listafuncionarios = mysqli_fetch_array($query)) {
+
+                                            echo '<tr><td>'.$listafuncionarios["func_nome"].'</td>
+                                            <td>'.$listafuncionarios["pag_nif"].'</td>
+                                            <td>'.$listafuncionarios["pag_date"].'</td>
+                                            <td>'.$listafuncionarios["pag_salariobruto"].' €</td>
+                                            <td>'.$listafuncionarios["pag_dias"].'</td>
+                                            <td>'.$listafuncionarios["pag_descss"].' €</td>
+                                            <td>'.$listafuncionarios["pag_descirs"].' €</td>
+                                            <td>'.$listafuncionarios["pag_salarioliq"].' €</td>
+                                            <td>'.$listafuncionarios["pag_tipopag"].'</td>';
                                           }
 
                                           include 'connections/deconn.php';
@@ -335,292 +314,13 @@ validar();
                                 <!-- END DATA TABLE-->
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>
         </div>
 
     </div>
-
-
-
-
-    <?php
-    include 'connections/conn.php';
-    $query = mysqli_query($conn,"SELECT * FROM funcionario");
-    while ($listafuncionarios = mysqli_fetch_array($query)) {
-      echo '
-      <!-- modal scroll -->
-      <div class="modal fade" id="scrollmodal'.$listafuncionarios['func_id'].'" tabindex="-1" role="dialog" aria-labelledby="scrollmodalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="scrollmodalLabel">Editar - '.$listafuncionarios['func_nome'].'</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <form method="post">
-            <div class="modal-body">
-            <div class="row form-group">
-              <div class="col col-md-3">
-                <label for="tipo">Tipo: </label>
-              </div>
-              <div class="col-12 col-md-9">
-                <select class="form-control" name="tipo">';
-                if ($listafuncionarios['func_tipo'] != 1) {
-                  echo '<option value="1">Administrador</option>
-                        <option value="2" selected>Funcionário</option>';
-                }else {
-                  echo '<option value="1" selected >Administrador</option>
-                        <option value="2">Funcionário</option>';
-                }
-                echo '
-                </select>
-              </div>
-            </div>
-
-            <div class="row form-group">
-              <div class="col col-md-3">
-                <label for="user" class="form-control-label">Username: </label>
-              </div>
-              <div class="col-12 col-md-9">
-                <input type="text" name="user" class="form-control" value="'.$listafuncionarios['func_user'].'" readonly>
-              </div>
-            </div>
-
-            <div class="row form-group">
-              <div class="col col-md-3">
-                <label for="pass" class="form-control-label">Password: </label>
-              </div>
-              <div class="col-12 col-md-9">
-                <input type="password" name="pass" value="" class="form-control" placeholder="Definir nova password (opcional)">
-              </div>
-            </div>
-
-            <hr>
-
-            <div class="row form-group">
-              <div class="col col-md-3">
-                <label for="email" class="form-control-label">E-Mail: </label>
-              </div>
-              <div class="col-12 col-md-9">
-                <input type="email" name="email" class="form-control" value="'.$listafuncionarios['func_email'].'" Required>
-              </div>
-            </div>
-
-            <div class="row form-group">
-              <div class="col col-md-3">
-                <label for="nome" class="form-control-label">Nome: </label>
-              </div>
-              <div class="col-12 col-md-9">
-                <input type="text" name="nome" class="form-control" value="'.$listafuncionarios['func_nome'].'">
-              </div>
-            </div>
-
-            <div class="row form-group">
-              <div class="col col-md-3">
-                <label for="morada" class="form-control-label">Morada: </label>
-              </div>
-              <div class="col-12 col-md-9">
-                <input type="text" name="morada" class="form-control" value="'.$listafuncionarios['func_morada'].'">
-              </div>
-            </div>
-
-            <div class="row form-group">
-              <div class="col col-md-3">
-                <label for="nacio">Nacionalidade</label>
-              </div>
-              <div class="col-12 col-md-9">
-                <select class="form-control" name="nacio">';
-                $query2 = mysqli_query($conn,"SELECT * FROM nacionalidade");
-                while ($nacionalidade = mysqli_fetch_array($query2)) {
-                  if ($nacionalidade['paisId'] != $listafuncionarios['func_idnacio']) {
-                  echo '<option value="'.$nacionalidade['paisId'].'">'.$nacionalidade['paisNome'].'</option>';
-                  }else{
-                  echo '<option value="'.$nacionalidade['paisId'].'" selected>'.$nacionalidade['paisNome'].'</option>';
-                }
-                }
-                echo '</select>
-              </div>
-            </div>
-            <div class="row form-group">
-              <div class="col col-md-3">
-                <label for="natur" class="form-control-label">Naturalidade</label>
-              </div>
-              <div class="col-12 col-md-9">
-                <select class="form-control" name="natur">
-                  <option value="" selected>Selecione</option>';
-                  $query3 = mysqli_query($conn,"SELECT * FROM naturalidade");
-                  while ($naturalidade = mysqli_fetch_array($query3)) {
-                    if ($naturalidade['idNatur'] != $listafuncionarios['func_idnatur']) {
-                      echo '<option value="'.$naturalidade['idNatur'].'">'.$naturalidade['nomeNatur'].'</option>';
-                    }else{
-                      echo '<option value="'.$naturalidade['idNatur'].'" selected>'.$naturalidade['nomeNatur'].'</option>';
-                  }
-                  }
-                echo '</select>
-              </div>
-            </div>
-            <div class="row form-group">
-              <div class="col col-md-3">
-                <label for="bi">Numero CC: </label>
-              </div>
-              <div class="col-12 col-md-9">
-                <input type="number"  value="'.$listafuncionarios['func_bi'].'" name="bi" class="form-control" required>
-              </div>
-            </div>
-            <div class="row form-group">
-              <div class="col col-md-3">
-                <label for="nif">NIF: </label>
-              </div>
-              <div class="col-12 col-md-9">
-                <input type="number" name="nif"  value="'.$listafuncionarios['func_nif'].'" class="form-control" required>
-              </div>
-            </div>
-
-            <div class="row form-group">
-              <div class="col col-md-3">
-                <label for="nib" class="form-control-label" >NIB: </label>
-              </div>
-              <div class="col-12 col-md-9">
-                <input type="number" name="nib"  value="'.$listafuncionarios['func_nib'].'" class="form-control" required>
-              </div>
-            </div>
-
-            <div class="row form-group">
-              <div class="col col-md-3">
-                <label for="niss" class="form-control-label">Nº Segurança Social: </label>
-              </div>
-              <div class="col-12 col-md-9">
-                <input type="number" name="niss"  value="'.$listafuncionarios['func_niss'].'" class="form-control" required>
-              </div>
-            </div>
-
-            <div class="row form-group">
-              <div class="col col-md-3">
-                <label for="contacto" class="form-control-label">Telemovel/Telefone:</label>
-              </div>
-              <div class="col-12 col-md-9">
-                <input type="number"  value="'.$listafuncionarios['func_contacto'].'" name="contacto" class="form-control" required>
-              </div>
-            </div>
-
-            <div class="row form-group">
-              <div class="col col-md-3">
-                <label for="salario">Salário Base:</label>
-              </div>
-              <div class="input-group col-12 col-md-9">
-                <div class="input-group-prepend">
-                  <span class="input-group-text">€</span>
-                </div>
-                <input type="number" min="0" max="100000" maxlength="6" name="salario" class="form-control"  value="'.$listafuncionarios['func_salario'].'" aria-label="Valor">
-              </div>
-            </div>
-            <br>
-          </div>
-            <div class="modal-footer">
-              <input type="hidden" name="hiddenid" value ="'.$listafuncionarios['func_id'].'">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-              <button type="submit" name="editar" class="btn btn-success">Submeter Alterações</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      </form>
-      <!-- end modal scroll -->
-  ';
-  if(ISSET($_POST["editar"])){
-    if(empty($_POST["pass"])){
-      mysqli_query($conn, "UPDATE funcionario
-         SET func_tipo ='$_POST[tipo]',
-         func_user='$_POST[user]',
-         func_email='$_POST[email]',
-         func_nome='$_POST[nome]',
-         func_morada='$_POST[morada]',
-         func_idnacio='$_POST[nacio]',
-         func_idnatur='$_POST[natur]',
-         func_bi='$_POST[bi]',
-         func_nif='$_POST[nif]',
-         func_nib='$_POST[nib]',
-         func_niss='$_POST[niss]',
-         func_contacto='$_POST[contacto]',
-         func_salario='$_POST[salario]'
-
-        WHERE func_id=".$_POST['hiddenid']." ");
-    }else {
-      mysqli_query($conn, "UPDATE funcionario
-         SET func_tipo ='$_POST[tipo]',
-         func_user='$_POST[user]',
-         func_pass=$_POST[pass],
-         func_email='$_POST[email]',
-         func_nome='$_POST[nome]',
-         func_morada='$_POST[morada]',
-         func_idnacio='$_POST[nacio]',
-         func_idnatur='$_POST[natur]',
-         func_bi='$_POST[bi]',
-         func_nif='$_POST[nif]',
-         func_nib='$_POST[nib]',
-         func_niss='$_POST[niss]',
-         func_contacto='$_POST[contacto]',
-         func_salario='$_POST[salario]'
-
-        WHERE func_id=".$_POST['hiddenid']." ");
-    }
-
-
-    include "connections/deconn.php";
-    echo "<meta http-equiv='refresh' content='0; URL=lista.php'>";
-  }
-  }
-
-   ?>
-
-
-
-    <?php
-    include 'connections/conn.php';
-    $query = mysqli_query($conn,"SELECT func_id,func_nome FROM funcionario");
-    while ($listafuncionarios = mysqli_fetch_array($query)) {
-      echo '
-    <!-- Remover user '.$listafuncionarios['func_id'].' -->
-    <div class="modal fade" id="staticModal'.$listafuncionarios['func_id'].'" tabindex="-1" role="dialog" aria-labelledby="staticModalLabel" aria-hidden="true"
-     data-backdrop="static">
-      <div class="modal-dialog modal-sm" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="staticModalLabel">Remover</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <p>
-              Tem a certeza que deseja remover este funcionario ?
-              <br><center><code>
-              '.$listafuncionarios['func_id'].' - '.$listafuncionarios['func_nome'].'
-              </code></center>
-            </p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-            <form method="post">
-            <input type="hidden" name="hiddenid" value ="'.$listafuncionarios['func_id'].'">
-            <button type="submit" name="remover" class="btn btn-danger">Remover</button>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>';
-  }
-  if(ISSET($_POST["remover"])){
-    mysqli_query($conn, "DELETE FROM funcionario WHERE func_id=".$_POST['hiddenid']." ");
-    include "connections/deconn.php";
-    echo "<meta http-equiv='refresh' content='0; URL=lista.php'>";
-  }
-   ?>
-
-
 
     <!-- Jquery JS-->
     <script src="vendor/jquery-3.2.1.min.js"></script>
