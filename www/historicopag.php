@@ -270,7 +270,6 @@ validar();
                                               <th>Desconto IRS</th>
                                               <th>Salario Liquido</th>
                                               <th>Tipo</th>
-                                              <th></th>
                                             </tr>
                                         </thead>
 
@@ -278,45 +277,21 @@ validar();
                                           <?php
                                           include 'connections/conn.php';
 
-                                          $query = mysqli_query($conn,"SELECT func_id,func_nome,func_nif,func_nib,func_salario, IF(turno_nome=0, turno_nome, 'Sem Turno') as turno FROM pagamento left join turno on turno_id = funcionario.func_idturno");
+                                          $query = mysqli_query($conn,"SELECT func_nome,pag_nif,pag_date,pag_salariobruto,pag_dias,pag_descss,pag_descirs,pag_salarioliq,
+                                            IF(pag_tipo = 1, 'Mensal',IF(pag_tipo=2,'Sub. Ferias',IF(pag_tipo=3,'Sub. Natal','Outro'))) as pag_tipopag
+                                            FROM pagamentos inner join funcionario on pag_nif = funcionario.func_nif");
 
                                           while (@$listafuncionarios = mysqli_fetch_array($query)) {
 
                                             echo '<tr><td>'.$listafuncionarios["func_nome"].'</td>
-                                            <td>'.$listafuncionarios["func_nif"].'</td>
-                                            <td>'.$listafuncionarios["func_nib"].'</td>
-                                            <td>'.$listafuncionarios["func_salario"].' €</td>
-                                            <td>'.$listafuncionarios["turno"].'</td>
-                                            <form method="post">
-                                            <td>
-                                              <select class="" name="mes">
-                                                <option value=0>    </option>
-                                              ';
-                                              $queryturno = mysqli_query($conn,"SELECT mes_id, mes_nome FROM mes");
-
-                                              while ($listaturno = mysqli_fetch_array($queryturno)) {
-                                                echo '<option value="'.$listaturno["mes_id"].'">'.$listaturno["mes_nome"].'</option>';
-                                              }
-                                              echo '
-                                              </select>
-
-                                              </td>
-
-                                              <td>
-                                                <div class="table-data-feature">
-
-                                                    <button class="item" name="btnupd" title="Edit">
-                                                        <input type="hidden" name="func" value="'.$listafuncionarios["func_id"].'">
-                                                        <i class="zmdi zmdi-badge-check"></i>
-                                                    </button>
-                                                </div></td>
-                                              </form>';
-
-                                              if(ISSET($_POST["btnupd"])){
-
-                                                mysqli_query($conn,"UPDATE funcionario SET func_idturno=".$_POST['turno']." WHERE func_id=".$_POST['func']."");
-                                                echo "<meta http-equiv='refresh' content='0; URL=gestaoturnos.php'>";
-                                              }
+                                            <td>'.$listafuncionarios["pag_nif"].'</td>
+                                            <td>'.$listafuncionarios["pag_date"].'</td>
+                                            <td>'.$listafuncionarios["pag_salariobruto"].' €</td>
+                                            <td>'.$listafuncionarios["pag_dias"].'</td>
+                                            <td>'.$listafuncionarios["pag_descss"].'</td>
+                                            <td>'.$listafuncionarios["pag_descirs"].'</td>
+                                            <td>'.$listafuncionarios["pag_salarioliq"].'</td>
+                                            <td>'.$listafuncionarios["pag_tipopag"].'</td>';
                                           }
 
                                           include 'connections/deconn.php';
@@ -328,14 +303,6 @@ validar();
                             </div>
                         </div>
 
-
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="copyright">
-                                    <p>Copyright © 2018 Colorlib. All rights reserved. Template by <a href="https://colorlib.com">Colorlib</a>.</p>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
