@@ -166,7 +166,7 @@ validar();
                                      <i class="fas fa-hand-holding-usd"></i>Pagamentos</a>
                              </li>
                              <li>
-                                 <a href="form.php">
+                                 <a href="#">
                                     <i class="fas fa-gift"></i>Bonus e Sub.</a>
                              </li>
                              <li>
@@ -225,7 +225,7 @@ validar();
                                                          echo 'images/icon/avatar.jpg';
                                                        }else {
                                                          echo $empregado['func_avatar_path'];
-                                                       }                                                       
+                                                       }
                                                        echo '" alt="avatar" />
                                                    </a>
                                                </div>';

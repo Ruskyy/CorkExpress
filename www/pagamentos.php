@@ -142,7 +142,7 @@ $escirs = 0;
                           </ul>
                       </li>
 
-                      <li class=" has-sub">
+                      <li class="has-sub">
                           <a class="js-arrow" href="#">
                               <i class="fas fa-calendar-alt"></i>Gestão Horario</a>
                               <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
@@ -166,7 +166,7 @@ $escirs = 0;
                                     <i class="fas fa-hand-holding-usd"></i>Pagamentos</a>
                             </li>
                             <li>
-                                <a href="form.php">
+                                <a href="#">
                                    <i class="fas fa-gift"></i>Bonus e Sub.</a>
                             </li>
                             <li>
@@ -174,7 +174,7 @@ $escirs = 0;
                                    <i class="fas fa-history"></i>Historico</a>
                             </li>
                             <li>
-                                <a href="form.php">
+                                <a href="confpagamentos.php">
                                    <i class="fas fa-cog"></i>Configurações</a>
                             </li>
                           </ul>
@@ -195,29 +195,41 @@ $escirs = 0;
 
                           <div class="header-button">
 
-                              <div class="account-wrap">
+                            <?php
+                            include 'connections/conn.php';
+                            require_once 'functions/functions.php';
+                            $funcid = $_SESSION['id'];
+                            $query = mysqli_query($conn,"SELECT 'func_id',func_nome,func_email,func_avatar_path FROM funcionario WHERE func_id = '$funcid'");
+                            $empregado= mysqli_fetch_array($query);
+
+                              echo '<div class="account-wrap">
                                   <div class="account-item clearfix js-item-menu">
                                       <div class="image">
-                                          <img src="images/icon/avatar-01.jpg" alt="nilton fontes" />
+                                          <img src="';
+                                          if (is_null($empregado['func_avatar_path'])) {
+                                            echo 'images/icon/avatar.jpg';
+                                          }else {
+                                            echo $empregado['func_avatar_path'];
+                                          }
+                                          echo '" alt="avatar" />
                                       </div>
                                       <div class="content">
-                                        <?php
-                                        include 'connections/conn.php';
-                                        require_once 'functions/functions.php';
-                                        $funcid = $_SESSION['id'];
-                                        $query = mysqli_query($conn,"SELECT 'func_id',func_nome,func_email FROM funcionario WHERE func_id = '$funcid'");
-                                        $empregado= mysqli_fetch_array($query);
-
-                                          echo '<a class="js-acc-btn">'.$empregado['func_nome'].'</a>';
-                                         ?>
+                                       <a class="js-acc-btn">'.$empregado['func_nome'].'</a>
                                       </div>
                                       <div class="account-dropdown js-dropdown">
                                           <div class="info clearfix">
                                               <div class="image">
                                                   <a href="#">
-                                                      <img src="images/icon/avatar-01.jpg" alt="nilton fontes" />
+                                                      <img src="';
+                                                      if (is_null($empregado['func_avatar_path'])) {
+                                                        echo 'images/icon/avatar.jpg';
+                                                      }else {
+                                                        echo $empregado['func_avatar_path'];
+                                                      }
+                                                      echo '" alt="avatar" />
                                                   </a>
-                                              </div>
+                                              </div>';
+                                             ?>
                                               <div class="content">
                                                 <?php
                                                 echo '<h5 class="name">
