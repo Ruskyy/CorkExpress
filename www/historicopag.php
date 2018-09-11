@@ -15,7 +15,7 @@ validar();
     <meta name="keywords" content="au theme template">
 
     <!-- Title Page-->
-    <title>Lista Funcionarios</title>
+    <title>Historico Pagamentos</title>
 
     <!--FAVICON-->
     <link rel="apple-touch-icon-precomposed" sizes="57x57" href="apple-touch-icon-57x57.png" />
@@ -276,8 +276,8 @@ validar();
                                               <th>Nome</th>
                                               <th>NIF</th>
                                               <th>Data</th>
-                                              <th>Dias</th>
                                               <th>Salario Bruto</th>
+                                              <th>Dias</th>
                                               <th>Desconto SS</th>
                                               <th>Desconto IRS</th>
                                               <th>Salario Liquido</th>
@@ -300,9 +300,9 @@ validar();
                                             <td>'.$listafuncionarios["pag_date"].'</td>
                                             <td>'.$listafuncionarios["pag_salariobruto"].' €</td>
                                             <td>'.$listafuncionarios["pag_dias"].'</td>
-                                            <td>'.$listafuncionarios["pag_descss"].'</td>
-                                            <td>'.$listafuncionarios["pag_descirs"].'</td>
-                                            <td>'.$listafuncionarios["pag_salarioliq"].'</td>
+                                            <td>'.$listafuncionarios["pag_descss"].' €</td>
+                                            <td>'.$listafuncionarios["pag_descirs"].' €</td>
+                                            <td>'.$listafuncionarios["pag_salarioliq"].' €</td>
                                             <td>'.$listafuncionarios["pag_tipopag"].'</td>';
                                           }
 
