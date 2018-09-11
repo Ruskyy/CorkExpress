@@ -303,7 +303,7 @@ validar();
 
                                           <td class="text-right">
                                           <div class="input-group">
-                                          <input class="form-control" min="0" max="9999999999" maxlength="10" type="text" name="perc'.$escalaoIRS['irs_id'].'" style="width:50px;" value="'.$escalaoIRS['irs_desc'].'">
+                                          <input class="form-control" min="0" max="99" maxlength="10" type="text" name="perc'.$escalaoIRS['irs_id'].'" style="width:50px;" value="'.$escalaoIRS['irs_desc'].'">
                                           <div class="input-group-append">
                                           <span class="input-group-text"><i class="fas fa-percentage"></i></span>
                                           </div>
@@ -322,16 +322,18 @@ validar();
                                   </form>
                                   <?php
                                   include 'connections/conn.php';
+
+                                  $querycount = mysqli_query($conn,"SELECT * FROM escalaoirs");
+                                  $countirs = mysqli_num_rows($querycount);
+
                                   $min='';
                                   $max='';
                                   if(ISSET($_POST["submitirs"])){
-                                    for ($a=1; $a <5; $a++) {
+                                    for ($a=1; $a <$countirs+1; $a++) {
                                       $min = 'valor_min'.$a;
                                       $max = 'valor_max'.$a;
                                       $perc = 'perc'.$a;
-                                      // echo $min;
-                                      // echo "<br>";
-                                      // echo $max;
+
                                       mysqli_query($conn,"UPDATE escalaoirs SET irs_valormin = $_POST[$min],irs_valormax =$_POST[$max], irs_desc=$_POST[$perc] WHERE irs_id=$a");
 
                                     }
@@ -343,7 +345,19 @@ validar();
                         </div>
 							</div>
 							<div class="col-lg-6">
-
+                <br>
+                <div class="card">
+                  <div class="card-header">
+                    Configurações - Gestão de Pagamentos
+                  </div>
+                  <div class="card-body card-block">
+                    Neste painel é possivel alterar os limites dos descontos para:
+                    <p>-Segurança Social</p>
+                    <p>-IRS</p>
+                    <br>
+                    Assim como suas percentagens
+                  </div>
+                </div>
 							</div>
 						</div>
             <br>
@@ -406,10 +420,12 @@ validar();
                </form>
                <?php
                include 'connections/conn.php';
+               $querycount = mysqli_query($conn,"SELECT * FROM escalaoss");
+               $countss = mysqli_num_rows($querycount);
                $min='';
                $max='';
                if(ISSET($_POST["submitss"])){
-                 for ($a=1; $a <4; $a++) {
+                 for ($a=1; $a <$countss+1; $a++) {
                    $min = 'valor_min'.$a;
                    $max = 'valor_max'.$a;
                    $perc = 'perc'.$a;
@@ -434,48 +450,6 @@ validar();
       </div>
     </div>
 </div>
-
-<?php
-include 'connections/conn.php';
-$query = mysqli_query($conn,"SELECT turno_id FROM turno");
-while ($listaturnos = mysqli_fetch_array($query)) {
-  echo '
-<!-- Delete modal '.$listaturnos['turno_id'].'  -->
-<div class="modal fade" id="staticModal'.$listaturnos['turno_id'].'" tabindex="-1" role="dialog" aria-labelledby="staticModalLabel" aria-hidden="true"
- data-backdrop="static">
-  <div class="modal-dialog modal-sm" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="staticModalLabel">Remover</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>
-          Tem a certeza que deseja remover este turno ?
-          '.$listaturnos['turno_id'].'
-        </p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        <form method="post">
-        <input type="hidden" name="hiddenid" value ="'.$listaturnos['turno_id'].'">
-        <button type="submit" name="remover" class="btn btn-danger">Remover</button>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>';
-}
-if(ISSET($_POST["remover"])){
-mysqli_query($conn, "DELETE FROM turno WHERE turno_id=".$_POST['hiddenid']." ");
-include "connections/deconn.php";
-echo "<meta http-equiv='refresh' content='0; URL=confturnos.php'>";
-}
-?>
-
-
 
     <!-- Jquery JS-->
     <script src="vendor/jquery-3.2.1.min.js"></script>
