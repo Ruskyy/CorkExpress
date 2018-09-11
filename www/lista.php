@@ -239,12 +239,8 @@ validar();
                                           </div>
                                           <div class="account-dropdown__body">
                                               <div class="account-dropdown__item">
-                                                  <a href="#">
-                                                      <i class="zmdi zmdi-account"></i>Conta</a>
-                                              </div>
-                                              <div class="account-dropdown__item">
-                                                  <a href="#">
-                                                      <i class="zmdi zmdi-money-box"></i>Gestão de Salarios</a>
+                                                  <a href="user/index.php">
+                                                      <i class="zmdi zmdi-account"></i>Área Pessoal</a>
                                               </div>
                                           </div>
                                           <div class="account-dropdown__footer">
@@ -367,9 +363,15 @@ validar();
                 <label for="tipo">Tipo: </label>
               </div>
               <div class="col-12 col-md-9">
-                <select class="form-control" name="tipo">
-                  <option value="2">Funcionário</option>
-                  <option value="1">Administrador</option>
+                <select class="form-control" name="tipo">';
+                if ($listafuncionarios['func_tipo'] != 1) {
+                  echo '<option value="1">Administrador</option>
+                        <option value="2" selected>Funcionário</option>';
+                }else {
+                  echo '<option value="1" selected >Administrador</option>
+                        <option value="2">Funcionário</option>';
+                }
+                echo '
                 </select>
               </div>
             </div>

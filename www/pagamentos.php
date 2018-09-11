@@ -242,8 +242,8 @@ $opc = 0;
                                           </div>
                                           <div class="account-dropdown__body">
                                               <div class="account-dropdown__item">
-                                                  <a href="#">
-                                                      <i class="zmdi zmdi-account"></i>Conta</a>
+                                                  <a href="user/index.php">
+                                                      <i class="zmdi zmdi-account"></i>Área Pessoal</a>
                                               </div>
                                               <div class="account-dropdown__item">
                                                   <a href="#">

@@ -1,8 +1,8 @@
  <!DOCTYPE html>
 <?php
-require_once 'functions/functions.php';
+require_once '../functions/functions.php';
 session_start();
-validar();
+validaruser();
  ?>
  <html lang="en">
 
@@ -19,19 +19,19 @@ validar();
      <title>Dashboard</title>
 
      <!--FAVICON-->
-     <link rel="apple-touch-icon-precomposed" sizes="57x57" href="apple-touch-icon-57x57.png" />
-     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-114x114.png" />
-     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="apple-touch-icon-72x72.png" />
-     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="apple-touch-icon-144x144.png" />
-     <link rel="apple-touch-icon-precomposed" sizes="60x60" href="apple-touch-icon-60x60.png" />
-     <link rel="apple-touch-icon-precomposed" sizes="120x120" href="apple-touch-icon-120x120.png" />
-     <link rel="apple-touch-icon-precomposed" sizes="76x76" href="apple-touch-icon-76x76.png" />
-     <link rel="apple-touch-icon-precomposed" sizes="152x152" href="apple-touch-icon-152x152.png" />
-     <link rel="icon" type="image/png" href="favicon-196x196.png" sizes="196x196" />
-     <link rel="icon" type="image/png" href="favicon-96x96.png" sizes="96x96" />
-     <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32" />
-     <link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16" />
-     <link rel="icon" type="image/png" href="favicon-128.png" sizes="128x128" />
+     <link rel="apple-touch-icon-precomposed" sizes="57x57" href="../apple-touch-icon-57x57.png" />
+     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../apple-touch-icon-114x114.png" />
+     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../apple-touch-icon-72x72.png" />
+     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../apple-touch-icon-144x144.png" />
+     <link rel="apple-touch-icon-precomposed" sizes="60x60" href="../apple-touch-icon-60x60.png" />
+     <link rel="apple-touch-icon-precomposed" sizes="120x120" href="../apple-touch-icon-120x120.png" />
+     <link rel="apple-touch-icon-precomposed" sizes="76x76" href="../apple-touch-icon-76x76.png" />
+     <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../apple-touch-icon-152x152.png" />
+     <link rel="icon" type="image/png" href="../favicon-196x196.png" sizes="196x196" />
+     <link rel="icon" type="image/png" href="../favicon-96x96.png" sizes="96x96" />
+     <link rel="icon" type="image/png" href="../favicon-32x32.png" sizes="32x32" />
+     <link rel="icon" type="image/png" href="../favicon-16x16.png" sizes="16x16" />
+     <link rel="icon" type="image/png" href="../favicon-128.png" sizes="128x128" />
      <meta name="application-name" content="&nbsp;"/>
      <meta name="msapplication-TileColor" content="#FFFFFF" />
      <meta name="msapplication-TileImage" content="mstile-144x144.png" />
@@ -42,25 +42,24 @@ validar();
 
 
      <!-- Fontfaces CSS-->
-     <link href="css/font-face.css" rel="stylesheet" media="all">
-     <link href="vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+     <link href="../css/font-face.css" rel="stylesheet" media="all">
+     <link href="../vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-     <link href="vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+     <link href="../vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
 
      <!-- Bootstrap CSS-->
-     <link href="vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
+     <link href="../vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
 
      <!-- Vendor CSS-->
-     <link href="vendor/animsition/animsition.min.css" rel="stylesheet" media="all">
-     <link href="vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" media="all">
-     <link href="vendor/wow/animate.css" rel="stylesheet" media="all">
-     <link href="vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
-     <link href="vendor/slick/slick.css" rel="stylesheet" media="all">
-     <link href="vendor/select2/select2.min.css" rel="stylesheet" media="all">
-     <link href="vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
+     <link href="../vendor/animsition/animsition.min.css" rel="stylesheet" media="all">
+     <link href="../vendor/wow/animate.css" rel="stylesheet" media="all">
+     <link href="../vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
+     <link href="../vendor/slick/slick.css" rel="stylesheet" media="all">
+     <link href="../vendor/select2/select2.min.css" rel="stylesheet" media="all">
+     <link href="../vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
 
      <!-- Main CSS-->
-     <link href="css/theme.css" rel="stylesheet" media="all">
+     <link href="../css/theme.css" rel="stylesheet" media="all">
 
  </head>
 
@@ -72,7 +71,7 @@ validar();
                <div class="container-fluid">
                    <div class="header-mobile-inner">
                        <a class="logo" href="index.php">
-                           <img src="images/icon/logo.png" alt="CoolAdmin" />
+                           <img src="../images/icon/logo.png" alt="CorkExpress" />
                        </a>
                        <button class="hamburger hamburger--slider" type="button">
                            <span class="hamburger-box">
@@ -90,10 +89,6 @@ validar();
                                <i class="fas fa-tachometer-alt"></i>Dashboard</a>
                        </li>
                        <li>
-                           <a href="lista.php">
-                               <i class="fas fa-list-ul"></i>Lista Funcionarios</a>
-                       </li>
-                       <li>
                            <a href="form.php">
                                <i class="fas fa-user-plus"></i>Adicionar Funcionario</a>
                        </li>
@@ -107,7 +102,7 @@ validar();
        <aside class="menu-sidebar d-none d-lg-block">
            <div class="logo">
                <a href="#">
-                   <img src="images/icon/logo.png" alt="Cool Admin" />
+                   <img src="../images/icon/logo.png" alt="CorkExpress" />
                </a>
            </div>
            <div class="menu-sidebar__content js-scrollbar1">
@@ -117,68 +112,16 @@ validar();
                            <a class="js-arrow" href="index.php">
                                <i class="fas fa-tachometer-alt"></i>Dashboard</a>
                        </li>
-
-
-                       <li class="has-sub">
-                           <a class="js-arrow" href="#">
-                              <i class="fa fa-users-cog"></i>Gestão Funcionarios</a>
-                           <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
-                             <li>
-                                 <a href="lista.php">
-                                     <i class="fas fa-list-ul"></i>Lista Funcionarios</a>
-                            </li>
-                             <li>
-                                 <a href="form.php">
-                                    <i class="fas fa-user-plus"></i>Novo Funcionario</a>
-                             </li>
-                             <li>
-                                 <a href="lista.php">
-                                     <i class="fas fa-user-cog"></i>Editar Funcionario</a>
-                            </li>
-                            <li>
-                                <a href="lista.php">
-                                    <i class="fas fa-user-minus"></i>Remover Funcionario</a>
-                           </li>
-                           </ul>
+                       <li class="">
+                         <a href="form.php">
+                             <i class="fas fa-user-cog"></i>Editar Funcionario</a>
+                       </li>
+                       <li>
+                           <a href="historicopag.php">
+                              <i class="fas fa-history"></i>Salarios Processados</a>
                        </li>
 
-                       <li class="has-sub">
-                           <a class="js-arrow" href="#">
-                               <i class="fas fa-calendar-alt"></i>Gestão Horario</a>
-                               <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
-                                 <li>
-                                     <a href="gestaoturnos.php">
-                                         <i class="fas fa-user-clock "></i>Definir Turnos</a>
-                                 </li>
-                                 <li>
-                                     <a href="confturnos.php">
-                                        <i class="fas fa-cog "></i>Configurações</a>
-                                 </li>
-                               </ul>
-                       </li>
 
-                       <li class="has-sub">
-                           <a class="js-arrow" href="#">
-                              <i class="fas fa-money-check-alt"></i></i>Gestão Salarios</a>
-                           <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
-                             <li>
-                                 <a href="pagamentos.php">
-                                     <i class="fas fa-hand-holding-usd"></i>Pagamentos</a>
-                             </li>
-                             <li>
-                                 <a href="bonus.php">
-                                    <i class="fas fa-gift"></i>Bonus e Sub.</a>
-                             </li>
-                             <li>
-                                 <a href="historicopag.php">
-                                    <i class="fas fa-history"></i>Historico</a>
-                             </li>
-                             <li>
-                                 <a href="confpagamentos.php">
-                                    <i class="fas fa-cog"></i>Configurações</a>
-                             </li>
-                           </ul>
-                       </li>
                    </ul>
                </nav>
            </div>
@@ -196,20 +139,21 @@ validar();
                            <div class="header-button">
 
                              <?php
-                             include 'connections/conn.php';
-                             require_once 'functions/functions.php';
+                             include '../connections/conn.php';
+                             require_once '../functions/functions.php';
                              $funcid = $_SESSION['id'];
-                             $query = mysqli_query($conn,"SELECT 'func_id',func_nome,func_email,func_avatar_path FROM funcionario WHERE func_id = '$funcid'");
+                             $query = mysqli_query($conn,"SELECT 'func_id',func_nome,func_email,func_nif,func_avatar_path FROM funcionario WHERE func_id = '$funcid'");
                              $empregado= mysqli_fetch_array($query);
+                             $nif = $empregado['func_nif'];
 
                                echo '<div class="account-wrap">
                                    <div class="account-item clearfix js-item-menu">
                                        <div class="image">
                                            <img src="';
                                            if (is_null($empregado['func_avatar_path'])) {
-                                             echo 'images/icon/avatar.jpg';
+                                             echo '../images/icon/avatar.jpg';
                                            }else {
-                                             echo $empregado['func_avatar_path'];
+                                             echo '../'.$empregado['func_avatar_path'].'';
                                            }
                                            echo '" alt="avatar" />
                                        </div>
@@ -222,9 +166,9 @@ validar();
                                                    <a href="#">
                                                        <img src="';
                                                        if (is_null($empregado['func_avatar_path'])) {
-                                                         echo 'images/icon/avatar.jpg';
+                                                         echo '../images/icon/avatar.jpg';
                                                        }else {
-                                                         echo $empregado['func_avatar_path'];
+                                                         echo '../'.$empregado['func_avatar_path'].'';
                                                        }
                                                        echo '" alt="avatar" />
                                                    </a>
@@ -240,13 +184,21 @@ validar();
                                                </div>
                                            </div>
                                            <div class="account-dropdown__body">
+                                             <?php
+                                             require_once '../functions/functions.php';
+                                             if ($_SESSION["tipo"] !=2) {
+                                               echo '
                                                <div class="account-dropdown__item">
-                                                   <a href="user/index.php">
-                                                       <i class="zmdi zmdi-account"></i>Área Pessoal</a>
+                                                   <a href="../index.php">
+                                                       <i class="fas fa-tachometer-alt"></i></i>Admin Dashboard</a>
                                                </div>
+                                               ';
+                                             }
+
+                                              ?>
                                            </div>
                                            <div class="account-dropdown__footer">
-                                                <a href="functions/fecharsessao.php">
+                                                <a href="../functions/fecharsessao.php">
                                                    <i class="zmdi zmdi-power"></i>Logout</a>
                                            </div>
                                        </div>
@@ -263,6 +215,13 @@ validar();
             <div class="main-content">
                 <div class="section__content section__content--p30">
                     <div class="container-fluid">
+                      <div class="alert alert-secondary alert-dismissible">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <h2 class="title-1"></i>
+                        <?php
+                         echo ' 👋 Bem-Vindo '.$empregado['func_nome'].'';
+                         ?></h2>
+                      </div>
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="overview-wrap">
@@ -272,47 +231,6 @@ validar();
                         </div>
                         <div class="row m-t-25">
                             <div class="col-sm-6 col-lg-3">
-                                <div class="overview-item overview-item--c1">
-                                    <div class="overview__inner">
-                                        <div class="overview-box clearfix">
-                                            <div class="icon">
-                                                <i class="zmdi zmdi-account-o"></i>
-                                            </div>
-                                            <div class="text">
-                                                <h2><?php
-                                                require_once 'connections/conn.php';
-                                                $query = mysqli_query($conn,"SELECT func_id FROM funcionario");
-                                                $entradas = mysqli_num_rows($query);
-                                                echo "$entradas";
-                                                ?></h2>
-                                                <span>Colaboradores</span>
-                                            </div>
-                                        </div>
-                                        <div class="overview-chart">
-                                            <canvas id="widgetChart1"></canvas>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-6 col-lg-3">
-                                <div class="overview-item overview-item--c2">
-                                    <div class="overview__inner">
-                                        <div class="overview-box clearfix">
-                                            <div class="icon">
-                                              <i class="zmdi zmdi-trending-up"></i>
-                                            </div>
-                                            <div class="text">
-                                                <h2> +1,38% <i class="zmdi zmdi-caret-up"></i></h2>
-                                                <span>Ações</span>
-                                            </div>
-                                        </div>
-                                        <div class="overview-chart">
-                                            <canvas id="widgetChart2"></canvas>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-6 col-lg-3">
                                 <div class="overview-item overview-item--c3">
                                     <div class="overview__inner">
                                         <div class="overview-box clearfix">
@@ -321,17 +239,17 @@ validar();
                                             </div>
                                             <div class="text">
                                                 <h2><?php
-                                                require_once 'connections/conn.php';
-                                                $query = mysqli_query($conn,"SELECT ROUND(AVG(func_salario), 2)AS media FROM funcionario");
+                                                require_once '../connections/conn.php';
+                                                $query = mysqli_query($conn,"SELECT ROUND(AVG(pag_salarioliq), 2)AS media FROM pagamentos WHERE pag_nif=$nif ORDER BY pag_date,pag_id DESC LIMIT 12");
                                                 $resultado = mysqli_fetch_assoc($query);
                                                 $media = $resultado['media'];
                                                 echo "$media €";
                                                 ?></h2>
-                                                <span>Salário Médio</span>
+                                                <span>Salário Médio (12 meses)</span>
                                             </div>
                                         </div>
                                         <div class="overview-chart">
-                                            <canvas id="widgetChart3"></canvas>
+                                            <canvas ></canvas>
                                         </div>
                                     </div>
                                 </div>
@@ -345,25 +263,49 @@ validar();
                                             </div>
                                             <div class="text">
                                                 <h2><?php
-                                                require_once 'connections/conn.php';
-                                                $query = mysqli_query($conn,"SELECT sum(func_salario) AS soma FROM funcionario");
+                                                require_once '../connections/conn.php';
+                                                $query = mysqli_query($conn,"SELECT SUM(pag_descss + pag_descirs) as somadesc FROM pagamentos WHERE pag_nif=$nif ORDER BY pag_descss DESC LIMIT 12");
+
                                                 $resultado = mysqli_fetch_assoc($query);
-                                                $salarios = $resultado['soma'];
+                                                $salarios = $resultado['somadesc'];
                                                 echo "$salarios €";
                                                 ?></h2>
-                                                <span>Salários/mês</span>
+                                                <span>Descontos IRS/SS (12 meses)</span>
                                             </div>
                                         </div>
                                         <div class="overview-chart">
-                                            <canvas id="widgetChart4"></canvas>
+                                            <canvas ></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-lg-3">
+                                <div class="overview-item overview-item--c2">
+                                    <div class="overview__inner">
+                                        <div class="overview-box clearfix">
+                                            <div class="icon">
+                                                <i class="zmdi zmdi-money"></i>
+                                            </div>
+                                            <div class="text">
+                                                <h2><?php
+                                                require_once '../connections/conn.php';
+                                                $query = mysqli_query($conn,"SELECT func_salario FROM funcionario WHERE func_nif=$nif");
+                                                $resultado = mysqli_fetch_assoc($query);
+                                                $salarios = $resultado['func_salario'];
+                                                echo "$salarios €";
+                                                ?></h2>
+                                                <span>Salário Liquido</span>
+                                            </div>
+                                        </div>
+                                        <div class="overview-chart">
+                                            <canvas></canvas>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-lg-9">
-                                <h2 class="title-1 m-b-25"><i class="fas fa-history"></i> Ultimos salarios processados</h2>
+                                <h2 class="title-1 m-b-25"><i class="fas fa-history"></i> Ultimos 10 salarios processados</h2>
                                 <div class="table-responsive table--no-card m-b-40">
                                     <table class="table table-borderless table-striped table-earning">
                                         <thead>
@@ -377,11 +319,11 @@ validar();
                                         </thead>
                                         <tbody>
                                           <?php
-                                          include 'connections/conn.php';
+                                          include '../connections/conn.php';
 
-                                          $query = mysqli_query($conn,"SELECT pag_date,pag_id,func_nome,pag_salarioliq,
+                                          $query = mysqli_query($conn,"SELECT pag_date,pag_id,func_nome,pag_salarioliq,pag_nif,
                                             IF(pag_tipo = 1, 'Mensal',IF(pag_tipo=2,'Sub. Ferias',IF(pag_tipo=3,'Sub. Natal','Outro'))) as pag_tipopag
-                                            FROM pagamentos inner join funcionario on pag_nif = funcionario.func_nif ORDER BY pag_date,pag_id DESC LIMIT 10");
+                                            FROM pagamentos inner join funcionario on pag_nif = funcionario.func_nif WHERE pag_nif=$nif ORDER BY pag_date,pag_id DESC LIMIT 10");
                                             $a = 1;
                                             while ($listafuncionarios = mysqli_fetch_array($query)) {
                                            ?>
@@ -395,40 +337,18 @@ validar();
                                             <?php
                                                 $a = $a + 1;
                                                 }
-                                                include 'connections/conn.php';
+                                                include '../connections/conn.php';
                                              ?>
                                         </tbody>
                                     </table>
                                 </div>
-                            </div>
-                            <div class="col-lg-3">
-                                <h2 class="title-1 m-b-25">Top 8 Salarios </h2>
-                                <div class="au-card au-card--bg-blue au-card-top-countries m-b-40">
-                                    <div class="au-card-inner">
-                                        <div class="table-responsive">
-                                            <table class="table table-top-countries">
-                                                <tbody>
-                                                  <?php
-                                                  include 'connections/conn.php';
-                                                  $query = mysqli_query($conn,"SELECT func_nome,func_salario FROM funcionario ORDER BY `funcionario`.`func_salario` DESC LIMIT 0, 8 ");
-                                                  while ($toplista = mysqli_fetch_array($query)) {
-                                                    echo '<tr>
-                                                    <td>'.$toplista['func_nome'].'</td>
-                                                    <td class="text-right">'.$toplista['func_salario'].' €</td></tr>';
-                                                  }
-                                                  include 'connections/deconn.php';
-                                                  ?>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
 
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="copyright">
+
+
                                     <p>Copyright © 2018 Nilton e Sérgio.</p>
                                 </div>
                             </div>
@@ -443,28 +363,28 @@ validar();
     </div>
 
     <!-- Jquery JS-->
-    <script src="vendor/jquery-3.2.1.min.js"></script>
+    <script src="../vendor/jquery-3.2.1.min.js"></script>
     <!-- Bootstrap JS-->
-    <script src="vendor/bootstrap-4.1/popper.min.js"></script>
-    <script src="vendor/bootstrap-4.1/bootstrap.min.js"></script>
+    <script src="../vendor/bootstrap-4.1/popper.min.js"></script>
+    <script src="../vendor/bootstrap-4.1/bootstrap.min.js"></script>
     <!-- Vendor JS       -->
-    <script src="vendor/slick/slick.min.js">
+    <script src="../vendor/slick/slick.min.js">
     </script>
-    <script src="vendor/wow/wow.min.js"></script>
-    <script src="vendor/animsition/animsition.min.js"></script>
-    <script src="vendor/bootstrap-progressbar/bootstrap-progressbar.min.js">
+    <script src="../vendor/wow/wow.min.js"></script>
+    <script src="../vendor/animsition/animsition.min.js"></script>
+    <script src="../vendor/bootstrap-progressbar/bootstrap-progressbar.min.js">
     </script>
-    <script src="vendor/counter-up/jquery.waypoints.min.js"></script>
-    <script src="vendor/counter-up/jquery.counterup.min.js">
+    <script src="../vendor/counter-up/jquery.waypoints.min.js"></script>
+    <script src="../vendor/counter-up/jquery.counterup.min.js">
     </script>
-    <script src="vendor/circle-progress/circle-progress.min.js"></script>
-    <script src="vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
-    <script src="vendor/chartjs/Chart.bundle.min.js"></script>
-    <script src="vendor/select2/select2.min.js">
+    <script src="../vendor/circle-progress/circle-progress.min.js"></script>
+    <script src="../vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
+    <script src="../vendor/chartjs/Chart.bundle.min.js"></script>
+    <script src="../vendor/select2/select2.min.js">
     </script>
 
     <!-- Main JS-->
-    <script src="js/main.js"></script>
+    <script src="../js/main.js"></script>
 
 </body>
 
