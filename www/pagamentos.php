@@ -311,7 +311,12 @@ $escirs = 0;
                                           echo date("Y-m-d");
                                           include 'connections/conn.php';
                                           $query = mysqli_query($conn,"SELECT func_id,func_nome,func_nif,func_nib,func_salario, IF(turno_nome=0, turno_nome, 'Sem Turno') as turno, func_idirs, func_idss, turno_perc
-                                          FROM funcionario left join turno on turno_id = funcionario.func_idturno");
+                                                                FROM funcionario as func
+                                                                left join turno on turno_id = func_idturno
+                                                                left join pagamentos on func_nif = pagamentos.pag_nif
+                                                                WHERE ((SELECT COUNT(pag_id) FROM pagamentos
+                                                                RIGHT JOIN funcionario on func_nif = pag_nif WHERE func.func_nif = pagamentos.pag_nif) = 0)
+                                                                OR EXTRACT(YEAR_MONTH FROM CURDATE()) != EXTRACT(YEAR_MONTH FROM pagamentos.pag_date)");
 
                                           while (@$listafuncionarios = mysqli_fetch_array($query)) {
 
