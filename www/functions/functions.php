@@ -19,20 +19,30 @@ function login($username,$password){
       $_SESSION["tipo"] = $alogin["func_tipo"];
       $_SESSION["username"] = $alogin["func_user"];
       $_SESSION["imagepath"] = $alogin["func_avatar_path"];
-
-      echo "<meta http-equiv='refresh' content='0; URL=index.php'>";
+      if ($alogin["func_tipo"] != 1) {
+        echo "<meta http-equiv='refresh' content='0; URL=user/index.php'>";
+      }else {
+        echo "<meta http-equiv='refresh' content='0; URL=index.php'>";
+      }
     }
     include 'connections/deconn.php';
   }
 }
+function validaruser(){
+  if(!$_SESSION["id"]){
+    echo "<meta http-equiv='refresh' content='0; URL=login.php'>";
+  }
+}
+
+/*Verifica Admin*/
 function validar(){
   if(!$_SESSION["id"]){
     echo "<meta http-equiv='refresh' content='0; URL=login.php'>";
+  }else {
+      if($_SESSION["tipo"] !=1){
+        echo "<meta http-equiv='refresh' content='0; URL=user/index.php'>";
+      }
   }
 }
-function validarMain(){
-  if(!$_SESSION["id"]){
-    echo "<meta http-equiv='refresh' content='0; URL=login.php'>";
-  }
-}
+
  ?>

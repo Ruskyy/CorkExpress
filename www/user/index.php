@@ -2,7 +2,7 @@
 <?php
 require_once '../functions/functions.php';
 session_start();
-validar();
+validaruser();
  ?>
  <html lang="en">
 
@@ -184,14 +184,18 @@ validar();
                                                </div>
                                            </div>
                                            <div class="account-dropdown__body">
+                                             <?php
+                                             require_once '../functions/functions.php';
+                                             if ($_SESSION["tipo"] !=2) {
+                                               echo '
                                                <div class="account-dropdown__item">
-                                                   <a href="#">
-                                                       <i class="zmdi zmdi-account"></i>Conta</a>
+                                                   <a href="../index.php">
+                                                       <i class="fas fa-tachometer-alt"></i></i>Admin Dashboard</a>
                                                </div>
-                                               <div class="account-dropdown__item">
-                                                   <a href="#">
-                                                       <i class="zmdi zmdi-money-box"></i>Gestão de Salarios</a>
-                                               </div>
+                                               ';
+                                             }
+
+                                              ?>
                                            </div>
                                            <div class="account-dropdown__footer">
                                                 <a href="../functions/fecharsessao.php">
@@ -318,6 +322,8 @@ validar();
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="copyright">
+
+
                                     <p>Copyright © 2018 Nilton e Sérgio.</p>
                                 </div>
                             </div>
