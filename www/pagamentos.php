@@ -344,7 +344,7 @@ $opc = 0;
                                                                     left join pagamentos on func_nif = pagamentos.pag_nif
                                                                     WHERE ((SELECT COUNT(pag_id) FROM pagamentos
                                                                     RIGHT JOIN funcionario on func_nif = pag_nif WHERE func.func_nif = pagamentos.pag_nif) = 0)
-                                                                    OR MONTH(pagamentos.pag_date) != 0".$mes."");
+                                                                    OR MONTH(pagamentos.pag_date) != 0".$mes." GROUP BY func_id");
                                             }
 
 
@@ -364,9 +364,7 @@ $opc = 0;
 
 
                                             <td>
-                                              <select class="" name="mes">
-                                                <option value='.$mes.'>   </option>
-                                              ';
+                                              <select class="" name="meses">';
                                               $queryturno = mysqli_query($conn,"SELECT mes_id, mes_nome FROM mes");
 
                                               while ($listaturno = mysqli_fetch_array($queryturno)) {
@@ -463,10 +461,10 @@ $opc = 0;
                                             $bonus = ($salario * ($desc/100)) * $dias;
                                             $salario_final = $salliq + $bonus;
 
-
-                                             mysqli_query($conn,"INSERT INTO pagamentos(pag_nif, pag_date, pag_dias, pag_salariobruto, pag_descss, pag_descirs, pag_salarioliq, pag_tipo)
-                                               VALUES('$_POST[nif]',CURDATE(),'$_POST[dias]','$_POST[salariobruto]','$descss','$descirs','$salario_final','$_POST[tipo]')");
-                                            echo "<meta http-equiv='refresh' content='0; URL=pagamentos.php'>";
+                                            echo 'Kappa'.$_POST['meses'];
+                                             mysqli_query($conn,"INSERT INTO pagamentos(pag_nif, pag_date, pag_dias, pag_salariobruto, pag_descss, pag_descirs, pag_salarioliq, pag_tipo, pag_mes)
+                                               VALUES('$_POST[nif]',CURDATE(),'$_POST[dias]','$_POST[salariobruto]','$descss','$descirs','$salario_final','$_POST[tipo]','$_POST[meses]')");
+                                               echo "<meta http-equiv='refresh' content='0; URL=pagamentos.php'>";
                                           }
                                           include 'connections/deconn.php';
 
