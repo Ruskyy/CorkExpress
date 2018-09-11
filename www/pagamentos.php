@@ -440,7 +440,7 @@ $escirs = 0;
                                             $descss = $salario * $segs;
                                             $descirs = $salario * $imprs;
                                             $salliq = $salario - ($descss + $descirs);
-                                            $bonus = $desc * $dias;
+                                            $bonus = ($salario * ($desc/100)) * $dias;
                                             $salario_final = $salliq + $bonus;
 
 
