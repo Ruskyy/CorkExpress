@@ -385,7 +385,7 @@ validar();
 
                                           $query = mysqli_query($conn,"SELECT pag_date,pag_id,func_nome,pag_salarioliq,
                                             IF(pag_tipo = 1, 'Mensal',IF(pag_tipo=2,'Sub. Ferias',IF(pag_tipo=3,'Sub. Natal','Outro'))) as pag_tipopag
-                                            FROM pagamentos inner join funcionario on pag_nif = funcionario.func_nif LIMIT 5");
+                                            FROM pagamentos inner join funcionario on pag_nif = funcionario.func_nif ORDER BY pag_date,pag_id DESC LIMIT 5");
                                             $a = 1;
                                             while ($listafuncionarios = mysqli_fetch_array($query)) {
                                            ?>
