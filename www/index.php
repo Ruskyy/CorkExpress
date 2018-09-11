@@ -360,21 +360,35 @@ validar();
                                     <table class="table table-borderless table-striped table-earning">
                                         <thead>
                                             <tr>
-                                                <th>data</th>
+                                                <th>Data</th>
                                                 <th>ID Pagamento</th>
                                                 <th>Nome</th>
-                                                <th class="text-right">Valor</th>
                                                 <th class="text-right">Salario Liquido</th>
+                                                <th class="text-right">Tipo</th>
                                             </tr>
                                         </thead>
                                         <tbody>
+                                          <?php
+                                          include 'connections/conn.php';
+
+                                          $query = mysqli_query($conn,"SELECT pag_date,pag_id,func_nome,pag_salarioliq,
+                                            IF(pag_tipo = 1, 'Mensal',IF(pag_tipo=2,'Sub. Ferias',IF(pag_tipo=3,'Sub. Natal','Outro'))) as pag_tipopag
+                                            FROM pagamentos inner join funcionario on pag_nif = funcionario.func_nif LIMIT 5");
+                                            $a = 1;
+                                            while ($listafuncionarios = mysqli_fetch_array($query)) {
+                                           ?>
                                             <tr>
-                                                <td>2018-09-29 05:57</td>
-                                                <td>100398</td>
-                                                <td>Carl W Langer</td>
-                                                <td class="text-right">$999.00</td>
-                                                <td class="text-right">$999.00</td>
+                                                <td><?php echo $listafuncionarios["pag_date"] ?></td>
+                                                <td><?php echo $listafuncionarios["pag_id"] ?></td>
+                                                <td><?php echo $listafuncionarios["func_nome"] ?></td>
+                                                <td><?php echo $listafuncionarios["pag_salarioliq"] ?></td>
+                                                <td><?php echo $listafuncionarios["pag_tipopag"] ?></td>
                                             </tr>
+                                            <?php
+                                                $a = $a + 1;
+                                                }
+                                                include 'connections/conn.php';
+                                             ?>
                                         </tbody>
                                     </table>
                                 </div>
