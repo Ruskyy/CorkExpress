@@ -292,22 +292,39 @@ validar();
                                         <tbody>
                                           <?php
                                           include 'connections/conn.php';
+                                          require_once 'functions/functions.php';
+                                          $loginfuncid = $_SESSION['id'];
                                           $query = mysqli_query($conn,"SELECT * FROM funcionario");
                                           while ($listafuncionarios = mysqli_fetch_array($query)) {
-                                            echo '<tr><td>'.$listafuncionarios['func_nome'].'</td>
-                                            <td>'.$listafuncionarios['func_email'].'</td>
-                                            <td>'.$listafuncionarios['func_morada'].'</td>
-                                            <td>'.$listafuncionarios['func_salario'].' €</td>
-                                            <td>
-                                              <div class="table-data-feature">
-                                                  <button class="item" data-toggle="modal" data-target="#scrollmodal'.$listafuncionarios['func_id'].'" title="Edit">
-                                                      <i class="zmdi zmdi-edit"></i>
-                                                  </button>
-                                                  <button class="item" data-toggle="modal" data-target="#staticModal'.$listafuncionarios['func_id'].'" title="Delete">
-                                                      <i class="zmdi zmdi-delete"></i>
-                                                  </button>
-                                              </div></td>
-                                              ';
+                                            if ($listafuncionarios['func_id'] != $loginfuncid) {
+                                              echo '<tr><td>'.$listafuncionarios['func_nome'].'</td>
+                                                <td>'.$listafuncionarios['func_email'].'</td>
+                                                <td>'.$listafuncionarios['func_morada'].'</td>
+                                                <td>'.$listafuncionarios['func_salario'].' €</td>
+                                                <td>
+                                                  <div class="table-data-feature">
+                                                      <button class="item" data-toggle="modal" data-target="#scrollmodal'.$listafuncionarios['func_id'].'" title="Edit">
+                                                          <i class="zmdi zmdi-edit"></i>
+                                                      </button>
+                                                      <button class="item" data-toggle="modal" data-target="#staticModal'.$listafuncionarios['func_id'].'" title="Delete">
+                                                          <i class="zmdi zmdi-delete"></i>
+                                                      </button>
+                                                  </div></td>
+                                                  ';
+                                            }else {
+                                              echo '<tr><td>'.$listafuncionarios['func_nome'].'</td>
+                                              <td>'.$listafuncionarios['func_email'].'</td>
+                                              <td>'.$listafuncionarios['func_morada'].'</td>
+                                              <td>'.$listafuncionarios['func_salario'].' €</td>
+                                              <td>
+                                                <div class="table-data-feature">
+                                                    <button class="item" data-toggle="modal" data-target="#scrollmodal'.$listafuncionarios['func_id'].'" title="Edit">
+                                                        <i class="zmdi zmdi-edit"></i>
+                                                    </button>
+                                                </div></td>
+                                                ';
+                                            }
+
                                           }
 
                                           include 'connections/deconn.php';
