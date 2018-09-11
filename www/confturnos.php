@@ -269,6 +269,7 @@ validar();
 
 							                   <div class="col-lg-6">
                                    <div class="table-responsive table--no-card">
+                                     <form method="post">
                                      <table class="table table-borderless table-striped table-earning">
                                        <thead>
                                          <tr>
@@ -285,7 +286,7 @@ validar();
                                         while ($listaturnos = mysqli_fetch_array($query)) {
                                           echo '<tr><td>'.$listaturnos['turno_id'].'</td>
                                           <td>'.$listaturnos['turno_nome'].'</td>
-                                          <td class="text-right"><input class="form-control" type="number" name="percentagem" style="width:150px;" value="'.$listaturnos['turno_perc'].'"></td>
+                                          <td class="text-right"><input class="form-control" type="number" name="percentagem'.$listaturnos['turno_id'].'" style="width:150px;" value="'.$listaturnos['turno_perc'].'"></td>
                                           <td><button type="button" data-toggle="modal" data-target="#staticModal'.$listaturnos['turno_id'].'" class="btn btn-danger btn-sm">Remover</button></td></tr>
                                           ';
                                         }
@@ -293,7 +294,28 @@ validar();
                                         include 'connections/deconn.php';
                                         ?>
                                       </tbody>
+
                                   </table>
+                                  <button type="submit" class="btn btn-success btn-lg btn-block" name="submitturnos">Update</button>
+                                  </form>
+                                  <?php
+
+                                include 'connections/conn.php';
+
+                                $countturnos = mysqli_num_rows($query);
+                                  $percentagem='';
+                                  if(ISSET($_POST["submitturnos"])){
+                                    for ($a=1; $a <$countturnos+1; $a++) {
+                                      $percentagem = 'percentagem'.$a;
+
+                                      mysqli_query($conn,"UPDATE turno SET turno_perc=$_POST[$percentagem] WHERE turno_id=$a");
+
+                                    }
+                                  echo "<meta http-equiv='refresh' content='0; URL=confturnos.php'>";
+                                  }
+                                  include 'connections/deconn.php';
+
+                                    ?>
                         </div>
 							</div>
 							<div class="col-lg-6">
@@ -362,7 +384,6 @@ while ($listaturnos = mysqli_fetch_array($query)) {
       <div class="modal-body">
         <p>
           Tem a certeza que deseja remover este turno ?
-          '.$listaturnos['turno_id'].'
         </p>
       </div>
       <div class="modal-footer">
