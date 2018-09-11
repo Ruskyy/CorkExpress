@@ -276,9 +276,8 @@ $opc = 0;
 
                         <form class="" action="" method="post">
                           <?php
-                          echo '<select class="" name="mes">
-                            <option>    </option>
-                          ';
+                          $mes = 1;
+                          echo '<select class="" name="mes">';
                           $queryturno = mysqli_query($conn,"SELECT mes_id, mes_nome FROM mes");
 
                           while ($listaturno = mysqli_fetch_array($queryturno)) {
@@ -337,15 +336,24 @@ $opc = 0;
                                                                   OR EXTRACT(YEAR_MONTH FROM CURDATE()) != EXTRACT(YEAR_MONTH FROM pagamentos.pag_date)");
 
                                             if($opc == 1){
-                                              echo "kappa";
-                                              $query = mysqli_query($conn,"SELECT func_id,func_nome,func_nif,func_nib,func_salario, IF(turno_nome=0, turno_nome, 'Sem Turno') as turno, func_idirs, func_idss, turno_perc
-                                                                    FROM funcionario as func
-                                                                    left join turno on turno_id = func_idturno
-                                                                    left join pagamentos on func_nif = pagamentos.pag_nif
-                                                                    WHERE ((SELECT COUNT(pag_id) FROM pagamentos
-                                                                    RIGHT JOIN funcionario on func_nif = pag_nif WHERE func.func_nif = pagamentos.pag_nif) = 0)
-                                                                    OR MONTH(pagamentos.pag_date) != 0".$mes." GROUP BY func_id");
+                                              $query =  mysqli_query($conn,"SELECT pag_nif FROM pagamentos WHERE pag_mes =".$_POST['mes']."");
+                                              $countp = mysqli_num_rows($query);
+                                              if(!$countp){
+                                                // echo 'UGAGUGA';
+                                                $query = mysqli_query($conn,"SELECT func_id,func_nome,func_nif,func_nib,func_salario, IF(turno_nome=0, turno_nome, 'Sem Turno') as turno, func_idirs, func_idss, turno_perc FROM funcionario as func left join turno on turno_id = func_idturno left join pagamentos on func_nif = pagamentos.pag_nif GROUP BY func_id");
+                                                // echo 'UGAGUGA';
+                                              }
+
+                                              else {
+                                                // echo 'UGAGUGA2';
+                                                $query = mysqli_query($conn,"SELECT func_id,func_nome,func_nif,func_nib,func_salario, IF(turno_nome=0, turno_nome, 'Sem Turno') as turno, func_idirs, func_idss, turno_perc
+                                                FROM funcionario as func
+                                                left join turno on turno_id = func_idturno
+                                                left join pagamentos on func_nif = pagamentos.pag_nif
+                                                WHERE pagamentos.pag_mes != ".$_POST['mes']." AND (SELECT pag_nif FROM pagamentos inner join funcionario on pag_nif = func_nif WHERE func_nif = pag_nif AND pag_mes = $_POST[mes] ) != pag_nif GROUP BY func_id");
+                                              }
                                             }
+
 
 
 
@@ -364,8 +372,8 @@ $opc = 0;
 
 
                                             <td>
-                                              <select class="" name="meses">';
-                                              $queryturno = mysqli_query($conn,"SELECT mes_id, mes_nome FROM mes");
+                                              <select class="" name="meses" readonly>';
+                                              $queryturno = mysqli_query($conn,"SELECT mes_id, mes_nome FROM mes WHERE mes_id = $mes ");
 
                                               while ($listaturno = mysqli_fetch_array($queryturno)) {
                                                 echo '<option value="'.$listaturno["mes_id"].'">'.$listaturno["mes_nome"].'</option>';
@@ -454,17 +462,29 @@ $opc = 0;
                                             $imprs = $_POST['escirs'];
                                             $desc = $_POST['turnodesconto'];
                                             $dias = $_POST['dias'];
-
+                                            $meses = $_POST['meses'];
                                             $descss = $salario * $segs;
                                             $descirs = $salario * $imprs;
                                             $salliq = $salario - ($descss + $descirs);
                                             $bonus = ($salario * ($desc/100)) * $dias;
                                             $salario_final = $salliq + $bonus;
 
-                                            echo 'Kappa'.$_POST['meses'];
-                                             mysqli_query($conn,"INSERT INTO pagamentos(pag_nif, pag_date, pag_dias, pag_salariobruto, pag_descss, pag_descirs, pag_salarioliq, pag_tipo, pag_mes)
-                                               VALUES('$_POST[nif]',CURDATE(),'$_POST[dias]','$_POST[salariobruto]','$descss','$descirs','$salario_final','$_POST[tipo]','$_POST[meses]')");
-                                               echo "<meta http-equiv='refresh' content='0; URL=pagamentos.php'>";
+
+
+                                            $checkq = mysqli_query($conn,"SELECT pag_nif FROM pagamentos inner join funcionario on pag_nif = func_nif WHERE pag_mes =  $meses ");
+                                            $contcheckq = mysqli_num_rows($checkq);
+                                            if(!$contcheckq){
+                                              mysqli_query($conn,"INSERT INTO pagamentos(pag_nif, pag_date, pag_dias, pag_salariobruto, pag_descss, pag_descirs, pag_salarioliq, pag_tipo, pag_mes)
+                                                VALUES('$_POST[nif]',CURDATE(),'$_POST[dias]','$_POST[salariobruto]','$descss','$descirs','$salario_final','$_POST[tipo]','$_POST[meses]')");
+
+
+                                            }
+                                            else {
+                                              echo 'Este funcionario ja foi pago no mes pretendido';
+
+                                            }
+
+
                                           }
                                           include 'connections/deconn.php';
 
@@ -475,9 +495,6 @@ $opc = 0;
                                       <div class="row" style="">
                                         <div class="col-sm">
 
-                                        </div>
-                                        <div class="col-sm" style="text-align: right;">
-                                          <button type="submit" class="btn btn-success" name="button">Pagar Tudo</button>
                                         </div>
                                       </div>
                                     </div>

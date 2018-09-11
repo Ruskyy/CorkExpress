@@ -380,7 +380,7 @@ $opc = 0;
                                             <td class="text-right"><button type="submit" name="natal" class="btn btn-success" value>Sub. Natal</button></td>
 
                                             </form>';
-                                            echo $listafuncionarios["func_nif"];
+                                            
                                           }
 
 
@@ -468,9 +468,6 @@ $opc = 0;
                                       <div class="row" style="">
                                         <div class="col-sm">
 
-                                        </div>
-                                        <div class="col-sm" style="text-align: right;">
-                                          <button type="submit" class="btn btn-success" name="button">Pagar Tudo</button>
                                         </div>
                                       </div>
                                     </div>
