@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 11-Set-2018 às 03:31
+-- Generation Time: 11-Set-2018 às 03:35
 -- Versão do servidor: 10.1.33-MariaDB
 -- PHP Version: 7.2.6
 
@@ -108,7 +108,7 @@ INSERT INTO `funcionario` (`func_id`, `func_tipo`, `func_user`, `func_pass`, `fu
 (12, 2, 'dcf', '111', 'chad.ohar7@hotmail.com', 'Daniel C Friley', '1215 Charles Street Plymouth, Michigan(MI), 48170', 2, 2, 705365382, 705365382, '705365382', '705365382', 705365382, '784', 3, 2, 2, NULL),
 (14, 2, 'mah', '111', 'rebecca.goyet@gmail.com', 'Margaret A Hanson', '4289 Driftwood Road Fremont, California(CA), 94539', 2, 2, 408702317, 408702317, '408702317', '408702317', 408702317, '1568', 1, 4, 3, NULL),
 (15, 2, 'epc', '111', 'helga1989@hotmail.com', 'Eileen P Cashin', '2206 Badger Pond Lane Tampa, Florida(FL), 33602', 2, 2, 864107007, 864107007, '864107007', '864107007', 864107007, '2356', 2, 4, 3, NULL),
-(21, 1, 'admin2', 'admin2', 'admin2@corckexpress.com', 'Sérgio Figueiredo', 'Rua Admin nºAdmin R/C Admin', 1, 1, 800, 900, '900', '900', 999999999, '5005', 3, 4, 3, NULL);
+(21, 1, 'admin2', 'admin2', 'admin2@corckexpress.com', 'Sérgio Figueiredo', 'Rua Admin nºAdmin R/C Admin', 1, 1, 800, 900, '900', '900', 999999999, '5005', 3, 4, 3, 'images/icon/avatar-02.jpg');
 
 -- --------------------------------------------------------
 
