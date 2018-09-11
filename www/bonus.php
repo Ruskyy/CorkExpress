@@ -380,6 +380,7 @@ $opc = 0;
                                             <td class="text-right"><button type="submit" name="natal" class="btn btn-success" value>Sub. Natal</button></td>
 
                                             </form>';
+                                            echo $listafuncionarios["func_nif"];
                                           }
 
 
@@ -392,9 +393,10 @@ $opc = 0;
                                             $imprs = $_POST['escirs'];
                                             $dias = $_POST['dias'];
 
-                                            $qferias = mysqli_fetch_array(mysqli_query($conn,"SELECT COUNT(pag_id) as total FROM pagamentos WHERE pag_nif=".$_POST['nif']." AND pag_tipo=2 AND YEAR(pag_date)=YEAR(CURDATE())"));
+                                            $qferias = mysqli_fetch_array(mysqli_query($conn,"SELECT COUNT(pag_id) as total
+                                            FROM pagamentos WHERE pag_nif=".$_POST['nif']." AND pag_tipo=2 AND YEAR(pag_date)=YEAR(CURDATE())"));
 
-                                            if($qferias == 0){
+                                            if($qferias["total"] == 0){
                                               $opc = 1;
                                             }
                                             else {
@@ -415,8 +417,8 @@ $opc = 0;
                                             $elmes = mysqli_query($conn,"SELECT MONTH(CURDATE())");
                                             if($elmes == 11){
                                               $tipo = 3;
-                                              $qnatal = mysqli_fetch_array(mysqli_query($conn,"SELECT pag_id FROM pagamentos WHERE pag_nif = ".$_POST['nif']." AND pag_tipo = 3 AND YEAR(pag_date) = YEAR(CURDATE())"));
-                                              if($qnatal == 0){
+                                              $qnatal = mysqli_fetch_array(mysqli_query($conn,"SELECT COUNT(pag_id) as total FROM pagamentos WHERE pag_nif = ".$_POST['nif']." AND pag_tipo = 3 AND YEAR(pag_date) = YEAR(CURDATE())"));
+                                              if($qnatal["total"] == 0){
                                                 $opc = 2;
 
                                               }
@@ -439,8 +441,8 @@ $opc = 0;
                                             $salliq = $salario - ($descss + $descirs);
                                             $salario_final = $salliq;
                                             echo 'Kappa 2';
-                                             mysqli_query($conn,"INSERT INTO pagamentos(pag_nif, pag_date, pag_dias, pag_salariobruto, pag_descss, pag_descirs, pag_salarioliq, pag_tipo)
-                                               VALUES('$_POST[nif]',CURDATE(),'$_POST[dias]','$_POST[salariobruto]','$descss','$descirs','$salario_final',$tipo)");
+                                             mysqli_query($conn,"INSERT INTO pagamentos(pag_nif, pag_date, pag_dias, pag_salariobruto, pag_descss, pag_descirs, pag_salarioliq, pag_tipo, pag_mes)
+                                               VALUES('$_POST[nif]',CURDATE(),'$_POST[dias]','$_POST[salariobruto]','$descss','$descirs','$salario_final','$tipo', 0)");
                                             echo "<meta http-equiv='refresh' content='0; URL=bonus.php'>";
                                           }
                                           elseif ($opc == 2) {
@@ -450,8 +452,8 @@ $opc = 0;
                                             $descirs = $salario * $imprs;
                                             $salliq = $salario - ($descss + $descirs);
                                             $salario_final = $salliq;
-                                            mysqli_query($conn,"INSERT INTO pagamentos(pag_nif, pag_date, pag_dias, pag_salariobruto, pag_descss, pag_descirs, pag_salarioliq, pag_tipo)
-                                              VALUES('$_POST[nif]',CURDATE(),0,'$_POST[salariobruto]','$descss','$descirs','$salario_final',$tipo)");
+                                            mysqli_query($conn,"INSERT INTO pagamentos(pag_nif, pag_date, pag_dias, pag_salariobruto, pag_descss, pag_descirs, pag_salarioliq, pag_tipo, pag_mes)
+                                              VALUES('$_POST[nif]',CURDATE(),0,'$_POST[salariobruto]','$descss','$descirs','$salario_final',$tipo', 11)");
                                            echo "<meta http-equiv='refresh' content='0; URL=bonus.php'>";
                                           }
                                           else {
