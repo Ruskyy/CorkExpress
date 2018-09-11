@@ -5,6 +5,7 @@ session_start();
 validar();
 $mes = 0;
 $escirs = 0;
+$opc = 0;
 ?>
 <html lang="en">
 
@@ -286,12 +287,13 @@ $escirs = 0;
                           echo '
                           </select>' ?>
 
-                          <button type="submit" class="btn btn-success" name="button">Selecionar Mes</button>
+                          <button type="submit" class="btn btn-primary" name="button">Refresh</button>
 
                         </form>
                         <?php
                           if(ISSET($_POST["button"])){
                             $mes = $_POST["mes"];
+                            $opc = 1;
                           }
                          ?>
                       </div>
@@ -310,6 +312,7 @@ $escirs = 0;
                                                 <th>NIF</th>
                                                 <th>NIB</th>
                                                 <th>Salario</th>
+                                                <th>Dias</th>
                                                 <th>Turno Atual</th>
                                                 <th>Mes</th>
                                                 <th>Esc IRS</th>
@@ -323,13 +326,29 @@ $escirs = 0;
                                           <?php
                                           echo date("Y-m-d");
                                           include 'connections/conn.php';
-                                          $query = mysqli_query($conn,"SELECT func_id,func_nome,func_nif,func_nib,func_salario, IF(turno_nome=0, turno_nome, 'Sem Turno') as turno, func_idirs, func_idss, turno_perc
-                                                                FROM funcionario as func
-                                                                left join turno on turno_id = func_idturno
-                                                                left join pagamentos on func_nif = pagamentos.pag_nif
-                                                                WHERE ((SELECT COUNT(pag_id) FROM pagamentos
-                                                                RIGHT JOIN funcionario on func_nif = pag_nif WHERE func.func_nif = pagamentos.pag_nif) = 0)
-                                                                OR EXTRACT(YEAR_MONTH FROM CURDATE()) != EXTRACT(YEAR_MONTH FROM pagamentos.pag_date)");
+                                          $ano = mysqli_query($conn, "SELECT YEAR(CURDATE())");
+
+                                            $query = mysqli_query($conn,"SELECT func_id,func_nome,func_nif,func_nib,func_salario, IF(turno_nome=0, turno_nome, 'Sem Turno') as turno, func_idirs, func_idss, turno_perc
+                                                                  FROM funcionario as func
+                                                                  left join turno on turno_id = func_idturno
+                                                                  left join pagamentos on func_nif = pagamentos.pag_nif
+                                                                  WHERE ((SELECT COUNT(pag_id) FROM pagamentos
+                                                                  RIGHT JOIN funcionario on func_nif = pag_nif WHERE func.func_nif = pagamentos.pag_nif) = 0)
+                                                                  OR EXTRACT(YEAR_MONTH FROM CURDATE()) != EXTRACT(YEAR_MONTH FROM pagamentos.pag_date)");
+
+                                            if($opc == 1){
+                                              echo "kappa";
+                                              $query = mysqli_query($conn,"SELECT func_id,func_nome,func_nif,func_nib,func_salario, IF(turno_nome=0, turno_nome, 'Sem Turno') as turno, func_idirs, func_idss, turno_perc
+                                                                    FROM funcionario as func
+                                                                    left join turno on turno_id = func_idturno
+                                                                    left join pagamentos on func_nif = pagamentos.pag_nif
+                                                                    WHERE ((SELECT COUNT(pag_id) FROM pagamentos
+                                                                    RIGHT JOIN funcionario on func_nif = pag_nif WHERE func.func_nif = pagamentos.pag_nif) = 0)
+                                                                    OR MONTH(pagamentos.pag_date) != 0".$mes."");
+                                            }
+
+
+
 
                                           while (@$listafuncionarios = mysqli_fetch_array($query)) {
 
@@ -339,6 +358,7 @@ $escirs = 0;
                                             <td>'.$listafuncionarios["func_nif"].' <input type="hidden" name="nif" value="'.$listafuncionarios["func_nif"].'"> </td>
                                             <td>'.$listafuncionarios["func_nib"].'</td>
                                             <td>'.$listafuncionarios["func_salario"].' € <input type="hidden" name="salariobruto" value="'.$listafuncionarios["func_salario"].'"> </td>
+                                            <td> <input type="number" name="dias" value=""> </td>
                                             <td>'.$listafuncionarios["turno"].' ('.$listafuncionarios["turno_perc"].'%) <input type="hidden" name="turnodesconto" value="'.$listafuncionarios["turno_perc"].'"> </td>
 
 
@@ -411,7 +431,7 @@ $escirs = 0;
 
                                               echo '</td>
                                               <input type="hidden" name="tipo" value=1>
-                                              <input type="hidden" name="dias" value=22>
+
                                               <input type="hidden" id="actualDate" name="actualDate">
                                               <td>
                                                 <div class="table-data-feature2">
