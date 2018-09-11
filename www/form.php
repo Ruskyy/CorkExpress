@@ -121,13 +121,13 @@ validar();
           <div class="menu-sidebar__content js-scrollbar1">
               <nav class="navbar-sidebar">
                   <ul class="list-unstyled navbar__list">
-                      <li class="active has-sub">
+                      <li class="has-sub">
                           <a class="js-arrow" href="index.php">
                               <i class="fas fa-tachometer-alt"></i>Dashboard</a>
                       </li>
 
 
-                      <li class=" active has-sub">
+                      <li class="active has-sub">
                           <a class="js-arrow" href="#">
                              <i class="fa fa-users-cog"></i>Gestão Funcionarios</a>
                           <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
@@ -238,72 +238,6 @@ validar();
                                                   </a>
                                               </div>';
                                              ?>
-                                              <div class="content">
-                                                <?php
-                                                echo '<h5 class="name">
-                                                <a>'.$empregado['func_nome'].'</a>
-                                                </h5>
-                                               <span class="email">'.$empregado['func_email'].'</span>';
-                                                 ?>
-                                              </div>
-                                          </div>
-                                          <div class="account-dropdown__body">
-                                              <div class="account-dropdown__item">
-                                                  <a href="#">
-                                                      <i class="zmdi zmdi-account"></i>Conta</a>
-                                              </div>
-                                              <div class="account-dropdown__item">
-                                                  <a href="#">
-                                                      <i class="zmdi zmdi-money-box"></i>Gestão de Salarios</a>
-                                              </div>
-                                          </div>
-                                          <div class="account-dropdown__footer">
-                                               <a href="functions/fecharsessao.php">
-                                                  <i class="zmdi zmdi-power"></i>Logout</a>
-                                          </div>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </header>
-          <!-- HEADER DESKTOP-->
-
-      <!-- PAGE CONTAINER-->
-      <div class="page-container">
-          <!-- HEADER DESKTOP-->
-          <header class="header-desktop">
-              <div class="section__content section__content--p30">
-                  <div class="container-fluid">
-                      <div class="header-wrap">
-
-                          <div class="header-button">
-
-                              <div class="account-wrap">
-                                  <div class="account-item clearfix js-item-menu">
-                                      <div class="image">
-                                          <img src="images/icon/avatar-01.jpg" alt="nilton fontes" />
-                                      </div>
-                                      <div class="content">
-                                        <?php
-                                        include 'connections/conn.php';
-                                        require_once 'functions/functions.php';
-                                        $funcid = $_SESSION['id'];
-                                        $query = mysqli_query($conn,"SELECT 'func_id',func_nome,func_email FROM funcionario WHERE func_id = '$funcid'");
-                                        $empregado= mysqli_fetch_array($query);
-
-                                          echo '<a class="js-acc-btn">'.$empregado['func_nome'].'</a>';
-                                         ?>
-                                      </div>
-                                      <div class="account-dropdown js-dropdown">
-                                          <div class="info clearfix">
-                                              <div class="image">
-                                                  <a href="#">
-                                                      <img src="images/icon/avatar-01.jpg" alt="nilton fontes" />
-                                                  </a>
-                                              </div>
                                               <div class="content">
                                                 <?php
                                                 echo '<h5 class="name">
