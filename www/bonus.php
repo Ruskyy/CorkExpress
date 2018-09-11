@@ -3,6 +3,9 @@
 require_once 'functions/functions.php';
 session_start();
 validar();
+$mes = 0;
+$escirs = 0;
+$opc = 0;
 ?>
 <html lang="en">
 
@@ -15,7 +18,7 @@ validar();
     <meta name="keywords" content="au theme template">
 
     <!-- Title Page-->
-    <title>Configurações - Gestão Salarios</title>
+    <title>Lista Funcionarios</title>
 
     <!--FAVICON-->
     <link rel="apple-touch-icon-precomposed" sizes="57x57" href="apple-touch-icon-57x57.png" />
@@ -60,15 +63,6 @@ validar();
     <!-- Main CSS-->
     <link href="css/theme.css" rel="stylesheet" media="all">
 
-    <script type="text/javascript">
-            function enforce_maxlength(event) {
-              var t = event.target;
-              if (t.hasAttribute('maxlength')) {
-              t.value = t.value.slice(0, t.getAttribute('maxlength'));
-                }
-              }
-              document.body.addEventListener('input', enforce_maxlength);
-        </script>
 </head>
 
 <body class="animsition">
@@ -165,7 +159,7 @@ validar();
                       </li>
 
                       <li class="active has-sub">
-                          <a class="js-arrow" href="bonus.php">
+                          <a class="js-arrow" href="#">
                              <i class="fas fa-money-check-alt"></i></i>Gestão Salarios</a>
                           <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
                             <li>
@@ -173,7 +167,7 @@ validar();
                                     <i class="fas fa-hand-holding-usd"></i>Pagamentos</a>
                             </li>
                             <li>
-                                <a href="#">
+                                <a href="bonus.php">
                                    <i class="fas fa-gift"></i>Bonus e Sub.</a>
                             </li>
                             <li>
@@ -273,195 +267,224 @@ validar();
             <!-- MAIN CONTENT-->
             <div class="main-content">
                 <div class="section__content section__content--p30">
-                  <h3 class="title-5 m-b-35">Configurações - Pagamentos</h3>
-						            <div class="row">
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-sm">
+                        <h3 class="title-5 m-b-35">Lista Membros</h3>
+                      </div>
+                      <div class="col-sm" style="text-align:right;">
 
-							                   <div class="col-lg-6">
-                                   <h3 class="title-5 m-b-10">Valores IRS</h3>
-                                   <div class="table-responsive table--no-card">
-                                    <form name="" method="post" action="">
-                                     <table class="table table-borderless table-striped table-earning">
-                                       <thead>
-                                         <tr>
-                                              <th></th>
-                                              <th class="text-left">Valor Min</th>
-                                              <th class="text-left">Valor Max</th>
-                                              <th class="text-left">Desconto</th>
-                                          </tr>
-                                      </thead>
-                                      <tbody>
-                                        <?php
-                                        include 'connections/conn.php';
-                                        $query = mysqli_query($conn,"SELECT * FROM escalaoirs");
-                                        while ($escalaoIRS = mysqli_fetch_array($query)) {
-                                          echo '<tr><td>Escalao '.$escalaoIRS['irs_id'].'<input type="hidden" name="id_escalao" value="'.$escalaoIRS['irs_id'].'"></td>
-                                          <td class="text-right">
-                                          <div class="input-group">
-                                          <input class="form-control" min="0" max="100000" maxlength="6" type="number" name="valor_min'.$escalaoIRS['irs_id'].'" style="width:100px;" value="'.$escalaoIRS['irs_valormin'].'">
-                                          <div class="input-group-append">
-                                          <span class="input-group-text"><i class="fas fa-euro-sign"></i></span>
-                                          </div>
-                                          </div>
-                                          </td>
+                        <form class="" action="" method="post">
+                          <?php
+                          echo '<select class="" name="mes">
+                            <option>    </option>
+                          ';
+                          $queryturno = mysqli_query($conn,"SELECT mes_id, mes_nome FROM mes");
 
-                                          <td class="text-right">
-                                          <div class="input-group">
-                                          <input class="form-control" min="0" max="100000" maxlength="6" type="number" name="valor_max'.$escalaoIRS['irs_id'].'" style="width:100px;" value="'.$escalaoIRS['irs_valormax'].'">
-                                          <div class="input-group-append">
-                                          <span class="input-group-text"><i class="fas fa-euro-sign"></i></span>
-                                          </div>
-                                          </div>
-                                          </td>
+                          while ($listaturno = mysqli_fetch_array($queryturno)) {
+                            echo '<option value="'.$listaturno["mes_id"].'">'.$listaturno["mes_nome"].'</option>';
+                          }
+                          echo '
+                          </select>' ?>
 
-                                          <td class="text-right">
-                                          <div class="input-group">
-                                          <input class="form-control" min="0" max="99" maxlength="10" type="text" name="perc'.$escalaoIRS['irs_id'].'" style="width:50px;" value="'.$escalaoIRS['irs_desc'].'">
-                                          <div class="input-group-append">
-                                          <span class="input-group-text"><i class="fas fa-percentage"></i></span>
-                                          </div>
-                                          </div>
-                                          </td>
-                                          </tr>
-                                          ';
-                                        }
+                          <button type="submit" class="btn btn-success" name="button">Selecionar Mes</button>
 
-                                        include 'connections/deconn.php';
+                        </form>
+                        <?php
+                          if(ISSET($_POST["button"])){
+                            $mes = $_POST["mes"];
+                          }
+                         ?>
+                      </div>
+                    </div>
+                  </div>
 
-                                        ?>
-                                      </tbody>
-                                  </table>
-                                  <button type="submit" class="btn btn-success btn-lg btn-block" name="submitirs">Update</button>
-                                  </form>
-                                  <?php
-                                  include 'connections/conn.php';
 
-                                  $querycount = mysqli_query($conn,"SELECT * FROM escalaoirs");
-                                  $countirs = mysqli_num_rows($querycount);
+                      <div class="row m-t-30">
+                            <div class="col-md-12">
+                                <!-- DATA TABLE-->
+                                <div class="table-responsive m-b-40">
+                                    <table class="table table-borderless table-data3">
+                                        <thead>
+                                            <tr>
+                                                <th>Nome</th>
+                                                <th>NIF</th>
+                                                <th>NIB</th>
+                                                <th>Salario</th>
+                                                <th class="text-right">Sub. de Ferias</th>
+                                                <th class="text-right">Sub. de Natal</th>
+                                            </tr>
+                                        </thead>
 
-                                  $min='';
-                                  $max='';
-                                  if(ISSET($_POST["submitirs"])){
-                                    for ($a=1; $a <$countirs+1; $a++) {
-                                      $min = 'valor_min'.$a;
-                                      $max = 'valor_max'.$a;
-                                      $perc = 'perc'.$a;
+                                        <tbody>
+                                          <?php
+                                          echo date("Y-m-d");
+                                          include 'connections/conn.php';
+                                          $query = mysqli_query($conn,"SELECT func_id,func_nome,func_nif,func_nib,func_salario, IF(turno_nome=0, turno_nome, 'Sem Turno') as turno, func_idirs, func_idss, turno_perc
+                                                                FROM funcionario as func
+                                                                left join turno on turno_id = func_idturno
+                                                                ");
 
-                                      mysqli_query($conn,"UPDATE escalaoirs SET irs_valormin = $_POST[$min],irs_valormax =$_POST[$max], irs_desc=$_POST[$perc] WHERE irs_id=$a");
+                                          while (@$listafuncionarios = mysqli_fetch_array($query)) {
 
-                                    }
-                                  echo "<meta http-equiv='refresh' content='0; URL=confpagamentos.php'>";
-                                  }
-                                  include 'connections/deconn.php';
+                                            echo '
+                                            <form method="post">
+                                            <tr><td>'.$listafuncionarios["func_nome"].'</td>
+                                            <td>'.$listafuncionarios["func_nif"].' <input type="hidden" name="nif" value="'.$listafuncionarios["func_nif"].'"> </td>
+                                            <td>'.$listafuncionarios["func_nib"].'</td>
+                                            <td>'.$listafuncionarios["func_salario"].' € <input type="hidden" name="salariobruto" value="'.$listafuncionarios["func_salario"].'"> </td>
+                                            ';
+                                            /*Selector IRS*/
+                                            /*echo $listafuncionarios["func_salario"];*/
+                                            $queryirs1 = mysqli_fetch_array(mysqli_query($conn,"SELECT * from escalaoirs WHERE irs_id = 1"));
+                                            $queryirs2 = mysqli_fetch_array(mysqli_query($conn,"SELECT * from escalaoirs WHERE irs_id = 2"));
+                                            $queryirs3 = mysqli_fetch_array(mysqli_query($conn,"SELECT * from escalaoirs WHERE irs_id = 3"));
+                                            $queryirs4 = mysqli_fetch_array(mysqli_query($conn,"SELECT * from escalaoirs WHERE irs_id = 4"));
+                                            if($listafuncionarios["func_salario"]<=0){
+                                              echo "Fora da Escala";
+                                            }
+                                            else if($listafuncionarios["func_salario"]<$queryirs1["irs_valormax"] ){
+                                              echo '<input type="hidden" name="escirs" value=0.'.$queryirs1["irs_desc"].'>';
+                                            }
+                                            else if($listafuncionarios["func_salario"]>=$queryirs2["irs_valormin"] && $listafuncionarios["func_salario"]<=$queryirs2["irs_valormax"] ){
+                                              echo '<input type="hidden" name="escirs" value=0.'.$queryirs2["irs_desc"].'>';
+                                            }
 
-                                    ?>
+                                            else if($listafuncionarios["func_salario"]>$queryirs3["irs_valormin"] && $listafuncionarios["func_salario"]<$queryirs3["irs_valormax"] ){
+                                              echo '<input type="hidden" name="escirs" value=0.'.$queryirs3["irs_desc"].'>';
+                                            }else {
+                                              echo '<input type="hidden" name="escirs" value=0.'.$queryirs4["irs_desc"].'>';
+                                            }
+                                          /*Selector SS*/
+                                            /*echo $listafuncionarios["func_salario"];*/
+                                            $queryss1 = mysqli_fetch_array(mysqli_query($conn,"SELECT * from escalaoss WHERE ss_id = 1"));
+                                            $queryss2 = mysqli_fetch_array(mysqli_query($conn,"SELECT * from escalaoss WHERE ss_id = 2"));
+                                            $queryss3 = mysqli_fetch_array(mysqli_query($conn,"SELECT * from escalaoss WHERE ss_id = 3"));
+                                            if($listafuncionarios["func_salario"]<=0){
+                                            }
+                                            else if($listafuncionarios["func_salario"]<$queryss1["ss_valormax"] ){
+                                              echo '<input type="hidden" name="escss" value=0.'.$queryss1["ss_desc"].'>';
+                                            }
+                                            else if($listafuncionarios["func_salario"]>=$queryss2["ss_valormin"] && $listafuncionarios["func_salario"]<=$queryss2["ss_valormax"] ){
+                                              echo '<input type="hidden" name="escss" value=0.'.$queryss2["ss_desc"].'>';
+                                            }
+                                            else{
+                                              echo '<input type="hidden" name="escss" value=0.'.$queryss3["ss_desc"].'>';
+                                            }
+
+                                            echo '
+                                            <input type="hidden" name="dias" value="22">
+                                            <input type="hidden" name="tipo" value=2>
+
+                                            <td class="text-right"><button type="submit" name="ferias" class="btn btn-success" value>Sub. Ferias</button></td>
+                                            <td class="text-right"><button type="submit" name="natal" class="btn btn-success" value>Sub. Natal</button></td>
+
+                                            </form>';
+                                          }
+
+
+                                          if(ISSET($_POST["ferias"])){
+                                            $tipo = 2;
+
+                                            $date = date("Y-m-d");
+                                            $salario = $_POST["salariobruto"];
+                                            $segs = $_POST['escss'];
+                                            $imprs = $_POST['escirs'];
+                                            $dias = $_POST['dias'];
+
+                                            $qferias = mysqli_fetch_array(mysqli_query($conn,"SELECT COUNT(pag_id) as total FROM pagamentos WHERE pag_nif=".$_POST['nif']." AND pag_tipo=2 AND YEAR(pag_date)=YEAR(CURDATE())"));
+
+                                            if($qferias == 0){
+                                              $opc = 1;
+                                            }
+                                            else {
+                                              echo "Ja recebeu subsidio de ferias este ano";
+                                              $opc = 0;
+                                            }
+                                          }
+
+                                          if(ISSET($_POST["natal"])){
+
+
+                                            $date = date("Y-m-d");
+                                            $salario = $_POST["salariobruto"];
+                                            $segs = $_POST['escss'];
+                                            $imprs = $_POST['escirs'];
+                                            $dias = $_POST['dias'];
+
+                                            $elmes = mysqli_query($conn,"SELECT MONTH(CURDATE())");
+                                            if($elmes == 11){
+                                              $tipo = 3;
+                                              $qnatal = mysqli_fetch_array(mysqli_query($conn,"SELECT pag_id FROM pagamentos WHERE pag_nif = ".$_POST['nif']." AND pag_tipo = 3 AND YEAR(pag_date) = YEAR(CURDATE())"));
+                                              if($qnatal == 0){
+                                                $opc = 2;
+
+                                              }
+                                              else {
+                                                echo "Ja recebeu o Sub de Natal Este ano";
+                                                $opc = 0;
+                                              }
+                                            }
+                                            else {
+                                              echo "Ainda nao chegou novembro";
+                                              $opc = 0;
+                                            }
+                                          }
+
+
+
+                                          if($opc == 1){
+                                            $descss = $salario * $segs;
+                                            $descirs = $salario * $imprs;
+                                            $salliq = $salario - ($descss + $descirs);
+                                            $salario_final = $salliq;
+                                            echo 'Kappa 2';
+                                             mysqli_query($conn,"INSERT INTO pagamentos(pag_nif, pag_date, pag_dias, pag_salariobruto, pag_descss, pag_descirs, pag_salarioliq, pag_tipo)
+                                               VALUES('$_POST[nif]',CURDATE(),'$_POST[dias]','$_POST[salariobruto]','$descss','$descirs','$salario_final',$tipo)");
+                                            echo "<meta http-equiv='refresh' content='0; URL=bonus.php'>";
+                                          }
+                                          elseif ($opc == 2) {
+                                            $diastrab = mysqli_query($conn,"SELECT SUM(pag_dias) FROM pagamentos inner join funcionario WHERE pag_nif = func_nif");
+                                            $salario = ($salario/365) * $diastrab;
+                                            $descss = $salario * $segs;
+                                            $descirs = $salario * $imprs;
+                                            $salliq = $salario - ($descss + $descirs);
+                                            $salario_final = $salliq;
+                                            mysqli_query($conn,"INSERT INTO pagamentos(pag_nif, pag_date, pag_dias, pag_salariobruto, pag_descss, pag_descirs, pag_salarioliq, pag_tipo)
+                                              VALUES('$_POST[nif]',CURDATE(),0,'$_POST[salariobruto]','$descss','$descirs','$salario_final',$tipo)");
+                                           echo "<meta http-equiv='refresh' content='0; URL=bonus.php'>";
+                                          }
+                                          else {
+
+                                          }
+                                          include 'connections/deconn.php';
+
+                                          ?>
+                                        </tbody>
+                                    </table>
+                                    <div class="container-fluid" style="margin-top:1rem;">
+                                      <div class="row" style="">
+                                        <div class="col-sm">
+
+                                        </div>
+                                        <div class="col-sm" style="text-align: right;">
+                                          <button type="submit" class="btn btn-success" name="button">Pagar Tudo</button>
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                </div>
+                                <!-- END DATA TABLE-->
+                            </div>
                         </div>
-							</div>
-							<div class="col-lg-6">
-                <br>
-                <div class="card">
-                  <div class="card-header">
-                    Configurações - Gestão de Pagamentos
-                  </div>
-                  <div class="card-body card-block">
-                    Neste painel é possivel alterar os limites dos descontos para:
-                    <p>-Segurança Social</p>
-                    <p>-IRS</p>
-                    <br>
-                    Assim como suas percentagens
-                  </div>
+
+
+                    </div>
                 </div>
-							</div>
-						</div>
-            <br>
-            <div class="row">
-              <div class="col-lg-6">
-                <h3 class="title-5 m-b-10">Valores Segurança Social</h3>
-                <div class="table-responsive table--no-card">
-                 <form name="" method="post" action="">
-                  <table class="table table-borderless table-striped table-earning">
-                    <thead>
-                      <tr>
-                           <th></th>
-                           <th class="text-left">Valor Min</th>
-                           <th class="text-left">Valor Max</th>
-                           <th class="text-left">Desconto</th>
-                       </tr>
-                   </thead>
-                   <tbody>
-                     <?php
-                     include 'connections/conn.php';
-                     $query = mysqli_query($conn,"SELECT * FROM escalaoss");
-                     while ($escalaoSS = mysqli_fetch_array($query)) {
-                       echo '<tr><td>Escalao '.$escalaoSS['ss_id'].'<input type="hidden" name="id_escalao" value="'.$escalaoSS['ss_id'].'"></td>
-                       <td class="text-right">
-                       <div class="input-group">
-                       <input class="form-control" min="0" max="100000" maxlength="6" type="number" name="valor_min'.$escalaoSS['ss_id'].'" style="width:100px;" value="'.$escalaoSS['ss_valormin'].'">
-                       <div class="input-group-append">
-                       <span class="input-group-text"><i class="fas fa-euro-sign"></i></span>
-                       </div>
-                       </div>
-                       </td>
-
-                       <td class="text-right">
-                       <div class="input-group">
-                       <input class="form-control" min="0" max="100000" maxlength="6" type="number" name="valor_max'.$escalaoSS['ss_id'].'" style="width:100px;" value="'.$escalaoSS['ss_valormax'].'">
-                       <div class="input-group-append">
-                       <span class="input-group-text"><i class="fas fa-euro-sign"></i></span>
-                       </div>
-                       </div>
-                       </td>
-
-                       <td class="text-right">
-                       <div class="input-group">
-                       <input class="form-control" type="text" name="perc'.$escalaoSS['ss_id'].'" style="width:50px;" value="'.$escalaoSS['ss_desc'].'">
-                       <div class="input-group-append">
-                       <span class="input-group-text"><i class="fas fa-percentage"></i></span>
-                       </div>
-                       </div>
-                       </td>
-                       </tr>
-                       ';
-                     }
-
-                     include 'connections/deconn.php';
-
-                     ?>
-                   </tbody>
-               </table>
-               <button type="submit" class="btn btn-success btn-lg btn-block" name="submitss">Update</button>
-               </form>
-               <?php
-               include 'connections/conn.php';
-               $querycount = mysqli_query($conn,"SELECT * FROM escalaoss");
-               $countss = mysqli_num_rows($querycount);
-               $min='';
-               $max='';
-               if(ISSET($_POST["submitss"])){
-                 for ($a=1; $a <$countss+1; $a++) {
-                   $min = 'valor_min'.$a;
-                   $max = 'valor_max'.$a;
-                   $perc = 'perc'.$a;
-                   // echo $min;
-                   // echo "<br>";
-                   // echo $max;
-                   mysqli_query($conn,"UPDATE escalaoss SET ss_valormin = $_POST[$min],ss_valormax =$_POST[$max], ss_desc=$_POST[$perc] WHERE ss_id=$a");
-
-                 }
-               echo "<meta http-equiv='refresh' content='0; URL=confpagamentos.php'>";
-               }
-               include 'connections/deconn.php';
-
-                 ?>
-     </div>
-              </div>
-              <div class="col-lg-6">
-              </div>
             </div>
-          </div>
         </div>
-      </div>
+
     </div>
-</div>
 
     <!-- Jquery JS-->
     <script src="vendor/jquery-3.2.1.min.js"></script>

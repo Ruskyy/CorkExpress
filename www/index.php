@@ -166,7 +166,7 @@ validar();
                                      <i class="fas fa-hand-holding-usd"></i>Pagamentos</a>
                              </li>
                              <li>
-                                 <a href="#">
+                                 <a href="bonus.php">
                                     <i class="fas fa-gift"></i>Bonus e Sub.</a>
                              </li>
                              <li>
