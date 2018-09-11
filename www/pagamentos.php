@@ -319,6 +319,7 @@ $escirs = 0;
                                         </thead>
 
                                         <tbody>
+                                        Data:
                                           <?php
                                           echo date("Y-m-d");
                                           include 'connections/conn.php';
@@ -411,15 +412,15 @@ $escirs = 0;
                                               echo '</td>
                                               <input type="hidden" name="tipo" value=1>
                                               <input type="hidden" name="dias" value=22>
-                                              <input type="hidden" id="actualDate" name="actualDate"/>
+                                              <input type="hidden" id="actualDate" name="actualDate">
                                               <td>
-                                                <div class="table-data-feature">
-
+                                                <div class="table-data-feature2">
                                                     <button class="item" name="btnupd" title="Edit">
                                                         <input type="hidden" name="func" value="'.$listafuncionarios["func_id"].'">
                                                         <i class="zmdi zmdi-money"></i>
                                                     </button>
-                                                </div></td>
+                                                </div>
+                                                </td>
                                               ';
                                               echo '</form>';
 
