@@ -245,10 +245,6 @@ $opc = 0;
                                                   <a href="user/index.php">
                                                       <i class="zmdi zmdi-account"></i>Área Pessoal</a>
                                               </div>
-                                              <div class="account-dropdown__item">
-                                                  <a href="#">
-                                                      <i class="zmdi zmdi-money-box"></i>Gestão de Salarios</a>
-                                              </div>
                                           </div>
                                           <div class="account-dropdown__footer">
                                                <a href="functions/fecharsessao.php">

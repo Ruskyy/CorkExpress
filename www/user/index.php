@@ -240,16 +240,16 @@ validaruser();
                                             <div class="text">
                                                 <h2><?php
                                                 require_once '../connections/conn.php';
-                                                $query = mysqli_query($conn,"SELECT ROUND(AVG(func_salario), 2)AS media FROM funcionario");
+                                                $query = mysqli_query($conn,"SELECT ROUND(AVG(pag_salarioliq), 2)AS media FROM pagamentos WHERE pag_nif=$nif ORDER BY pag_date,pag_id DESC LIMIT 12");
                                                 $resultado = mysqli_fetch_assoc($query);
                                                 $media = $resultado['media'];
                                                 echo "$media €";
                                                 ?></h2>
-                                                <span>Salário Médio</span>
+                                                <span>Salário Médio (12 meses)</span>
                                             </div>
                                         </div>
                                         <div class="overview-chart">
-                                            <canvas id="widgetChart3"></canvas>
+                                            <canvas ></canvas>
                                         </div>
                                     </div>
                                 </div>
@@ -264,16 +264,41 @@ validaruser();
                                             <div class="text">
                                                 <h2><?php
                                                 require_once '../connections/conn.php';
-                                                $query = mysqli_query($conn,"SELECT sum(func_salario) AS soma FROM funcionario");
+                                                $query = mysqli_query($conn,"SELECT SUM(pag_descss + pag_descirs) as somadesc FROM pagamentos WHERE pag_nif=$nif ORDER BY pag_descss DESC LIMIT 12");
+
                                                 $resultado = mysqli_fetch_assoc($query);
-                                                $salarios = $resultado['soma'];
+                                                $salarios = $resultado['somadesc'];
                                                 echo "$salarios €";
                                                 ?></h2>
-                                                <span>Salários/mês</span>
+                                                <span>Descontos IRS/SS (12 meses)</span>
                                             </div>
                                         </div>
                                         <div class="overview-chart">
-                                            <canvas id="widgetChart4"></canvas>
+                                            <canvas ></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-lg-3">
+                                <div class="overview-item overview-item--c2">
+                                    <div class="overview__inner">
+                                        <div class="overview-box clearfix">
+                                            <div class="icon">
+                                                <i class="zmdi zmdi-money"></i>
+                                            </div>
+                                            <div class="text">
+                                                <h2><?php
+                                                require_once '../connections/conn.php';
+                                                $query = mysqli_query($conn,"SELECT func_salario FROM funcionario WHERE func_nif=$nif");
+                                                $resultado = mysqli_fetch_assoc($query);
+                                                $salarios = $resultado['func_salario'];
+                                                echo "$salarios €";
+                                                ?></h2>
+                                                <span>Salário Liquido</span>
+                                            </div>
+                                        </div>
+                                        <div class="overview-chart">
+                                            <canvas></canvas>
                                         </div>
                                     </div>
                                 </div>
