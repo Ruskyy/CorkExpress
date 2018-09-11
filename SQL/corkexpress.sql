@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
--- http://www.phpmyadmin.net
+-- version 4.8.1
+-- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 10-Set-2018 às 19:47
--- Versão do servidor: 10.1.16-MariaDB
--- PHP Version: 5.6.24
+-- Generation Time: 11-Set-2018 às 03:31
+-- Versão do servidor: 10.1.33-MariaDB
+-- PHP Version: 7.2.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -63,7 +65,7 @@ CREATE TABLE `escalaoss` (
 INSERT INTO `escalaoss` (`ss_id`, `ss_valormin`, `ss_valormax`, `ss_desc`) VALUES
 (1, 0, 500, 11),
 (2, 551, 1099, 11),
-(3, 1100, 0, 11);
+(3, 1100, 100000, 11);
 
 -- --------------------------------------------------------
 
@@ -89,22 +91,24 @@ CREATE TABLE `funcionario` (
   `func_salario` decimal(5,0) NOT NULL,
   `func_idturno` int(11) NOT NULL,
   `func_idirs` int(11) NOT NULL,
-  `func_idss` int(11) NOT NULL
+  `func_idss` int(11) NOT NULL,
+  `func_avatar_path` varchar(150) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `funcionario`
 --
 
-INSERT INTO `funcionario` (`func_id`, `func_tipo`, `func_user`, `func_pass`, `func_email`, `func_nome`, `func_morada`, `func_idnacio`, `func_idnatur`, `func_bi`, `func_nif`, `func_nib`, `func_niss`, `func_contacto`, `func_salario`, `func_idturno`, `func_idirs`, `func_idss`) VALUES
-(1, 1, 'admin', 'admin', 'admin@corckexpress.com', 'Nilton Fontes', 'Rua Admin nºAdmin R/C Admin', 1, 1, 99999999, 999999999, '99999999999999999999', '99999999999', 999999999, '5000', 3, 4, 3),
-(3, 2, 'emmar', '111', 'ines.schamberg@gmail.com', 'Emma M Reed', 'Lynnwood, Washington(WA), 98037', 2, 2, 538821220, 538821220, '538821220', '538821220', 360301133, '56025', 1, 4, 3),
-(4, 2, 'jaqline', '11111', 'maribel_smi@yahoo.com', 'Jacqueline A Pond', '4703 West Street Wyoming, Michigan(MI), 49548', 2, 2, 366682542, 366682542, '366682542', '366682542', 517360445, '56528', 1, 4, 3),
-(6, 2, 'gmd', '111', 'jeica1977@hotmail.com', 'Gregory M Desjardins', '892 Lamberts Branch Road Doral, Florida(FL), 33166', 2, 2, 286524873, 286524873, '286524873', '286524873', 286524873, '5471', 1, 4, 3),
-(11, 2, 'cwl', '111', 'maurine1999@gmail.com', 'Carl W Langer', '4306 Stonecoal Road Bucyrus, Ohio(OH), 44820', 2, 2, 353598444, 353598444, '353598444', '353598444', 353598444, '7845', 2, 4, 3),
-(12, 2, 'dcf', '111', 'chad.ohar7@hotmail.com', 'Daniel C Friley', '1215 Charles Street Plymouth, Michigan(MI), 48170', 2, 2, 705365382, 705365382, '705365382', '705365382', 705365382, '784', 3, 2, 2),
-(14, 2, 'mah', '111', 'rebecca.goyet@gmail.com', 'Margaret A Hanson', '4289 Driftwood Road Fremont, California(CA), 94539', 2, 2, 408702317, 408702317, '408702317', '408702317', 408702317, '1568', 1, 4, 3),
-(15, 2, 'epc', '111', 'helga1989@hotmail.com', 'Eileen P Cashin', '2206 Badger Pond Lane Tampa, Florida(FL), 33602', 2, 2, 864107007, 864107007, '864107007', '864107007', 864107007, '2356', 2, 4, 3);
+INSERT INTO `funcionario` (`func_id`, `func_tipo`, `func_user`, `func_pass`, `func_email`, `func_nome`, `func_morada`, `func_idnacio`, `func_idnatur`, `func_bi`, `func_nif`, `func_nib`, `func_niss`, `func_contacto`, `func_salario`, `func_idturno`, `func_idirs`, `func_idss`, `func_avatar_path`) VALUES
+(1, 1, 'admin', 'admin', 'admin@corckexpress.com', 'Nilton Fontes', 'Rua Admin nºAdmin R/C Admin', 1, 1, 99999999, 999999999, '99999999999999999999', '99999999999', 999999999, '5000', 3, 4, 3, 'images/icon/avatar-01.jpg'),
+(3, 2, 'emmar', '111', 'ines.schamberg@gmail.com', 'Emma M Reed', 'Lynnwood, Washington(WA), 98037', 2, 2, 538821220, 538821220, '538821220', '538821220', 360301133, '56025', 1, 4, 3, NULL),
+(4, 2, 'jaqline', '11111', 'maribel_smi@yahoo.com', 'Jacqueline A Pond', '4703 West Street Wyoming, Michigan(MI), 49548', 2, 2, 366682542, 366682542, '366682542', '366682542', 517360445, '56528', 1, 4, 3, NULL),
+(6, 2, 'gmd', '111', 'jeica1977@hotmail.com', 'Gregory M Desjardins', '892 Lamberts Branch Road Doral, Florida(FL), 33166', 2, 2, 286524873, 286524873, '286524873', '286524873', 286524873, '5471', 1, 4, 3, NULL),
+(11, 2, 'cwl', '111', 'maurine1999@gmail.com', 'Carl W Langer', '4306 Stonecoal Road Bucyrus, Ohio(OH), 44820', 2, 2, 353598444, 353598444, '353598444', '353598444', 353598444, '7845', 2, 4, 3, NULL),
+(12, 2, 'dcf', '111', 'chad.ohar7@hotmail.com', 'Daniel C Friley', '1215 Charles Street Plymouth, Michigan(MI), 48170', 2, 2, 705365382, 705365382, '705365382', '705365382', 705365382, '784', 3, 2, 2, NULL),
+(14, 2, 'mah', '111', 'rebecca.goyet@gmail.com', 'Margaret A Hanson', '4289 Driftwood Road Fremont, California(CA), 94539', 2, 2, 408702317, 408702317, '408702317', '408702317', 408702317, '1568', 1, 4, 3, NULL),
+(15, 2, 'epc', '111', 'helga1989@hotmail.com', 'Eileen P Cashin', '2206 Badger Pond Lane Tampa, Florida(FL), 33602', 2, 2, 864107007, 864107007, '864107007', '864107007', 864107007, '2356', 2, 4, 3, NULL),
+(21, 1, 'admin2', 'admin2', 'admin2@corckexpress.com', 'Sérgio Figueiredo', 'Rua Admin nºAdmin R/C Admin', 1, 1, 800, 900, '900', '900', 999999999, '5005', 3, 4, 3, NULL);
 
 -- --------------------------------------------------------
 
@@ -443,6 +447,13 @@ CREATE TABLE `pagamentos` (
   `pag_tipo` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Extraindo dados da tabela `pagamentos`
+--
+
+INSERT INTO `pagamentos` (`pag_id`, `pag_nif`, `pag_date`, `pag_dias`, `pag_salariobruto`, `pag_descss`, `pag_descirs`, `pag_salarioliq`, `pag_tipo`) VALUES
+(1, 999999999, '2018-09-11', 22, 5000, 550, 600, 3916, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -532,41 +543,50 @@ ALTER TABLE `turno`
 --
 ALTER TABLE `escalaoirs`
   MODIFY `irs_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
 --
 -- AUTO_INCREMENT for table `escalaoss`
 --
 ALTER TABLE `escalaoss`
   MODIFY `ss_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
 --
 -- AUTO_INCREMENT for table `funcionario`
 --
 ALTER TABLE `funcionario`
-  MODIFY `func_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `func_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+
 --
 -- AUTO_INCREMENT for table `mes`
 --
 ALTER TABLE `mes`
   MODIFY `mes_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
 --
 -- AUTO_INCREMENT for table `nacionalidade`
 --
 ALTER TABLE `nacionalidade`
   MODIFY `paisId` tinyint(3) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=253;
+
 --
 -- AUTO_INCREMENT for table `naturalidade`
 --
 ALTER TABLE `naturalidade`
   MODIFY `idNatur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
 --
 -- AUTO_INCREMENT for table `pagamentos`
 --
 ALTER TABLE `pagamentos`
-  MODIFY `pag_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `pag_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
 -- AUTO_INCREMENT for table `turno`
 --
 ALTER TABLE `turno`
   MODIFY `turno_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
