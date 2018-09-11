@@ -268,8 +268,8 @@ $escirs = 0;
                 <div class="section__content section__content--p30">
                   <div class="container">
                     <div class="row">
-                      <div class="col-sm">
-                        <h3 class="title-5 m-b-35">Lista Membros</h3>
+                      <div class="col-sm" style="text-align:left;">
+                        <h3 class="title-5 m-b-35">Realizaçao de Pagamentos</h3>
                       </div>
                       <div class="col-sm" style="text-align:right;">
 
@@ -338,7 +338,7 @@ $escirs = 0;
                                             <td>'.$listafuncionarios["func_nif"].' <input type="hidden" name="nif" value="'.$listafuncionarios["func_nif"].'"> </td>
                                             <td>'.$listafuncionarios["func_nib"].'</td>
                                             <td>'.$listafuncionarios["func_salario"].' € <input type="hidden" name="salariobruto" value="'.$listafuncionarios["func_salario"].'"> </td>
-                                            <td>'.$listafuncionarios["turno"].' | '.$listafuncionarios["turno_perc"].' <input type="hidden" name="turnodesconto" value="'.$listafuncionarios["turno_perc"].'"> </td>
+                                            <td>'.$listafuncionarios["turno"].' ('.$listafuncionarios["turno_perc"].'%) <input type="hidden" name="turnodesconto" value="'.$listafuncionarios["turno_perc"].'"> </td>
 
 
 
