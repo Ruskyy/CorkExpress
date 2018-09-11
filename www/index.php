@@ -205,7 +205,13 @@ validar();
                                echo '<div class="account-wrap">
                                    <div class="account-item clearfix js-item-menu">
                                        <div class="image">
-                                           <img src="'.$empregado['func_avatar_path'].'" alt="avatar" />
+                                           <img src="';
+                                           if (is_null($empregado['func_avatar_path'])) {
+                                             echo 'images/icon/avatar.jpg';
+                                           }else {
+                                             echo $empregado['func_avatar_path'];
+                                           }
+                                           echo '" alt="avatar" />
                                        </div>
                                        <div class="content">
                                         <a class="js-acc-btn">'.$empregado['func_nome'].'</a>
@@ -214,7 +220,13 @@ validar();
                                            <div class="info clearfix">
                                                <div class="image">
                                                    <a href="#">
-                                                       <img src="'.$empregado['func_avatar_path'].'" alt="avatar" />
+                                                       <img src="';
+                                                       if (is_null($empregado['func_avatar_path'])) {
+                                                         echo 'images/icon/avatar.jpg';
+                                                       }else {
+                                                         echo $empregado['func_avatar_path'];
+                                                       }                                                       
+                                                       echo '" alt="avatar" />
                                                    </a>
                                                </div>';
                                               ?>
