@@ -340,7 +340,11 @@ $opc = 0;
                                               $countp = mysqli_num_rows($query);
                                               if(!$countp){
                                                 // echo 'UGAGUGA';
-                                                $query = mysqli_query($conn,"SELECT func_id,func_nome,func_nif,func_nib,func_salario, IF(turno_nome=0, turno_nome, 'Sem Turno') as turno, func_idirs, func_idss, turno_perc FROM funcionario as func left join turno on turno_id = func_idturno left join pagamentos on func_nif = pagamentos.pag_nif GROUP BY func_id");
+                                                $query = mysqli_query($conn,"SELECT func_id,func_nome,func_nif,func_nib,func_salario, IF(turno_nome=0, turno_nome, 'Sem Turno') as turno, func_idirs, func_idss, turno_perc
+
+                                                FROM funcionario as func left join turno on turno_id = func_idturno left join pagamentos on func_nif = pagamentos.pag_nif
+
+                                                GROUP BY func_id");
                                                 // echo 'UGAGUGA';
                                               }
 
@@ -350,7 +354,7 @@ $opc = 0;
                                                 FROM funcionario as func
                                                 left join turno on turno_id = func_idturno
                                                 left join pagamentos on func_nif = pagamentos.pag_nif
-                                                WHERE pagamentos.pag_mes != ".$_POST['mes']." AND (SELECT pag_nif FROM pagamentos inner join funcionario on pag_nif = func_nif WHERE func_nif = pag_nif AND pag_mes = $_POST[mes] ) != pag_nif GROUP BY func_id");
+                                                WHERE pagamentos.pag_mes != ".$_POST['mes']." OR (SELECT pag_nif FROM pagamentos inner join funcionario on pag_nif = func_nif WHERE func_nif = pag_nif AND pag_mes != $_POST[mes] ) = pag_nif GROUP BY func_id");
                                               }
                                             }
 
