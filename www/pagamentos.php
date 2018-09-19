@@ -471,7 +471,7 @@ $opc = 0;
 
 
 
-                                            $checkq = mysqli_query($conn,"SELECT pag_nif FROM pagamentos inner join funcionario on pag_nif = func_nif WHERE pag_mes =  $meses");
+                                            $checkq = mysqli_query($conn,"SELECT pag_nif FROM pagamentos inner join funcionario on pag_nif = func_nif WHERE pag_mes =  $meses ");
                                             $contcheckq = mysqli_num_rows($checkq);
                                             if(!$contcheckq){
                                               mysqli_query($conn,"INSERT INTO pagamentos(pag_nif, pag_date, pag_dias, pag_salariobruto, pag_descss, pag_descirs, pag_salarioliq, pag_tipo, pag_mes)
